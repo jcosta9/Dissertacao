@@ -1,0 +1,14 @@
+*.brf
+*.glsdefs
+*.ist
+*.synctex.gz
+*.acn
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.glo
+*.log
+*.out
+*.toc
