@@ -7,7 +7,7 @@
 %  - Pós-graduação: [qualificacao], mestrado|doutorado, ppca|ppginf
 
 % \documentclass[engenharia]{UnB-CIC}%
-\documentclass[qualificacao,mestrado,ppca]{UnB-CIC}%
+\documentclass[qualificacao,mestrado,ppginf]{UnB-CIC}%
 
 \usepackage{pdfpages}% incluir PDFs, usado no apêndice
 
@@ -15,17 +15,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Informações do Trabalho
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\orientador{\prof \dr Guilherme Novaes Ramos}{CIC/UnB}%
+\orientador{\prof[a] \dr[a] Genaína Nunes Rodrigues}{CIC/UnB}%
 %\coorientador{\prof \dr José Ralha}{CIC/UnB}
-\coordenador[a]{\prof[a] \dr[a] Ada Lovelace}{Bibliothèque universelle de Genève}%
-\diamesano{24}{dezembro}{2014}%
+\coordenador[a]{\prof[a] \dr[a] Ricardo Pezzuol Jacobi}{CIC/UnB}%
+\diamesano{05}{Novembro}{2022}%
 
 \membrobanca{\prof \dr Donald Knuth}{Stanford University}%
 \membrobanca{\dr Leslie Lamport}{Microsoft Research}%
 
-\autor{Guilherme N.}{Ramos}%
+\autor{João Paulo C. de}{Araujo}%
 
-\titulo{UnB-CIC: Uma classe em LaTeX para textos do Departamento de Ciência da Computação}%
+\titulo{A ESCOLHER}%
 
 \palavraschave{LaTeX, metodologia científica, trabalho de conclusão de curso}%
 \keywords{LaTeX, scientific method, thesis}%
@@ -36,11 +36,10 @@
 % Texto
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}%
-    \capitulo{1_Introducao}{Introdução}%
-    \capitulo{2_UnB-CIC}{A Classe \unbcic}%
-    \capitulo{3_TCC}{Trabalho de Conclusão de Curso}%
-    \capitulo{4_Apresentacao}{Apresentações}%
-
-    \apendice{Apendice_Fichamento}{Fichamento de Artigo Científico}%
-    \anexo{Anexo1}{Documentação Original \unbcic\ (parcial)}%
+    \capitulo{1_Introduction}{Introduction}\label{sec:intro}
+    \capitulo{2_Background}{Background}
+    \capitulo{3_RelatedWork}{Related work}
+    \capitulo{4_Proposal}{A data-driven approach to reduce structural uncertainty in self-adaptive systems}
+    \capitulo{5_Evaluation}{Schedule}
+    \capitulo{6_Conclusion}{Conclusion and future work}
 \end{document}%
