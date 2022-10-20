@@ -39,10 +39,148 @@ In the meanwhile, both B and T lymphocytes are derived in the Bone marrow via a 
 
 The adaptive immune response starts at a secondary lymphoid organ, with the arrival of the phagocytic cell carrying the antigen. In this step, a mechanism called Clonal Selection is performed (5). The B and T lymphocytes with a high level of engagement with the pathogen proliferate and mutate (somatic hypermutation) as a means to grow in number and to improve the affinity with the foreign substance. Afterwards, these differentiated cells leave the lymphoid organ and are pumped throughout the circulatory system by the heart (6) until reaching the local of the inflammatory response (7). Finally, the specialized lymphocytes act on the antigens in order to destroy the residual of the invasion (8). These cells are kept as memory cells so that, in the case of a future similar threat, allow for a faster response. 
 
-\subsection{Negative Selection Algorithm} \label{sec:bgNS}
+\subsection{Description of the Negative Selection Algorithm} \label{sec:bgNSA}
 
-\subsubsection{Algorithm Overview} \label{sec:bgNSA}
+One of the fundamental skills of the BIS is the ability to differentiate between the body's own cells and the foreign material. It is called self/nonself discrimination \cite{NSAResearch2021} and helps to protect the body from attacking itself whilst building a strong defense against foreigners. 
 
-\subsubsection{Detectors} \label{sec:bgNSADetectors}
+As described in the previous subsection, T-cells are created in the bone marrow, where they have their receptors differentiated by a pseudo-random genetic rearrangement process. Later, in the Thymus, they are maturated by being tested with self cells. Lymphocytes that have a strong binding with self cells are discarded, in a censoring fashion. The result of the process is a set of diverse T cells specialized in binding with nonself cells.
 
-\subsubsection{Matching Function} \label{sec:bgNSAMatching}
+In 1994, Forrest et al. introduced an algorithm inspired by this process that is used in the field of change/anomaly detection \cite{Forrest1994}. They have abstracted the concepts of self and nonself so that the process of Negative Selection could be used in more general problems. They have used a file authentication system as an example to instantiate one of the possible applications. In their work, data from legitimate users trying to access a file were thought as the body's own cells, while non-authorized accesses were seen as nonself material, or pathogens. Both types of data were translated into binaty strings, and T-cell detectors were generated as binary strings of the same size which, during the censoring phase, did not match the self data. A change was considered whenever there was a match between some detector and the new data in the monitoring phase.
+
+Since then, even though the main idea of the algorithm was kept, several implementations and adaptations were made to improve its performance and allow for the application it in different scenarios. Dasgupta \cite{NSAResearch2021}, in a recent work, reviewed the literature on this matter and classified the algorithms found based on the following characteristics: data type, data representation, distance function, detector size and initialization.
+
+\begin{itemize}
+    \item \textbf{Data Type:} Refers to the type of the data that is used by the algorithm. It can be binary or real value.
+    
+    \item \textbf{Data Representation:} Related to how the data is structured or formatted. If the data type is binary, it can be shaped as a string or a grid. If it is a real value, the formats are grid and vector. 
+    
+    \item \textbf{Distance function:} Also called "affinity" or "matching" Function, it is a function that identifies how strong is the bind between the self and nonself data. In the case of binary strings, the most common are the r-chunk, r-continuous bits and hamming distance with its variations. When talking about real valued types, the functions are usually the distance between vectors, like the manhattan, euclidean or minkowski distance. This section will provide more details about this topic latter on.
+    
+    \item \textbf{Detector Initialization:} Describes how the detectors are generated. In both data types it can be in a random, semi random or adaptive fashion. Further details are provided below.
+    
+    \item \textbf{Detector Size:} It is usually fixed, but in some real valued algorithms the detectors' size may vary in size in the generation process.
+    
+\end{itemize}
+
+Some discussion has been made over the Data Type and Representation characteristics since they limit all the others \cite{RevisitingNSA2007} \cite{NSAResearch2021} \cite{ICBook2009}. The advantages of using bit strings are that (1) any data can be presented as a binary string, (2) it facilitates the analysis of the result and (3) categorical data are well represented in this form. Nevertheless, they have a scalability issue that comes with the increased string size. All in all, to achieve the goals of this work, the binary data type and the string representation will suffice.
+
+Even though different implementations may fall in different buckets, Ji and Dasgupta \cite{RevisitingNSA2007} have distilled the three aspects that must be present in an algorithm so that it may be considered a Negative Selection Algorithm. They are:
+\begin{enumerate}
+    \item The goal is to identify the self-set counterpart.
+    \item Change/anomaly detection is performed by using some form of detector. 
+    \item The algorithm makes use of only the self-samples during the detector generation.
+  \end{enumerate}
+
+The next subsections provide a more in depth view of the algorithm for the binary data type, by showing its overall structure, detailing how the comparisons with the monitored data are made and how the detectors are generated. 
+
+
+\subsubsection{Algorithm Description} \label{sec:bgNSAOverview}
+
+The Negative Selection Algorithm (NSA) can be divided in two steps: the generation of the detectors, and the actual process of detection of the nonself. These steps are similar to most supervised algorithms, in which there is a training and a test phase \cite{NSAResearch2021}. 
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.9\textwidth, keepaspectratio]{img/NSA.png}
+	\caption{The two steps of the NSA~ \cite{NSAResearch2021} }
+	\label{fig:NSAOverview}
+\end{figure}
+
+Figure \ref{fig:NSAOverview} helps to shed some light on both phases. On the left-hand side, the generation of the detectors is illustrated. In this "training" step, a set of random candidates is generated by some predefined process and undergo a censoring process based on the self samples. The candidates that match the self samples, measured by the distance function, are discarded, while the ones that do not match are added to the nonself detector set. On the right-hand side of the figure, the detection, or "test", phase is shown. The nonself detector set obtained in the first step is tested against the data that is being monitored. The same distance function is utilized here to check whether the new data matches with some of the detectors in the set. In the case of a match, the data is considered abnormal.
+
+For a complete understanding of the inner workings of the algorithm, two important pieces are missing: a description of how the random detector candidates are generated and the definition of the matching function that will account for the affinity measurement.
+
+\subsubsection{Distance Function} \label{sec:bgNSADistance}
+
+
+First, the Distance function, or matching rule, is an operation that relies on the comparison of characters (or bits) between two strings and provides a score telling how similar (or different) the strings are. Three rules are the most widely used in the literature \cite{EffectBinaryRule2003}: the Hamming Distance, the R-Contiguous and the R-Chunk matching rules. 
+
+% \cite{RevisitingNSA2007}
+% a matching rule M can be formally defined as dMx ↔ distance measure between d and x is within a threshold, where d is a detector and x is a data instance.
+
+\begin{itemize}
+    \item \textbf{Hamming Distance:} This function measures the number of characters that differ between two strings \cite{ICBook2009}.  Let \(X\) be a string of lenght \(n\) such that \(X = x_1 x_2 x_3...x_n\) and let \(D\) be a dectector with the same lenght, so that \(D = d_1 d_2 d_3...d_n\). The Hamming Distance can be formally defined as:
+    \[HD = \sum_i(\overline{x_i \oplus d_i})\]
+	 
+	where \( \oplus \) is the XOR operation. In this case, a match between \(X\) and \(D\) is said to have happened when the \(HD\) score is below a predefined threshold. Figure \ref{fig:hamm} shows how the comparison is made. The characters at each position are compared and, if they are different, a unit is added to the final score. Therefore, two strigs must have a low score to be considered similar.
+
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=0.4\textwidth, keepaspectratio]{img/hamming.png}
+		\caption{Illustration of the Hamming Distance Matching Rule}
+		\label{fig:hamm}
+	\end{figure}
+    
+    \item \textbf{R-Contiguous:} Let again \(X\) be a string of lenght \(n\) such that \(X = x_1 x_2 x_3...x_n\) and let \(D\) be a dectector with the same lenght, so that \(D = d_1 d_2 d_3...d_n\). Let also \(r\) be an integer, such that \(0 > r >= n\). This rule defines a match between \(X\) and \(D\) whenever the two strings have at least \(r\) consecutive identical characters starting at any position. This rule was mainly used in the first implementations of the NSA, in which the detectors were created in a generate-and-test fashion \cite{EffectBinaryRule2003}.
+    
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=0.4\textwidth, keepaspectratio]{img/rcontiguous.png}
+		\caption{Illustration of the R-Contiguous Matching Rule}
+		\label{fig:rcont}
+	\end{figure}
+
+	Figure \ref{fig:rcont} illustrates this concept. A window of size \(r\) slides searching for a region where the substrings match. If at least one region is found, then \(X\) and \(D\) are considered a match.
+    
+    \item \textbf{R-Chunk:} Let \(X\) be a string of lenght \(n\) such that \(X = x_1 x_2 x_3...x_n\) and let \(D\) be a dectector of size \(m\) so that \(D = d_1 d_2 d_3...d_m\), with \( m \leq n\). Similarly to the R-Continuous rule, the string and the detector are considered a match if, at a position \(p\), all bits of \(D\) are identical to the bits \(X\) in a window of size \(m\), with \(0 \leq p \leq n - r\).  Hence, the detector is characterized by a chunk of size \(r\) and a starting position \(p\), and can be uniquely identified as \(t_{p, D}\). The practical difference between this rule and the previous one is that this function allows for detectors of any size, which improves the self-space coverage \cite{ICBook2009}.
+    
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=0.4\textwidth, keepaspectratio]{img/rchunk.png}
+		\caption{Illustration of the R-Chunk Matching Rule}
+		\label{fig:rchunk}
+	\end{figure}
+
+	Figure \ref{fig:rchunk} shows an example of this rule. The detector \(t_{6, 01011}\) has size 5 and was a match in the sixth position of the string. The "*" represents irrelevant positions meaning that any character can be matched. 
+\end{itemize}
+
+The R-chunk is said to enhance the accuracy and performance of the NSA \cite{EffectBinaryRule2003} because the same generated string can be used as a detector in several positions. Therefore, one can say that lower sized detectors comprise an optimal detector set, since more abnormal data can be detected. Nevertheless, as cited by Wierzchon and Chmielewski \cite{HybridNSA2012}, a study performed by Stibor showed that strings generated with low values of \(r\) are less likely to become detectors. This probability highly increases in the middle range, and is close to 1 for large string sizes. Hence, there is a sweet spot when trying to find the size of the string, which is usually for middle values of \(r\), that aligns accuracy and coverability with efficiency.
+
+\subsubsection{Detector Generation} \label{sec:bgNSADetectors}
+
+% \cite{RevisitingNSA2007}
+% On the next level, representation of data space doesn’t define representation of detectors. 
+
+Both Ayara et al. \cite{NSADetectorGen2002} and Dasgupta and Niño \cite{ICBook2009} provide a thorough detailing of the different methods found in literature for the generation of the detectors set for binary data. The most basic approach is the exhaustive detector generation, which was introduced in the original NSA paper \cite{Forrest1994}. The idea is to exhaustively generate random candidates until a big enough set of detectors is achieved. It was reported to be very time-consuming, since the amount of candidates grows exponentially with the size of the self-set \cite{LinearNSA1996}.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.6\textwidth, keepaspectratio]{img/exhaustiveNSA.png}
+	\caption{Example of the Exhaustive Detector Generation Process~ \cite{LinearNSA1996} }
+	\label{fig:ExhDet}
+\end{figure}
+
+This generate-and-test method can be further explained with Figure \ref{fig:ExhDet} in which random binary strings are generated and compose the \(R_o\) set. Then, each candidate is tested for a match with the self-set \(S\) by using one of the functions described earlier. In the figure, if the compared strings have at least 2 matching contiguous bits, the candidate is rejected, otherwise it is accepted as a valid detector and joins set \(R\).
+
+The problem with the exhaustive detector generation is that a great number of candidates are rejected during the censoring, making it be inneficient \cite{NSADetGen1996}, besides being costly in terms of computational use of resources \cite{NSADetectorGen2002}. To tackle that, two other approaches arose: the linear and the greedy algorithms, both based on the r-countinuous distance method. 
+
+The linear time algorithm is a two-phase process named after its complexity introduced by D’haeseleer et al. \cite{NSADetGen1996}. Initially, all the strings that are unmatched by the self-set have their recurrence counted. Then, this counting recurrence is used to naturally number the unmatched strings and allow for the picking of random detectors, according to the desired size of the detector's set. Even though this algorithm runs in linear time according to the detector's set and self-set sizes, the recurrence counting requires the storage of all the possible matches two strings can have by using the r-contiguous distance. This means that, although its complexity is linear in terms of time, it is exponential with regard to space. 
+
+The Greedy algorithm is another algorithm introduced by D’haeseleer et al. \cite{NSADetGen1996}, which tries to provide a better coverage of the string space without increasing the amount of detectors. It does so by slightly modificating the construction of the array of possible matches. It also relies on two arrays, one that stores the candidates picked by the algorithm and other keeps track of the strings that still were not matched with any picked detector. New detectors are generated based on the unmatched strings that have the highest recurrence value \cite{ICBook2009}. This algorithm provides an optimal set of detectors but has a higher time complexity when compared with the Linear algorithm. This happens because of the update of the two arrays that happens whenever a new detector is generated. Time complexity is kept, though.
+
+% \cite{NSADetGen1996}
+% Linear
+% The generate-and-test algorithm described above is inefficient because most of the candidate detector strings are rejected 
+% two-phase algorithm for the “r-contiguous-bits” matching rule (two l-bit strings match each other if they are identical in at least r contiguous positions)  that runs in linear time with respect to the size of the input
+% In Phase I, we solve a counting recurrence for the number of strings unmatched by strings in S (candidate detectors, set C in Figure 1). In Phase II, we use the enumeration imposed by the counting recurrence to pick detectors randomly from this set of candidate detectors 
+
+
+
+
+% MATCHING RULES
+
+% \cite{RevisitingNSA2007}
+% Matching rules are used both in the detector generation phase and in the anomaly detection phase. Regardless of representation, a matching rule M can be formally defined as dMx ↔ distance measure between d and x is within a threshold, where d is a detector and x is a data instance.
+% partial matching: two points do not have to be exactly the same to be considered matching. 
+% Is a partial matching rule an approximation or a generalization? It is both. Generalization is the basic goal in many applications and it is often acceptable to have some approximation at the same time 
+% 2.2.1 Matching Rules in String Representation
+
+
+% \subsubsection{Drawbacks of the Algorithm}
+
+% \cite{NSADetectorGen2002}
+% However, this algorithm is reported to % be very time consuming (D'haeseleer, Forrest et al. % 1996), (Wierzchoń 2000) The time taken to generate the detectors is measured by the number of candidate detectors that have to be examined before producing the required number of competent detectors. It was observed that the number of candidate detectors increases exponentially with the size of the self-set, at a fixed probability of not detecting non-self (Forrest, Perelson et al. 1994).  This implies that the time to complete the process increases with the size of the selfset. Furthermore, this process does not check for redundant detectors 
+
+
+% \cite{LinearNSA1996}
+% The principle of holes (undetectable nonself strings) is illustrated
+% 5. The existence of holes
