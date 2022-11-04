@@ -921,14 +921,14 @@
 \newcommand{\sigla}[2]{\newacronym{#1}{#1}{#2}}%
 
 \newcommand{\@referencia}[2]{#1~\ref{#2}}%
-\newcommand{\refCap}[1]{\@referencia{Capítulo}{#1}}%
-\newcommand{\refCaps}[2]{\@referencia{Capítulos}{#1}\ a \ref{#2}}%
-\newcommand{\refFig}[1]{\@referencia{Figura}{#1}}%
-\newcommand{\refFigs}[2]{\@referencia{Figuras}{#1}\ a \ref{#2}}%
-\newcommand{\refEq}[1]{\@referencia{Equação}{#1}}%
-\newcommand{\refEqs}[2]{\@referencia{Equações}{#1}\ a \ref{#2}}%
-\newcommand{\refTab}[1]{\@referencia{Tabela}{#1}}%
-\newcommand{\refTabs}[2]{\@referencia{Tabelas}{#1}\ a \ref{#2}}%
+\newcommand{\refCap}[1]{\@referencia{Chapter}{#1}}%
+\newcommand{\refCaps}[2]{\@referencia{Chapters}{#1}\ a \ref{#2}}%
+\newcommand{\refFig}[1]{\@referencia{Figure}{#1}}%
+\newcommand{\refFigs}[2]{\@referencia{Figures}{#1}\ a \ref{#2}}%
+\newcommand{\refEq}[1]{\@referencia{Equation}{#1}}%
+\newcommand{\refEqs}[2]{\@referencia{Equations}{#1}\ a \ref{#2}}%
+\newcommand{\refTab}[1]{\@referencia{Table}{#1}}%
+\newcommand{\refTabs}[2]{\@referencia{Tables}{#1}\ a \ref{#2}}%
 \newcommand{\refApendice}[1]{\@referencia{Apêndice}{#1}}%
 \newcommand{\refAnexo}[1]{\@referencia{Anexo}{#1}}%
 

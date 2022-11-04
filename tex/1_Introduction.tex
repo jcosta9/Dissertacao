@@ -1,23 +1,118 @@
 \section{Problem Definition}
 
 %%%% Context %%%%
+% blablabla
+Cyber-physical systems (CPSs) are a definite reality in our day-to-day lives, specially in the recent years. It is fair to say that the development of autonomous systems and the Internet of Things has taken us quite near to the future visions we had a few decades ago. Flying cars were supplanted by unmanned aircraft and autonomous drones, for instance, although these technologies are now used for a variety of applications rather than just passenger transportation. The usage of CPSs are increasingly amongst sophisticated applications, whose domains include self-driving vehicles, smart homes, smart cities, and more.
+
+% safety-critical systems need assurances 
+Nevertheless, the complexity inherent of these domains raises some challanges. Unforeseen events, for example, might make the CPS unreliable at runtime, which could have disastrous effects. This is a fact, particularly for safety-critical systems, which are subject to strict safety rules, time limitations, and performance requirements, and whose malfunctions might potentially endanger the user's life. Such systems demand the provision of assurances to guarantee that the system's goals are met during its entire lifespan, from conception to operation. 
+
+% they are hard to achieve
+Modern techniques view formal methods as the most promising means of delivering such evidences \cite{assurances2017}. Model checking, for instance, is a model-based method run tipically offline to check the fulfillment of goals and properties for all attainable states in the model. 
+% It enables traceable adjustments of the system both by humans and by the system itself, in case of self-adaptive systems, to react to changes in the requirements. 
+However, the provision of assurances is a difficult undertaking yet to be perfectly achieved \cite{patankar2020safety}. One of the reasons is that, when applications are first designed, the knowledge about the environment in which they will be deployed may be incomplete, and also subject to continuous change over the application's lifetime \cite{assurances2017}. These contextual uncertainties, affect the quality aspects of CPSs operation both at a physical and at a logical level, such as a freezing temperature affecting a sensor's capacity to deliver reliable data. 
+
+In an ideal scenario, developers should be granted complete knowledge of the system before entering the implementation phase. This would allow the verification at design time through the examination of all potential context and system variants or by the anticipation of which one would be chosen. In reality, both scenarios are impractical since there are too many potential outcomes to predict. Additionally, because the information needed is only available at runtime, it becomes challenging to forecast from the earliest phases of development. All of this can lead to inaccurate estimations of a system's safety and reliability \cite{2014PerceptionsSOTAV&VCPS}.
+
+Besides that, the complexities of representing both the cyber and physical aspects of any CPS challenges the task of modeling such systems. Oversimplified models may be invalidated for not anticipating failures dependant on the two layers \cite{2014PerceptionsSOTAV&VCPS}. Often times, the verification mechanism well depicts either the cyber or the physical process, but not both. Physical processes, for instance, are modeled by differential equations while the discrete behavior can expressed by state machines \cite{Baheti2019CyberPhysicalS}. Even though this two-fold segmented modeling may suffice for the development of CPSs, it creates a significant challenge for verifying the safety and correctness of the overall system and the physical-behavioral interactions at a component level.
+
+The high demand of safety and reliability in CPS' domains also makes it essential not only to detect but also to isolate and identify faults and abnormalities as early as possible. A system fault can be described as a deviance from the acceptable or usual state of at least one distinctive property or parameter of the system \cite{gao2015survey}. A worth mentioning example is the violation of a system property, which was derived from the requirements and describes what the system should do \cite{2008PrinciplesModelChecking}. The fault diagnosis can be performed by the Analytical redundancy method, which compares input and output data to prior knowledge of a healthy system. This process allows for the removal of the negative effects from the faulty parts on the system's normal operation, thus, increasing the robustness of the CPS. When performed in the first stages of development, it allows for the implementation of fault-tolerant applications that minimizes potential malfunctionings and dangerous situations.
+
+After taking into account the existing state of the field, and all the restrictions mentioned in the preceding sentences, we condense the goal of this study into the following research question:
+
+
+
+
+% Practical Causal Models for Cyber-Physical Systems
+% When Cyber-Physical Systems (CPS) are causally involved in accidents or unwanted events, rapid diagnosis of the underlying fault is paramount. On the one hand, this builds public trust in those systems, and on the other hand, this is necessary to prevent similar accidents with identically constructed systems. However, the analysis of faults and the attribution of accountability in CPS [15] is especially hard, because these systems interact with their physical environment, have no clear boundaries, and the necessary knowledge is often spread across different models.
+
+
+% Manuscript
+
+
+% All of those issues highlight first that we have to provide assurance measures at both design and runtime. Monitoring and verification are means to collect assurance evidences but they require a precise specification of what should be monitored and verified. This is difficult in practice and inherently error prone; humans biases, for instance, can lead to incomplete and oversimplified models and, consequently, undependable systems.
+% Monitoring events and exchanging alert messages can be rather costly in a CPS environment,
+% which is often resource constrained in terms of
+% battery, CPU, memory, and storage [3]. For instance, an unplanned monitoring process that tries
+% to supervise all the components in detail, exhausting resources to exchange irrelevant data, may
+% have devastating impacts on the battery consumption of the CPS. To avoid such an overhead, the
+% system instrumentation must be wisely designed
+% so that important information is collected for
+% an accurate and dependable assurance evidence
+% provision. There are several approaches targeting
+% such purpose [4]. However, a method with the
+% ability for becoming technology independent and
+% maintaining its efficacy is still missing. More
+% importantly, the need for monitoring events that
+% are not fully known, makes the challenge even
+% greater and demands solutions to pave the road
+% for engineering safe CPSs.
+% In this article, we present a methodology to
+% increase the ability to confidently and systematically monitor and analyze CPSs. The methodology combines learning techniques with different
+% assurance provision methods in order to account
+% for contextual uncertainties that could impair the
+% dependability of the CPS. Our methodology is
+% better explained with an Artificial Immune System (AIS) metaphor. An AIS is an abstraction
+% based on the underlying theory of immunology
+% and adopted to solve different computational
+% problems. Basically, real immune systems rely
+% on “good cells” to detect and combat foreign
+% particles. The immune system, for instance, produces T cells, which are triggered by specific
+% antigens in order to combat certain anomalies
+% (pathogens). Analogously, the methodology we
+% are proposing, produces useful observer automata
+% similar to T cells. They are mapped to monitors at
+% runtime to detect anomalies caused by contextual
+% uncertainties in the CPS operation. Intuitively,
+% observers are automata designed to reach a certain
+% bad state if and only if some property can be
+% violated in the observed system model. Our goal
+% is thus to guide developers in designing effective
+% runtime monitors derived from observer automata
+% that account for uncertain execution contexts.
+
+% \cite{seams2018}
+% The assurance of real-time properties is prone to context variability. Providing such assurance at design time would require to check all the possible context and system variations or to predict which one will be actually used. Both cases are not viable in practice since there are too many possibilities to foresee. Moreover, the knowledge required to fully provide the assurance for self-adaptive systems is only available at runtime and therefore difficult to predict at early development stages. Despite all the efforts on assurances for self-adaptive systems at design or runtime, there is still a gap on verifying and validating real-time constraints accounting for context variability.
+  
+% The idea of borrowing concepts from other areas is not restricted to AIS.
+% Seeking inspiration in processes from other fields is a very common activity in Computer Science. Specially when it comes to looking at biology
+
+
+% Causality in Configurable Software Systems
+% Configurable software systems offer a wide variety of configuration options that control the activation of features desired by the user and that influence critical functional and non-functional properties such as performance. The often huge configuration spaces render the detection, prediction, and explanation of defects and inadvertent behavior challenging tasks. While there are specifically tailored analysis methods to tackle this challenge [86], research on their explainability is still in its infancy [8]
 
 %%%% Objective %%%%
-description of the main goals.
+% description of the main goals.
+% Our proposed work aims at supporting the provision of such evidence with special focus on real-time properties of SAS.
 
 
-% \vspace{0.5 cm}
+\vspace{0.5 cm}
 
-% \noindent\fbox{
-% 	\parbox{\textwidth}{
-% 		\textbf{RQ1:} In the self-adaptive system engineering, what practices can be adopted in order to assure that the model of the managed system reflects the actual system?
-% 	}
-% }
-% \vspace{0.3 cm}
+\noindent\fbox{
+	\parbox{\textwidth}{
+		\textbf{RQ:} Is it possible to create a framework for designing CPSs that mitigates the violation of properties through a causality analysis, in a way that enables the verification of the safety and correctness of the physical-behavioral interactions of the system, while still in design-time?
+	}
+}
+\vspace{0.3 cm}
 
 %%%% Method %%%%
 \section{Proposed Solution}
 
+In this work, we aim at the creation of a framework to help developers designing safe and correct cyber-physical systems. This is achieved by a systematical diagnosis of system properties violations based on data generated by a protoype, performed in the early stages of development. An immuno-inspired algorithm called Negative Selection (NSA) serves as an analytical redundancy method to isolate and identify the cause for violation in the system. We believe that, by reasoning about why the property violations happen, the system specification and the property themselves may be refined, fault-tolerant mechanisms may be added, and, thus, safer and better applications might be written.
+
+The methodology is comprised of two main phases. In the first phase, the system specification in the form of a Contextual Goal Model (CGM) is used as input to model the behavior of the system as timed automata. Then, by using pattern catalogs, real-time system properties are derived from the CGM and expressed as observer automata. The system model along with the observers, then, undergo a model checking process to assert the system's correctness and the satisfiability of the properties. Finally, a prototype of the system is implemented and several simulations are performed with varying configurations, input data and parameters in order to account for the context variability that may arise in runtime. 
+
+The second phase focus on the causality analysis of property violations in the data extracted from the prototype. The data, initially, is feature engineered and labeled as self or nonself, meaning regular data traces or faulty traces that incurr in violation. Then, the NSA is executed by generating random detectors based on the features of the dataset. These detectors go through a censoring process, in which they are tested against the self data and are discarded if matched. The resulting set contains detectors specialized in matching nonself data which are carefully examined so that the patterns discovered can be comprehended. This process shares some similarities with the Analytical Redundancy Method \cite{gao2015survey}, since the pre-knowledge of a healthy system are the properties being verified against the prototype data. Hence, it allows for the reasoning about the causes of such violations, which can be used by the Analyst to enhance the sytem's specification, properties and the observers.
+
+The Biological immune system (BIS) not only provides the NSA technique, but also acts as a metaphore for the entire methodology. The initial phase can be related to the Innate Immunity response, since it is the first line of defense of the body. The prototype with the "naive" observers face the context variability without a refined knowledge, just as the nonspecific process of the human body. The antigens are seen here as the execution traces that incur in property violation. The operation data follows to the second phase of our approach, which can be compared to the Adaptive Immunity response of the BIS. The biologica system produces T cells, which are matured in the Thymus by a censoring process called Negative Selection, in which the lymphocytes are discarded if they strongly bind to proteins of the body. These matured white blood cells are then used by the body to combat pathogens. Analogously, the framework we are proposing uses the Negative Selection algorithm to create a set of random detectors, which are "matured" by being tested against the operation dataset from the prototype. These detectors, in turn, are used to produce useful observer automata similar to T cells. 
+
 \section{Evaluation}
 
+We experimentally assess our strategy by designing a version of the Body Sensor Network (BSN) \cite{2021BSN}. Its Contextual Goal Model specifies a set of modules and resources, like sensors, battery and patient's sensed data, that will allow us to represent it as a Cyber-Physical system. The CPS, along with its observers, are going to be modeled as timed automata in the UPPAAL tool \cite{UPPAAL}, where the Model Checking process will also take place. Then, a system prototype will be implemented in a simulation environment called OpenModelica, which is a well known graphic modeling tool for the development of CPS prototypes in the Modelica language. %TODO: cite both
+The simulations were performed by using a dataset of 1,000 randomly generated patient data. The feature engineering process and the Negative Selection Algorithm were both implemented in the Python programming language, which was also used in the causality analysis of the detectors.
+
+The efficiency of the framework will also be accounted for by two different assessments. First, in the usage of observers as a means for verification. This will be done by performing A/B tests on the simulated prototype with and without the mechanism in order to evaluate the consumption of battery in the two scenarios. Second, the efficiency of our implementation of the Negative Selection Algorithm will be assessed. In this case, we will evaluate how well it performs in comparison to other well known change detection statistical methods like Random Forest % TODO: cite.
+, in relation to metrics like precision and recall.
+
 \section{Organization}
+The rest of the document is organized as follows. Chapter \ref{2_Background} introduces some concepts that are useful for the understanding of the framework. Chapter \ref{3_RelatedWork} presents some works that are strongly related. Chapter \ref{4_Proposal} futher details the proposed approach. Finally, in Chapter \ref{5_Evaluation}, the planning of execution of the research is presented.

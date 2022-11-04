@@ -10,36 +10,41 @@
 \documentclass[qualificacao,mestrado,ppginf]{UnB-CIC}%
 
 \usepackage{pdfpages}% incluir PDFs, usado no apêndice
-
+\usepackage{xcolor, soul}
+\sethlcolor{yellow}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Informações do Trabalho
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\orientador{\prof[a] \dr[a] Genaína Nunes Rodrigues}{CIC/UnB}%
+\orientador[a]{\prof[a] \dr[a] Genaína Nunes Rodrigues}{CIC/UnB}%
 %\coorientador{\prof \dr José Ralha}{CIC/UnB}
-\coordenador[a]{\prof[a] \dr[a] Ricardo Pezzuol Jacobi}{CIC/UnB}%
-\diamesano{05}{Novembro}{2022}%
+\coordenador{\prof \dr Ricardo Pezzuol Jacobi}{CIC/UnB}%
+\diamesano{11}{Novembro}{2022}%
 
-\membrobanca{\prof \dr Donald Knuth}{Stanford University}%
-\membrobanca{\dr Leslie Lamport}{Microsoft Research}%
+\membrobanca{\prof \dr Luís Paulo Faina Garcia}{CIC/UnB}%
+\membrobanca{\prof \dr Lars Grunske}{Humboldt-Universität zu Berlin}%
 
 \autor{João Paulo C. de}{Araujo}%
 
-\titulo{A ESCOLHER}%
+\titulo{A Property-Based Causality Analysis for Cyber-Physical Systems using the Negative Selection Algorithm}%
 
 \palavraschave{LaTeX, metodologia científica, trabalho de conclusão de curso}%
 \keywords{LaTeX, scientific method, thesis}%
 
 \newcommand{\unbcic}{\texttt{UnB-CIC}}%
 
+
+\usepackage{multirow}
+\usepackage{amssymb}
+\usepackage{mathtools}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Texto
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}%
     \capitulo{1_Introduction}{Introduction}\label{sec:intro}
     \capitulo{2_Background}{Background}
-    \capitulo{3_RelatedWork}{Related work}
-    \capitulo{4_Proposal}{A data-driven approach to reduce structural uncertainty in self-adaptive systems}
+    % \capitulo{3_RelatedWork}{Related work}
+    \capitulo{4_Proposal}{An AIS-based approach to reduce uncertainty in self-adaptive systems}
     \capitulo{5_Evaluation}{Schedule}
-    \capitulo{6_Conclusion}{Conclusion and future work}
+    % \capitulo{6_Conclusion}{Conclusion and future work}
 \end{document}%

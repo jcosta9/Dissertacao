@@ -1,6 +1,6 @@
 \section{Self-Adaptive Systems (SAS)}  \label{sec:bgSAS}
 
-That are several different ways in which the term \textit{self-adaptation} is defined in literature. Danny Weyns, in his organized tour through the topic of Self-adaptation \cite{EngSAS2018}, attmepts to round up a definition by introducing two complementary principles. 
+There are several different ways in which the term \textit{self-adaptation} is defined in literature. Danny Weyns, in his organized tour through the topic of Self-adaptation \cite{EngSAS2018}, attmepts to round up a definition by introducing two complementary principles. 
 
 First, the external principle outlines that self-adaptive systems need to handle autonomously changes, uncertainty, the system's goals and itself. It matches definitions as found in Cheng et al. \cite{SASResearchRoad2009}, which characterizes it as the system's ability to "adjust their behaviour in response to their perception of the environment and the system itself". 
 
@@ -37,7 +37,7 @@ Another relevant characteristic of contexts is that they only represent partial 
 A context is said to be monitorable if, and only if, there is a formula of facts and monitorable statements that can define it \cite{2010AliCGM}. This formula, also called world predicate formula, is the result of the process of Context analysis, in which high level contexts are refined into formulas of observable facts that support them. This is particularly relevant to the development of SAS since systems can leverage that when sensing the environment. Context information can be operationalized by the usage of sensors, for example, and the formula can be represented by the combination of the different resource states.
 
 
-\subsection{uncertainty}
+\subsection{Uncertainty}
 
 Another way to look at self-adaptive systems is as a temporally completed system, with space for configuration variability \cite{2021UncertaintySASHezavehi}. This enables the system to alter its configurations as the conditions change so that it can cope with unforeseen circumstances that are difficult to anticipate in design time. Such circumstances are named uncertainty and are seen by some researchers as \textit{the} motivation for self-adaptation. This lack of deterministic knowledge can lead to the lack of trust in the results, unintended behavior and unexpected failures during the system's lifetime \cite{2010SWEngInUncertainGarlan}.
 
@@ -87,6 +87,39 @@ The methods that provide the perpetual assurances can be divided in three catego
     
 \end{itemize}
 
+
+% \section{Model Checking}
+% TODO 
+% cite 2008 principles of model checking 1.1
+
+% 3.1.1 Properties Verification. We specify the properties of the model to be verified in Timed Computational Tree Logic (TCTL) [15], since its the UPPAAL language to verify the real-time properties of the formalized model. TCTL is a real-time variant of CTL aimed to express properties of timed automata. Like CTL, the model verification relies on state or path expressions regarding properties such as reachability, safety, or liveness. TCTL extends CTL with atomic clock constraints over the clocks, typically the set of clocks in the timed automaton under consideration. The TCTL model-checking problem is to check for a given timed automaton TA and TCTL formula ϕ whether TA  ϕ [3]. In UPPAAL, the properties are specified with a subset of TCTL augmented with syntactical symbols such as → and logical operators like imply and >, ≥, <, ≤ to include v riables and time evaluations. Table 2 lists such basic expressions.
+
+
+% In our approach, we specify temporal logic formulae to verify the satisfiability of the goals modeled in the CGM (cf. Figure 1). The CGM root goal explicitly elicits the actor’s main goal that once satisfied assures the system’s correct behavior. Fulfilling hard goals requires its refinements by means of its AND- and OR-refinements into goals or tasks are satisfied. Taking into account the modeling strategy, the task’s behavior can be verified through reachability properties as the timed automata locations represent the progress and achievement of the task’s behavior. For example, T1.1 (Collect sensor data) with A♦sensornode.collected meaning “the sensor node will eventually collect sensor data”, also T2.2 (Detect patient health status) with A♦bodyhub.detected as “the bodyhub will eventually d tect the patient’s status”, and so on.
+
+
+% On the other hand, sequences of states comprising temporal relations need to be addressed in order to fulfill the CGM goals. These are achieved basically by combining task properties (reachable locations) in the UPPAAL models with invariants or path-like formulae. Table 3 describes the sufficient TCTL-like specifications to assure the correct system behavior of the BSN by means of the satisfiability of the goals modeled in the CGM (cf. F gure 1).
+
+
+% The safety property P1 is common to distributed systems and assures that the BSN model is deadlock free. The fairness property P2 assures that in a scheduling cycle all modules will be executed. 
+
+% Regarding P3, it is noticed that goal verification is not trivial when it does not have a direct relation to task decompositions, specially when non-functional goals contributes to it, which is the case of the root goal G1 that demands the emergency detection within 250 ms (cf. Figure 1). This is addressed in UPPAAL through an observer automaton that records the time taken when high risk is acknowledged at the sensor node to its proper detection on the BodyHub.
+
+
+% To fulfill G3, the properties P4, P5, and P6 shall be assured as they represent the controller behavior in task T3 operationalization with respect to the frequency at which sensors data will be collected. Finally, the goals G4 and G5 are satisfied by assuring their meansend task executions. In particular, G5 guarantees through property P9 that the sensor data range follows the BSN operationalization data accordingly, that is, low, moderate or high. This is important to assure that the model does not have any data sent outside the range recognized by the BSN system. G2 is the fulfillment of property P7, which merely synthesizes the  fulfillment of goals G4 and G5.
+
+
+% \section{Observer Automata} \label{sec:bgobserver}
+
+% \subsection{Property Specification Pattern Catalog}
+
+% manuscript
+% Property specification patterns are organized in
+% catalogues and provide general rules that help
+% practitioners to qualify order and occurrence, to
+% quantify time bounds, and to express probabilities
+% of events [7], [8].
+
 \section{Goal Oriented Requirements Engineering} \label{sec:bgGORE}
 
 % \cite{Horkoff2019133}
@@ -119,22 +152,18 @@ A goal model usually utilizes a directed graph tree to delineate the goals in a 
 \begin{figure*}[!htb]
  \centering
  \includegraphics[width=\linewidth]{img/and-or-fill.png}
- \caption{AND/OR-Refinements \cite{Rodrigues:2012}}
+ \caption{AND/OR-Refinements}
 \label{fig:andorref}
 \end{figure*}  
 
 
 Since variants were only allowed by regular Goal Models, but not clear-cut defined, an extension of TROPOS, named Contextual Goal Model (CGM), was created to meet the notions of context and goals. It specifies explicitly which changes in the environment can be adopted and when. This allows for systematic derivation of variants based on the  several different contexts that may appear \cite{ali_goal_based_2010}. Figure \ref{fig:andorref} describes \textit{C1} and \textit{C2} as contexts of a OR-refinement, as an example of how contexts are depicted in Contextual Goal Models.
 
-\section{Model Checking} 
-% cite 2008 principles of model checking 1.1
-
-\section{Observer Automata} \label{sec:bgobserver}
-
-\subsection{Property Specification Pattern Catalog}
+% \subsection{Goal-Oriented Dependability Analysis (GODA)}
+% TODO
 
 
-\section{Artificial Immune Systems (AIS)} \label{sec:bgais}
+\section{Biological Immune Systems (BIS)} \label{sec:bgais}
 
 The primary goal of the Biological Immune System (BIS) is to protect the body from potentially harmful material \cite{AISSOA2015}. It is composed by a multilevel defense mechanism that is capable of distinguishing between molecules from the body itself and foreign ones, selecting a specific response to a threat, and enacting an inflammatory reaction in order to maintain the health and safety of the body. All of these activities are capable of evolving through time since they rely on aspects of learning and memory, which are present in the BIS.
 
@@ -144,7 +173,7 @@ Recently, the advances in technology enabled complex tasks to be performed in a 
 
 This section is structured as follows: initially, the main concepts of the Biological Immune System will be laid out. Then, the Negative Selection algorithm will be explained in depth, for it will be exercised throughout this work.
 
-\subsection{Overview of the Biological Immune System}
+\subsection{Overview of the Biological Immune System} \label{sec:bgBISOverview}
 
 As mentioned previously, the Artificial Immune System is a model inspired by its biological counterpart in order to solve computational problems. Therefore, there is a need to introduce the main concepts and processes found in the Biological Immune System so that the analogies and metaphors implemented by the AIS might be better understood. This subsection focuses on providing the reader with the foundational knowledge on the BIS. 
 
@@ -175,7 +204,7 @@ In the meanwhile, both B and T lymphocytes are derived in the Bone marrow via a 
 
 The adaptive immune response starts at a secondary lymphoid organ, with the arrival of the phagocytic cell carrying the antigen. In this step, a mechanism called Clonal Selection is performed (5). The B and T lymphocytes with a high level of engagement with the pathogen proliferate and mutate (somatic hypermutation) as a means to grow in number and to improve the affinity with the foreign substance. Afterwards, these differentiated cells leave the lymphoid organ and are pumped throughout the circulatory system by the heart (6) until reaching the local of the inflammatory response (7). Finally, the specialized lymphocytes act on the antigens in order to destroy the residual of the invasion (8). These cells are kept as memory cells so that, in the case of a future similar threat, allow for a faster response. 
 
-\subsection{Description of the Negative Selection Algorithm} \label{sec:bgNSA}
+\section{Negative Selection Algorithm} \label{sec:bgNSA}
 
 One of the fundamental skills of the BIS is the ability to differentiate between the body's own cells and the foreign material. It is called self/nonself discrimination \cite{NSAResearch2021} and helps to protect the body from attacking itself whilst building a strong defense against foreigners. 
 
@@ -210,7 +239,7 @@ Even though different implementations may fall in different buckets, Ji and Dasg
 The next subsections provide a more in depth view of the algorithm for the binary data type, by showing its overall structure, detailing how the comparisons with the monitored data are made and how the detectors are generated. 
 
 
-\subsubsection{Algorithm Description} \label{sec:bgNSAOverview}
+\subsection{Algorithm Description} \label{sec:bgNSAOverview}
 
 The Negative Selection Algorithm (NSA) can be divided in two steps: the generation of the detectors, and the actual process of detection of the nonself. These steps are similar to most supervised algorithms, in which there is a training and a test phase \cite{NSAResearch2021}. 
 
@@ -221,11 +250,11 @@ The Negative Selection Algorithm (NSA) can be divided in two steps: the generati
 	\label{fig:NSAOverview}
 \end{figure}
 
-Figure \ref{fig:NSAOverview} helps to shed some light on both phases. On the left-hand side, the generation of the detectors is illustrated. In this "training" step, a set of random candidates is generated by some predefined process and undergo a censoring process based on the self samples. The candidates that match the self samples, measured by the distance function, are discarded, while the ones that do not match are added to the nonself detector set. On the right-hand side of the figure, the detection, or "test", phase is shown. The nonself detector set obtained in the first step is tested against the data that is being monitored. The same distance function is utilized here to check whether the new data matches with some of the detectors in the set. In the case of a match, the data is considered abnormal.
+Figure \ref{fig:NSAOverview} helps to shed some light on both phases. On the left-hand side, the generation of the detectors is illustrated. In this "training" step, a set of random candiDateTypes is generated by some predefined process and undergo a censoring process based on the self samples. The candiDateTypes that match the self samples, measured by the distance function, are discarded, while the ones that do not match are added to the nonself detector set. On the right-hand side of the figure, the detection, or "test", phase is shown. The nonself detector set obtained in the first step is tested against the data that is being monitored. The same distance function is utilized here to check whether the new data matches with some of the detectors in the set. In the case of a match, the data is considered abnormal.
 
-For a complete understanding of the inner workings of the algorithm, two important pieces are missing: a description of how the random detector candidates are generated and the definition of the matching function that will account for the affinity measurement.
+For a complete understanding of the inner workings of the algorithm, two important pieces are missing: a description of how the random detector candiDateTypes are generated and the definition of the matching function that will account for the affinity measurement.
 
-\subsubsection{Distance Function} \label{sec:bgNSADistance}
+\subsection{Distance Function} \label{sec:bgNSADistance}
 
 
 First, the Distance function, or matching rule, is an operation that relies on the comparison of characters (or bits) between two strings and provides a score telling how similar (or different) the strings are. Three rules are the most widely used in the literature \cite{EffectBinaryRule2003}: the Hamming Distance, the R-Contiguous and the R-Chunk matching rules. 
@@ -246,7 +275,7 @@ First, the Distance function, or matching rule, is an operation that relies on t
 		\label{fig:hamm}
 	\end{figure}
     
-    \item \textbf{R-Contiguous:} Let again \(X\) be a string of lenght \(n\) such that \(X = x_1 x_2 x_3...x_n\) and let \(D\) be a dectector with the same lenght, so that \(D = d_1 d_2 d_3...d_n\). Let also \(r\) be an integer, such that \(0 > r >= n\). This rule defines a match between \(X\) and \(D\) whenever the two strings have at least \(r\) consecutive identical characters starting at any position. This rule was mainly used in the first implementations of the NSA, in which the detectors were created in a generate-and-test fashion \cite{EffectBinaryRule2003}.
+    \item \textbf{R-Contiguous:} Let again \(X\) be a string of lenght \(n\) such that \(X = x_1 x_2 x_3...x_n\) and let \(D\) be a dectector with the same lenght, so that \(D = d_1 d_2 d_3...d_n\). Let also \(r\) be an IntegerType, such that \(0 > r >= n\). This rule defines a match between \(X\) and \(D\) whenever the two strings have at least \(r\) consecutive identical characters starting at any position. This rule was mainly used in the first implementations of the NSA, in which the detectors were created in a generate-and-test fashion \cite{EffectBinaryRule2003}.
     
 	\begin{figure}[!h]
 		\centering
@@ -271,7 +300,7 @@ First, the Distance function, or matching rule, is an operation that relies on t
 
 The R-chunk is said to enhance the accuracy and performance of the NSA \cite{EffectBinaryRule2003} because the same generated string can be used as a detector in several positions. Therefore, one can say that lower sized detectors comprise an optimal detector set, since more abnormal data can be detected. Nevertheless, as cited by Wierzchon and Chmielewski \cite{HybridNSA2012}, a study performed by Stibor showed that strings generated with low values of \(r\) are less likely to become detectors. This probability highly increases in the middle range, and is close to 1 for large string sizes. Hence, there is a sweet spot when trying to find the size of the string, which is usually for middle values of \(r\), that aligns accuracy and coverability with efficiency.
 
-\subsubsection{Detector Generation} \label{sec:bgNSADetectors}
+\subsection{Detector Generation} \label{sec:bgNSADetectors}
 
 % \cite{RevisitingNSA2007}
 % On the next level, representation of data space doesn’t define representation of detectors. 
@@ -289,15 +318,15 @@ This generate-and-test method can be further explained with Figure \ref{fig:ExhD
 
 The problem with the exhaustive detector generation is that a great number of candidates are rejected during the censoring, making it be inneficient \cite{NSADetGen1996}, besides being costly in terms of computational use of resources \cite{NSADetectorGen2002}. To tackle that, two other approaches arose: the linear and the greedy algorithms, both based on the r-countinuous distance method. 
 
-The linear time algorithm is a two-phase process named after its complexity introduced by D’haeseleer et al. \cite{NSADetGen1996}. Initially, all the strings that are unmatched by the self-set have their recurrence counted. Then, this counting recurrence is used to naturally number the unmatched strings and allow for the picking of random detectors, according to the desired size of the detector's set. Even though this algorithm runs in linear time according to the detector's set and self-set sizes, the recurrence counting requires the storage of all the possible matches two strings can have by using the r-contiguous distance. This means that, although its complexity is linear in terms of time, it is exponential with regard to space. 
+The linear time algorithm is a two-phase process named after its complexity introduced by D'haeseleer et al. \cite{NSADetGen1996}. Initially, all the strings that are unmatched by the self-set have their recurrence counted. Then, this counting recurrence is used to naturally number the unmatched strings and allow for the picking of random detectors, according to the desired size of the detector's set. Even though this algorithm runs in linear time according to the detector's set and self-set sizes, the recurrence counting requires the storage of all the possible matches two strings can have by using the r-contiguous distance. This means that, although its complexity is linear in terms of time, it is exponential with regard to space. 
 
-The Greedy algorithm is another algorithm introduced by D’haeseleer et al. \cite{NSADetGen1996}, which tries to provide a better coverage of the string space without increasing the amount of detectors. It does so by slightly modificating the construction of the array of possible matches. It also relies on two arrays, one that stores the candidates picked by the algorithm and other keeps track of the strings that still were not matched with any picked detector. New detectors are generated based on the unmatched strings that have the highest recurrence value \cite{ICBook2009}. This algorithm provides an optimal set of detectors but has a higher time complexity when compared with the Linear algorithm. This happens because of the update of the two arrays that happens whenever a new detector is generated. Time complexity is kept, though.
+The Greedy algorithm is another algorithm introduced by D'haeseleer et al. \cite{NSADetGen1996}, which tries to provide a better coverage of the string space without increasing the amount of detectors. It does so by slightly modificating the construction of the array of possible matches. It also relies on two arrays, one that stores the candiDateTypes picked by the algorithm and other keeps track of the strings that still were not matched with any picked detector. New detectors are generated based on the unmatched strings that have the highest recurrence value \cite{ICBook2009}. This algorithm provides an optimal set of detectors but has a higher time complexity when compared with the Linear algorithm. This happens because of the upDateType of the two arrays that happens whenever a new detector is generated. Time complexity is kept, though.
 
 % \cite{NSADetGen1996}
 % Linear
-% The generate-and-test algorithm described above is inefficient because most of the candidate detector strings are rejected 
+% The generate-and-test algorithm described above is inefficient because most of the candiDateType detector strings are rejected 
 % two-phase algorithm for the “r-contiguous-bits” matching rule (two l-bit strings match each other if they are identical in at least r contiguous positions)  that runs in linear time with respect to the size of the input
-% In Phase I, we solve a counting recurrence for the number of strings unmatched by strings in S (candidate detectors, set C in Figure 1). In Phase II, we use the enumeration imposed by the counting recurrence to pick detectors randomly from this set of candidate detectors 
+% In Phase I, we solve a counting recurrence for the number of strings unmatched by strings in S (candiDateType detectors, set C in Figure 1). In Phase II, we use the enumeration imposed by the counting recurrence to pick detectors randomly from this set of candiDateType detectors 
 
 
 
@@ -314,7 +343,7 @@ The Greedy algorithm is another algorithm introduced by D’haeseleer et al. \ci
 % \subsubsection{Drawbacks of the Algorithm}
 
 % \cite{NSADetectorGen2002}
-% However, this algorithm is reported to % be very time consuming (D'haeseleer, Forrest et al. % 1996), (Wierzchoń 2000) The time taken to generate the detectors is measured by the number of candidate detectors that have to be examined before producing the required number of competent detectors. It was observed that the number of candidate detectors increases exponentially with the size of the self-set, at a fixed probability of not detecting non-self (Forrest, Perelson et al. 1994).  This implies that the time to complete the process increases with the size of the selfset. Furthermore, this process does not check for redundant detectors 
+% However, this algorithm is reported to % be very time consuming (D'haeseleer, Forrest et al. % 1996), (Wierzchoń 2000) The time taken to generate the detectors is measured by the number of candiDateType detectors that have to be examined before producing the required number of competent detectors. It was observed that the number of candiDateType detectors increases exponentially with the size of the self-set, at a fixed probability of not detecting non-self (Forrest, Perelson et al. 1994).  This implies that the time to complete the process increases with the size of the selfset. Furthermore, this process does not check for redundant detectors 
 
 
 % \cite{LinearNSA1996}
