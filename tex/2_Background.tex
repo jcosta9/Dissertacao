@@ -1,5 +1,99 @@
-\section{Self-Adaptive Systems (SAS)}  \label{sec:bgSAS}
+\section{Cyber-Physical Systems (CPS)}  \label{sec:bgCPS}
+TODO
 
+% Testing Adaptive Probabilistic Software Components in Cyber Systems
+% The software in such systems is typically used to control the physical parts in a way to achieve given goals such as safety concerns, maximizing system utility, and minimizing costs. This control is typically based on sensor readings, and signals that control actuators, both of which have finite accuracy and delay. In large scale contexts, there are generally a variety of goals to be achieved, a variety of physical components to control and coordinate, multiple available sensors and actuators, environmental conditions cannot be perfectly predicted, and all physical components are subject to failure. In many contexts of interest, the cyber-physical systems are expected to operate in inhospitable and possibly hostile environments [8, 11
+
+% Finding Faults
+% Industrial Cyber–Physical Systems (ICPS) are mechanisms that augment their computing elements with sensors and electromechanical actuators that allow them to interact with the physical environment they operate in 
+% In contrast, modern ICPS act with higher degrees of autonomy than these earlier embedded systems, relying on sensors and actuators that often incorporate their own local data pro- cessing and conditioning. ICPS are therefore able to make control decisions based on their perception of their environment, driven by much deeper interaction with the physical characteristics of the world they operate in 
+
+% example
+% 2008 Mars rovers
+
+% safety and security risk assessmentin CPS
+% Cyber physical systems (CPS) are controllable, trusted, and extensible network physical systems, which are further integrated with computation, communication, and control capabilities that can interact with humans through many new modalities.  
+% CPS are the foundation and core of the ‘Industry 4.0’ and the ‘Industrial Internet’. CPS are essentially Internet of things (IoT) systems, but they emphasise the characteristics of real-time monitoring and control.
+
+
+% HIGHLIGHT THE DIFFERENCE FROM COMPUTER SYSTEMS
+% safety and security risk assessmentin CPS
+% As of the growing demand of computing resources and automation, they are becoming more and more networked, and closely connected to computer systems. There are not only different network-enabled hardware components involved such as sensors, actuators, and embedded systems, but also different collections of the software system, for control and monitoring.
+
+% Ensuring Safety, Security, and Sustainability of Mission-Critical Cyber–Physical Systems
+% Recent years have seen a dramatic rise in the development of smart and context-aware mission-critical systems that present a tight coupling between embedded computing devices and their physical environment. Representative examples include: 1) physiological sensors deployed on human body that continuously monitor the health and enable the fast detection of medical emergencies and the delivery of therapies [1]–[3]; 2) smart buildings that detect absence of occupants and shut down the cooling unit [4] to save energy; 3) data centers (DCs) that use solar energy for cooling purposes [5]; and 4) unmanned aerial vehicles (UAVs) that use an image of the terrain to perform surveillance [6]
+% A common theme in such smart systems is the role played by the underlying physical environment. The physical environment provides information necessary for achieving many of the important functionalities. Systems that use the information from the physical environment, and in turn can affect the physical environment during their operation, are called cyber–physical systems (CPSs)
+% Recent works have shown that a CPS can utilize the information from the physical environment to make smart decisions for preventing these new types of hazards to both the physical environment and the computing unit thereby improving the safety of the CPS. For example, sensors in a body area network (BAN) can monitor their ambient tissue temperature and employ several control strategies (e.g., rotate cluster leader nodes [7]) to reduce their thermal impact.
+% Design and analysis of CPSs thus requires in-depth understanding of the characteristics of these information and their effects on the computing operation. As Willems has aptly pointed out [10], systems researchers should incorporate detailed behavioral characterizations of the physical environment in the theories and techniques of computer science. Lack of such considerations results in serious violations of S3 properties. For example, in case of a pulse oximeter in a BAN, if the control of the sampling frequency is not aware of the temperature rise on human skin, severe burn hazards can occur [11]. 
+% This is especially important as the number of lines of code (NLoC) to support complex mission-critical functionality is rapidly growingVthe rate being exponential in some domains, such as avionics.1 A formal representation and analysis of CPSs enables design time feedback and correction of errors before deployment hence reducing cost incurred in redesign and risks of failure [12].
+% 1) Safety: Safety is essential given the mission critical deployments of many CPSs such as in health management and avionics. ISO 60601 defines safety as the avoidance of hazards to the physical environment due to the operation of a medical device under normal or single fault condition [19]. We believe that this definition of safety can also be applied to CPSs in nonmedical domains by broadening the scope of hazards considered, including faulty operation of the computing unit, radiation leaks, thermal effects, biocompatibility issues, software failures, mechanical, and electrical hazards 
+% Traditionally, researchers have focused on bypassing this characterization and transforming the safety assurance problem into a well-understood problem in computer science such as formal model reachability analysis. The problem of safety assurance is consequently reduced to developing bug free software or a control system analysis problem. Such simplified notion of safety, however, may not entirely capture the hazards resulting from the dynamic cyber–physical interactions. 
+% Hence, in order to guarantee safety of CPS software, it is necessary to accurately characterize the spatio–temporal dynamics of the physical environment and its tight coupling with the computing units. In essence, more focus is needed on the interaction safety.
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% CPS problems
+%%%%%%%%%%%%%%%%%%%%%%%
+
+% safety and security risk assessmentin CPS
+% With the expansion of CPS complexity and the enhancement of the system openness, most of CPS become not only safety-critical but also security-critical since deeply involving both physical objects and computer networks.
+% According to ISA 84/IEC61511 [2], functional safety is aimed at protecting and monitoring devices from accidental failures or failings in order to achieve or maintain a safe  state of the process. 
+% Safety risks are caused by interaction between the environment and CPS, within the CPS, and between the CPS and authorised users. Confidentiality, integrity, and availability, known as the CIA triad, represent the fundamental security objectives in CPS and IT systems [4, 5, 6]. Different from the traditional IT systems, availability is the most important objective in CPS.
+
+% A novel method for safety analysis of CPSs
+% Whilst CPSs are expected to bring significant benefits, they are considered to be complex, which implies that they may behave unpredictably [4–6]. Their complexity can be attributed to a number of CPS properties [7], including their software-intensive character [8], ability to dynamically reconfigure and make decisions autonomously [4], interconnectivity [9], heterogeneity [10], interactions with humans [11] and associated management system [12,13]. In addition, the tight interactions between the CPS components, especially between the cyber and the physical parts allow for little slack in their performance [4,6]. These attributes of the CPSs render them prone to accidents or malfunction [4,6,7]. A potential accident might have significant safety and financial consequences, such as in cases of the Boeing 737-8 (MAX) accident [14] or the blackout on a Viking Sky cruise ship [15].
+
+% Causality in Configurable Software Systems
+% In configurable software systems, the combinatorics that arises from the multitude of features a user might select from adds a further layer of complexity. 
+% Configurable software systems offer a wide variety of configuration options that control the activation of features desired by the user and that influence critical functional and non-functional properties such as performance. The often huge configuration spaces render the detection, prediction, and explanation of defects and inadvertent behavior challenging tasks. While there are specifically tailored analysis methods to tackle this challenge [86], research on their explainability is still in its infancy.
+% The potentially exponential number of system configurations and corresponding analysis results, bug reports, or other feature-dependent properties demand techniques for a meaningful and feasible interpretation.
+% Since features correspond to system functionalities specified by software engineers, they often have a dedicated meaning in the target application domain [4]. To this end, defects (and other behaviors of interest) detected at the level of features can provide important insights for the resolution of variability bugs [1, 41, 73] and configuration-dependent behavior [45, 64, 78, 79]. As such, they are certainly more informative and actionable than low-level program traces alone. Developers may choose to focus on those feature implementations identified as root causes of bugs or simply disallow or coordinate the activation of certain features when defects are related to them
+
+% Ensuring Safety, Security, and Sustainability of Mission-Critical Cyber–Physical Systems
+% The tight coupling between the cyber and the physical in CPSs, though advantageous, is subject to new forms of risks that have not been considered adequately in the traditional computing domain. These new types of risks include the cyber element adversely affecting the physical environment (e.g., untimely delivery of medication or therapies) or vice versa (e.g., malfunctioning of UAV control algorithm may lead to crash of UAVs on unwanted regions causing potential loss of civilian lives).
+
+% FROM CPS Design Challenges
+% Embedded systems have always been held to a higher reliability and predictability standard than general-purpose computing. Consumers do not expect their TV to crash and reboot. They have come to count on highly reliable cars, where in fact the use of computer controller has dramatically improved both the reliability and efficiency of the cars. In the transition to CPS, this expectation of reliability will only increase. In fact, without improved reliability and predictability, CPS will not be deployed into such applications as traffic control, automotive safety, and health care. The physical world, however, is not entirely predictable. Cyber physical systems will not be operating in a controlled environment, and must be robust to unexpected conditions and adaptable to subsystem failures. An engineer faces an intrinsic tension; designing predictable and reliable components makes it easier to assemble these components into predictable and reliable systems. But no component is perfectly reliable, and the physical environment will manage to foil predictability by presenting unexpected conditions.
+
+% Perceptions on the State of the Art in Verification and Validation in Cyber-Physical Systems
+% While there are existing well-grounded testing methodologies for other domains of software and formal methods have been used for verification of mission-critical systems in practice, verifying and validating CPS are complicated because of the physical aspects and external environment. For instance, there are insufficient methods for investigating the impact of the environment, or context, on a CPS [97]. External conditions, which are often hard to predict, can invalidate estimates (even worst-case ones) of the safety and reliability of a system. Modeling any CPS is further hampered by the complexity of modeling both the cyber (e.g., software, network, and computing hardware) and the physical (physical processes and their interactions) [71]. Simplified models that do not anticipate that the physical and logical components fail dependently are easily invalidated
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Safety assessments
+%%%%%%%%%%%%%%%%%%%%%%%
+% A novel method for safety analysis of CPSs
+% The potential hazards that can arise in a system are identified by employing a hazard identification and safety analysis methods and are controlled during the system design phase [4]. A number of traditional methods are employed for the CPS hazard identification and analysis, namely Preliminary Hazard Analysis (PHA), HAZard and OPerability (HAZOP), Failure Modes and Effects Analysis (FMEA) and Fault Tree Analysis (FTA) [4]. Model-based approaches can be also exploited, such as presented in [10].
+
+% safety and security risk assessmentin CPS
+% Risk assessment and management focuses on the identification of assets, the analysis of vulnerabilities and the evaluation and measurement of possible damages. In general, we can roughly divide risk assessment into qualitative assessment and quantitative assessment. Qualitative assessment relies heavily on expert experience, while quantitative assessment can calculate the exact risk value of the system. Many methodologies of safety risk assessment have well developed for CPS so far, here are some typical technologies illustrating the current state of the art for CPS safety
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Why they don't work
+%%%%%%%%%%%%%%%%%%%%%%%
+% A novel method for safety analysis of CPSs
+% In a number of studies [16–19], however, the use of PHA, HAZOP, FMEA and FTA for CPS safety analysis was criticised, as these methods cannot support the analyst in properly capturing the interactions between the system components, especially the interactions between the control components and the physical components, thus not identifying software-related hazardous scenarios. Similar criticism applies to the model-based study presented in [10] as the model is primarily based on the localized version of FMEA.
+
+% safety and security risk assessmentin CPS
+% Look at the paper, in section 5.1
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Improvements
+%%%%%%%%%%%%%%%%%%%%%%%
+% A novel method for safety analysis of CPSs
+% The System-Theoretic Process Analysis (STPA) has been proved capable of identifying the potential hazardous control actions by capturing the context of the system as well as identifying additional software related hazardous scenarios not captured by FMEA [17–19]. Although the STPA sufficiently addresses the software-intensive character of CPSs, it overlooks the events’ sequences [20].
+
+
+% cite lars and others
+% safety and security risk assessmentin CPS
+% Grunske et al. [14] proposed ‘the probabilistic FMEA’, which is an extension to the original FMEA. It helps safety engineers to identify if a failure mode occurs with a probability higher than its tolerable hazard rate. FMEA is carried out in the early design phase of the system life circle. FMEA is well explained in [15]
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% What the improvements still lack?
+%%%%%%%%%%%%%%%%%%%%%%%
+% A novel method for safety analysis of CPSs
+% The specific hazardous control actions are identified at different time snapshots of the system operation, but the STPA does not address how these hazardous control actions are propagated into an accident, incidents, or hazards [21]. Therefore, STPA alone cannot tackle properly CPS dynamic reconfigurations functions in safety analysis. This is of practical interest for the ICS, where the undesired event will happen due to a combination of failures occurring at different time periods and thus the system dynamic reconfiguration is highly important [4]. This method was proved weaker in supporting the single cause failures identification despite its capabilities and potential [18]. In addition, the STPA can be implemented only on a qualitative level, not allowing the criticality and sensitivity assessment, which are required for the system safety-efficient design [22]. Moreover, it is applied at a functional level, thus not considering the actual system design architecture [19]. The STPA is a manual method and, despite the specific rules that govern its implementation, it is still considered to be subjective [4]. Therefore, its enhancement, improvement or combination with other methods are required for addressing the above discussed limitations
+
+\section{Self-Adaptive Systems (SAS)}  \label{sec:bgSAS}
+FIXME
 There are several different ways in which the term \textit{self-adaptation} is defined in literature. Danny Weyns, in his organized tour through the topic of Self-adaptation \cite{EngSAS2018}, attmepts to round up a definition by introducing two complementary principles. 
 
 First, the external principle outlines that self-adaptive systems need to handle autonomously changes, uncertainty, the system's goals and itself. It matches definitions as found in Cheng et al. \cite{SASResearchRoad2009}, which characterizes it as the system's ability to "adjust their behaviour in response to their perception of the environment and the system itself". 
@@ -88,8 +182,8 @@ The methods that provide the perpetual assurances can be divided in three catego
 \end{itemize}
 
 
-% \section{Model Checking}
-% TODO 
+\section{Model Checking}
+TODO 
 % cite 2008 principles of model checking 1.1
 
 % 3.1.1 Properties Verification. We specify the properties of the model to be verified in Timed Computational Tree Logic (TCTL) [15], since its the UPPAAL language to verify the real-time properties of the formalized model. TCTL is a real-time variant of CTL aimed to express properties of timed automata. Like CTL, the model verification relies on state or path expressions regarding properties such as reachability, safety, or liveness. TCTL extends CTL with atomic clock constraints over the clocks, typically the set of clocks in the timed automaton under consideration. The TCTL model-checking problem is to check for a given timed automaton TA and TCTL formula ϕ whether TA  ϕ [3]. In UPPAAL, the properties are specified with a subset of TCTL augmented with syntactical symbols such as → and logical operators like imply and >, ≥, <, ≤ to include v riables and time evaluations. Table 2 lists such basic expressions.
@@ -159,8 +253,8 @@ A goal model usually utilizes a directed graph tree to delineate the goals in a 
 
 Since variants were only allowed by regular Goal Models, but not clear-cut defined, an extension of TROPOS, named Contextual Goal Model (CGM), was created to meet the notions of context and goals. It specifies explicitly which changes in the environment can be adopted and when. This allows for systematic derivation of variants based on the  several different contexts that may appear \cite{ali_goal_based_2010}. Figure \ref{fig:andorref} describes \textit{C1} and \textit{C2} as contexts of a OR-refinement, as an example of how contexts are depicted in Contextual Goal Models.
 
-% \subsection{Goal-Oriented Dependability Analysis (GODA)}
-% TODO
+\subsection{Goal-Oriented Dependability Analysis (GODA)}
+TODO
 
 
 \section{Biological Immune Systems (BIS)} \label{sec:bgais}

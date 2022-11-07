@@ -23,7 +23,7 @@ After the assurances have been provided through model-checking, we implement a p
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.999\textwidth, keepaspectratio]{img/overview_framework1.png}
+	\includegraphics[width=0.999\textwidth, keepaspectratio]{img/overview_framework2.png}
 	\caption{Overview of the proposed Methodology}
 	\label{fig:FrameworkOverview}
 \end{figure}
@@ -171,6 +171,8 @@ The algorithm is greatly influenced by two hyperparameters: the size of the dete
 In this regard, we included a third hyperparameter to workaround the cases when the algorithm takes longer to converge. This parameter indicates the acceptable amount of failed attempts to add new candidates to the detectors set. If this value is reached, the algorithm will exit earlier.
 
 The training of the algorithm will be performed as follows. First, the whole dataset will be split in two: one for the actual training and detector generation, and other for measuring the results and checking how well the detectors perform with unseen data. Second, the training set will have the nonself rows filtered out. Third, random strings of size \(r\) will be generated and tested against the self-strings in the training data in all possible positions. If there's a match, the detector candidate is discarded for that particular position. Otherwise, the string is stored along with the position in the detectors set. The third process is repeated until the length of the detectors set reaches a predefined size, or until no new detectors are added to the set after a fixed amount of attempts. Finally, the result of the learning phase is measured by using the detectors to predict property violations in the test set, which contains both self and nonself-data. The actual values are compared with the predicted values and the metrics of precision and recall are evaluated.
+
+% TODO: Mention that only the training will be performed
 
 \subsubsection{iv. Detector Analysis}
 
