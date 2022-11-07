@@ -1,6 +1,21 @@
 \section{Cyber-Physical Systems (CPS)}  \label{sec:bgCPS}
-TODO
 
+Cyber-Physical Systems (CPS) can be defined as systems that integrate physical processes and software components \cite{lee2008cyber}. This is done by embedded computers and networks which are capable of monitoring and controlling physical processes, tipically with feedback loops, which affects the physical environment while they are operating \cite{banerjee2011ensuring}.
+
+% safety and security risk assessmentin CPS
+% Cyber physical systems (CPS) are controllable, trusted, and extensible network physical systems, which are further integrated with computation, communication, and control capabilities that can interact with humans through many new modalities.  
+% CPS are the foundation and core of the ‘Industry 4.0’ and the ‘Industrial Internet’. CPS are essentially Internet of things (IoT) systems, but they emphasise the characteristics of real-time monitoring and control.
+
+% highlight the difference from embedded systems
+It's not new for physical and digital processes to be integrated into a system. The notion of engineered systems that integrate computer softwares with physical processes have been refered to as "embedded systems" for some time \cite{lee2008cyber}. Car electronics, games, weapons systems, household appliances, and toys can be named as a few successful examples. In order to delineate the distinction, Schatz \cite{schatz2014role} states that, even though CPSs encompasses embedded systems, the cyber-physical integration in CPSs happens both on a local and a global scale. Lee \cite{lee2008cyber} and Jadzi \cite{jazdi2014cyber} goes in a similar direction by distinguishing CPSs and embedded systems in terms of networking and outsourcing of computational power. Jadzi \cite{jazdi2014cyber} goes beyond by alluding the data exchange as its most important feature, while defining CPSs in terms of embedded systems that are "able to send and receive data over a network." In turn, Dowdeswell et. al \cite{dowdeswell2020finding} adds that, in this sense, CPSs can be seen as seamless entities that form entire systems.
+
+A CPS comprises three main modules \cite{jazdi2014cyber}: a control unit, which relates to the computational aspect; a set of sensors and actuators, which refer to the physical processes and are controled by the control unit; and a collection of microcontrollers, which interfaces the two. Besides that, a communication interface is also required for the data exchange with other CPSs, a central unit or a cloud. 
+
+% examples
+% 2008 Mars rovers
+Automotive systems, avionics systems, defense systems, manufacturing systems, process control systems, traffic control systems, robotics, smart medical devices, smart household applications, and marine systems are just a few of the application areas where CPSs have been utilized and developed \cite{bolbot2019vulnerabilities}. Banerjee et al. \cite{banerjee2011ensuring} review the literature and group a non-exaustive list of representatives: the usage of physiological sensors that allow for continuous health monitoring, the quick identification of medical situations, and the administration of treatments; Data centers (DCs) that count on renewable energy for cooling reasons; smart buildings that sense tenant absence and turn off the cooling unit to improve energy efficiency; and unmanned aerial vehicles (UAVs) that surveils an area based on a picture of the landscape.
+
+Another distinctive aspect of CPSs worth mentioning is their complexity. Schatz \cite{schatz2014role} divides it into three dimensions: (i) the "cross-dimension", which relates to process of computing and physical natures being related to different domains, technologies, organizations and so on; (ii) the "live-dimension", referring to the support of critical systems which cannot be turned off, and thus require updates at runtime; and (iii) the "self-dimension", which includes autonomous capabilities, like adaptation, healing monitoring and others. Bolbot et al \cite{bolbot2019vulnerabilities}, however, segments the CPSs complexity as structural, dynamic and organisational, according to the literature of system design and development. The first, called structural complexity, refers to systems with many components and unexpected interactions between them. Next, the dynamic complexity occurs when it is difficult to understand how a system behaves and changes through time. Finally, the organizational complexity relates to the configuration of the team in charge of the complex system's design and operation.
 % Testing Adaptive Probabilistic Software Components in Cyber Systems
 % The software in such systems is typically used to control the physical parts in a way to achieve given goals such as safety concerns, maximizing system utility, and minimizing costs. This control is typically based on sensor readings, and signals that control actuators, both of which have finite accuracy and delay. In large scale contexts, there are generally a variety of goals to be achieved, a variety of physical components to control and coordinate, multiple available sensors and actuators, environmental conditions cannot be perfectly predicted, and all physical components are subject to failure. In many contexts of interest, the cyber-physical systems are expected to operate in inhospitable and possibly hostile environments [8, 11
 
@@ -92,81 +107,81 @@ TODO
 % A novel method for safety analysis of CPSs
 % The specific hazardous control actions are identified at different time snapshots of the system operation, but the STPA does not address how these hazardous control actions are propagated into an accident, incidents, or hazards [21]. Therefore, STPA alone cannot tackle properly CPS dynamic reconfigurations functions in safety analysis. This is of practical interest for the ICS, where the undesired event will happen due to a combination of failures occurring at different time periods and thus the system dynamic reconfiguration is highly important [4]. This method was proved weaker in supporting the single cause failures identification despite its capabilities and potential [18]. In addition, the STPA can be implemented only on a qualitative level, not allowing the criticality and sensitivity assessment, which are required for the system safety-efficient design [22]. Moreover, it is applied at a functional level, thus not considering the actual system design architecture [19]. The STPA is a manual method and, despite the specific rules that govern its implementation, it is still considered to be subjective [4]. Therefore, its enhancement, improvement or combination with other methods are required for addressing the above discussed limitations
 
-\section{Self-Adaptive Systems (SAS)}  \label{sec:bgSAS}
-FIXME
-There are several different ways in which the term \textit{self-adaptation} is defined in literature. Danny Weyns, in his organized tour through the topic of Self-adaptation \cite{EngSAS2018}, attmepts to round up a definition by introducing two complementary principles. 
+% \section{Self-Adaptive Systems (SAS)}  \label{sec:bgSAS}
+% FIXME
+% There are several different ways in which the term \textit{self-adaptation} is defined in literature. Danny Weyns, in his organized tour through the topic of Self-adaptation \cite{EngSAS2018}, attmepts to round up a definition by introducing two complementary principles. 
 
-First, the external principle outlines that self-adaptive systems need to handle autonomously changes, uncertainty, the system's goals and itself. It matches definitions as found in Cheng et al. \cite{SASResearchRoad2009}, which characterizes it as the system's ability to "adjust their behaviour in response to their perception of the environment and the system itself". 
+% First, the external principle outlines that self-adaptive systems need to handle autonomously changes, uncertainty, the system's goals and itself. It matches definitions as found in Cheng et al. \cite{SASResearchRoad2009}, which characterizes it as the system's ability to "adjust their behaviour in response to their perception of the environment and the system itself". 
 
-Second, the external principle says that the domain concerns of the system need to be separated from its adaptation concerns, in different parts or modules. This principle distinguishes self-adaptation from other adaptation techniques, like exceptions in programming languages for instance, and comprises definitions that consider the usage of closed feedback loops, like the one from Garlan et al. \cite{RainbowSASMapek2004}.
+% Second, the external principle says that the domain concerns of the system need to be separated from its adaptation concerns, in different parts or modules. This principle distinguishes self-adaptation from other adaptation techniques, like exceptions in programming languages for instance, and comprises definitions that consider the usage of closed feedback loops, like the one from Garlan et al. \cite{RainbowSASMapek2004}.
 
-Weyns, in the same work \cite{EngSAS2018}, also provides a conceptual model of a self-adaptive system that complies with the two principles mentioned. Figure \ref{fig:SASConcepModel} displays the model, which is composed of four basic elements: a managed system, a managing system, the adaptation goals and the environment.
+% Weyns, in the same work \cite{EngSAS2018}, also provides a conceptual model of a self-adaptive system that complies with the two principles mentioned. Figure \ref{fig:SASConcepModel} displays the model, which is composed of four basic elements: a managed system, a managing system, the adaptation goals and the environment.
 
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=0.5\textwidth, keepaspectratio]{img/SAS_conceptual_model.png}
-	\caption{Conceptual model of a self-adaptive system~\cite{EngSAS2018}}
-	\label{fig:SASConcepModel}
-\end{figure}
+% \begin{figure}[!h]
+% 	\centering
+% 	\includegraphics[width=0.5\textwidth, keepaspectratio]{img/SAS_conceptual_model.png}
+% 	\caption{Conceptual model of a self-adaptive system~\cite{EngSAS2018}}
+% 	\label{fig:SASConcepModel}
+% \end{figure}
 
-\begin{itemize}
-    \item \textbf{Managed System:} is the module responsible for the concerns of the application domain. It runs the software that produces the system's expected result and that executes the adaptation plan proposed by the Managing System. It is capable of sensing the environment and causing some effect to it.
+% \begin{itemize}
+%     \item \textbf{Managed System:} is the module responsible for the concerns of the application domain. It runs the software that produces the system's expected result and that executes the adaptation plan proposed by the Managing System. It is capable of sensing the environment and causing some effect to it.
     
-	\item \textbf{Managing System:} Module whose main goal is to manage the managed system. This is done by monitoring the states of the managed system and the environment and coming up with an adaptation plan in order to fulfill the goals stored in the Adaptation Goals module. Weyns and Iftikhar \cite{Weyns2016ModelBasedSA} further detail this component by specifying its realization through a MAPE-K based feedback loop	\cite{mapek2003}, which comprises a Monitor, Analyze, Plan and Execute modules that partake common knowledge.
+% 	\item \textbf{Managing System:} Module whose main goal is to manage the managed system. This is done by monitoring the states of the managed system and the environment and coming up with an adaptation plan in order to fulfill the goals stored in the Adaptation Goals module. Weyns and Iftikhar \cite{Weyns2016ModelBasedSA} further detail this component by specifying its realization through a MAPE-K based feedback loop	\cite{mapek2003}, which comprises a Monitor, Analyze, Plan and Execute modules that partake common knowledge.
 	
-	\item \textbf{Adaptation Goals:} Refers to the concerns of the managing system that usually depict the software qualities of the managed system. They can be differentiated by four main principles: self-healing, self-protection, self-configuration and self-optimization \cite{mapek2003}.
+% 	\item \textbf{Adaptation Goals:} Refers to the concerns of the managing system that usually depict the software qualities of the managed system. They can be differentiated by four main principles: self-healing, self-protection, self-configuration and self-optimization \cite{mapek2003}.
 	
-	\item \textbf{Environment:} Physical or virtual entities from the external world that interact with the system and are not controlled, or managed, by it.
+% 	\item \textbf{Environment:} Physical or virtual entities from the external world that interact with the system and are not controlled, or managed, by it.
     
-\end{itemize}
+% \end{itemize}
 
-\subsection{Contexts} \label{sec:context}
+% \subsection{Contexts} \label{sec:context}
 
-A possible definition of context is "any information that can be used to characterize the situation of an entity" \cite{2001DeyContext}. When correctly applied, it allows for a better system development, since it helps to identify the set of actions and characteristics that need to be present so that the requirements are met.
+% A possible definition of context is "any information that can be used to characterize the situation of an entity" \cite{2001DeyContext}. When correctly applied, it allows for a better system development, since it helps to identify the set of actions and characteristics that need to be present so that the requirements are met.
 
-This notion fits in nicely in the field of Self-adaptive systems. This happens because it is tightly related to both the adaptation goals and the environment in which the system operates \cite{2010AliCGM}. On the one hand, it is responsible for changing the stakeholder's goals and the strategies used to satisfy them, as well as quality aspects, based on its characteristics on a certain moment. On the other hand, it is considered the reification of the environment, for it makes the system's surroundings tangible so that the system may sense and effect it.
+% This notion fits in nicely in the field of Self-adaptive systems. This happens because it is tightly related to both the adaptation goals and the environment in which the system operates \cite{2010AliCGM}. On the one hand, it is responsible for changing the stakeholder's goals and the strategies used to satisfy them, as well as quality aspects, based on its characteristics on a certain moment. On the other hand, it is considered the reification of the environment, for it makes the system's surroundings tangible so that the system may sense and effect it.
 
-Another relevant characteristic of contexts is that they only represent partial views of the world \cite{2010AliCGM}. This happens because the system observes the environment not as an end itself, but as a means to fulfill a specific purpose. As an example, a health monitoring system might not see value in the context "the sensor node has a squared shape", but should be very interested in verify that "the sensor is far away from the central node". Krogstie et al. \cite{2003KrogstieMCommerce} list several types of context change that facilitate the identification of useful contexts. They are: spatio-temporal, environment, personal, task, social and information contexts.
+% Another relevant characteristic of contexts is that they only represent partial views of the world \cite{2010AliCGM}. This happens because the system observes the environment not as an end itself, but as a means to fulfill a specific purpose. As an example, a health monitoring system might not see value in the context "the sensor node has a squared shape", but should be very interested in verify that "the sensor is far away from the central node". Krogstie et al. \cite{2003KrogstieMCommerce} list several types of context change that facilitate the identification of useful contexts. They are: spatio-temporal, environment, personal, task, social and information contexts.
 
-A context is said to be monitorable if, and only if, there is a formula of facts and monitorable statements that can define it \cite{2010AliCGM}. This formula, also called world predicate formula, is the result of the process of Context analysis, in which high level contexts are refined into formulas of observable facts that support them. This is particularly relevant to the development of SAS since systems can leverage that when sensing the environment. Context information can be operationalized by the usage of sensors, for example, and the formula can be represented by the combination of the different resource states.
-
-
-\subsection{Uncertainty}
-
-Another way to look at self-adaptive systems is as a temporally completed system, with space for configuration variability \cite{2021UncertaintySASHezavehi}. This enables the system to alter its configurations as the conditions change so that it can cope with unforeseen circumstances that are difficult to anticipate in design time. Such circumstances are named uncertainty and are seen by some researchers as \textit{the} motivation for self-adaptation. This lack of deterministic knowledge can lead to the lack of trust in the results, unintended behavior and unexpected failures during the system's lifetime \cite{2010SWEngInUncertainGarlan}.
-
-Uncertainties can come from several sources. Garlan \cite{2010SWEngInUncertainGarlan} provides an unexhaustive list that includes: 
-\textit{Humans in the loop}, which happens when the system relies on the proper behavior of humans to work as expected; 
-\textit{Learning}, meaning the usage of artificial intelligence in the system's functioning, which depends on past data and assumes statistical regularity; 
-\textit{Mobility}, related to the different types of platform on which the system may be run on, and thus the availabity of resources; 
-\textit{Cyber-physical systems}, which considers the increasingly complex relations between physical elements and pieces of software and are inherently uncertain; 
-and \textit{Rapid evolution}, that relates to the fast pace of change in requirements, technologies, market and regulations.
-
-Another important aspect that is considered in this work is the characterization of uncertainty in three dimensions, which was proposed by Perez-Palacin and Mirandola \cite{2014UncertaintiesinSASPerez}. According to them, uncertainties can be classified in relation to its: Location, Nature and Level.
-
-Firstly, the Location specifies the place in which the uncertainty is manifested within the model. It can happen in the context, in the structure and in the parameters. The context uncertainty refers to the boundaries of the system, or the types of data that should be incorporated or removed from it. The model structural uncertainty relates to how precisely the model's structure captures the segment of the real world that has to be represented. The input parameters uncertainty is associated with the calibration and values of the system's input variables.
-
-Secondly, the Nature dimension divides the uncertainties in two: Epistemic and Aleatory. On the one hand, the Epistemic are uncertainties that happen because of insufficient or inaccurate data, or even  errors in the method used to generate the knowledge from the data. On the other hand, the Aleatory are uncertainties created by randomness of occurrences or intrinsic unpredictability of some components under investigation.
-
-Thirdly, the Level dimension is a scale that ranges from deterministic knowledge to total ignorance on how much knowledge is still lacking for the system to be examined deterministically. The five levels are as described below:
+% A context is said to be monitorable if, and only if, there is a formula of facts and monitorable statements that can define it \cite{2010AliCGM}. This formula, also called world predicate formula, is the result of the process of Context analysis, in which high level contexts are refined into formulas of observable facts that support them. This is particularly relevant to the development of SAS since systems can leverage that when sensing the environment. Context information can be operationalized by the usage of sensors, for example, and the formula can be represented by the combination of the different resource states.
 
 
-\begin{itemize}
-    \item \textbf{Uncertainty of the 0th order:} Lack of uncertainty.
+% \subsection{Uncertainty}
+
+% Another way to look at self-adaptive systems is as a temporally completed system, with space for configuration variability \cite{2021UncertaintySASHezavehi}. This enables the system to alter its configurations as the conditions change so that it can cope with unforeseen circumstances that are difficult to anticipate in design time. Such circumstances are named uncertainty and are seen by some researchers as \textit{the} motivation for self-adaptation. This lack of deterministic knowledge can lead to the lack of trust in the results, unintended behavior and unexpected failures during the system's lifetime \cite{2010SWEngInUncertainGarlan}.
+
+% Uncertainties can come from several sources. Garlan \cite{2010SWEngInUncertainGarlan} provides an unexhaustive list that includes: 
+% \textit{Humans in the loop}, which happens when the system relies on the proper behavior of humans to work as expected; 
+% \textit{Learning}, meaning the usage of artificial intelligence in the system's functioning, which depends on past data and assumes statistical regularity; 
+% \textit{Mobility}, related to the different types of platform on which the system may be run on, and thus the availabity of resources; 
+% \textit{Cyber-physical systems}, which considers the increasingly complex relations between physical elements and pieces of software and are inherently uncertain; 
+% and \textit{Rapid evolution}, that relates to the fast pace of change in requirements, technologies, market and regulations.
+
+% Another important aspect that is considered in this work is the characterization of uncertainty in three dimensions, which was proposed by Perez-Palacin and Mirandola \cite{2014UncertaintiesinSASPerez}. According to them, uncertainties can be classified in relation to its: Location, Nature and Level.
+
+% Firstly, the Location specifies the place in which the uncertainty is manifested within the model. It can happen in the context, in the structure and in the parameters. The context uncertainty refers to the boundaries of the system, or the types of data that should be incorporated or removed from it. The model structural uncertainty relates to how precisely the model's structure captures the segment of the real world that has to be represented. The input parameters uncertainty is associated with the calibration and values of the system's input variables.
+
+% Secondly, the Nature dimension divides the uncertainties in two: Epistemic and Aleatory. On the one hand, the Epistemic are uncertainties that happen because of insufficient or inaccurate data, or even  errors in the method used to generate the knowledge from the data. On the other hand, the Aleatory are uncertainties created by randomness of occurrences or intrinsic unpredictability of some components under investigation.
+
+% Thirdly, the Level dimension is a scale that ranges from deterministic knowledge to total ignorance on how much knowledge is still lacking for the system to be examined deterministically. The five levels are as described below:
+
+
+% \begin{itemize}
+%     \item \textbf{Uncertainty of the 0th order:} Lack of uncertainty.
     
-	\item \textbf{The first degree of uncertainty:} The system is ignorant about something, although it is aware of it (i.e., known uncertainty).
+% 	\item \textbf{The first degree of uncertainty:} The system is ignorant about something, although it is aware of it (i.e., known uncertainty).
 	
-	\item \textbf{The second degree of uncertainty:} Lack of awareness and information. The system is unaware of its ignorance.
+% 	\item \textbf{The second degree of uncertainty:} Lack of awareness and information. The system is unaware of its ignorance.
 	
-	\item \textbf{The third degree of uncertainty:} Absence of a method to determine lack of awareness.
+% 	\item \textbf{The third degree of uncertainty:} Absence of a method to determine lack of awareness.
 	
-	\item \textbf{The fourth degree of uncertainty:} The system is not aware of the orders of uncertainty.
+% 	\item \textbf{The fourth degree of uncertainty:} The system is not aware of the orders of uncertainty.
     
-\end{itemize}
+% \end{itemize}
 
 \subsection{Assurances}
 
-The inherent uncertainty and possibility of high context variation permeating self-adaptive systems create the need of evidence to prove that the system is capable of meeting its requirements during its entire lifetime \cite{assurances2017}. This evidence, also known as assurances, can be defined as "the collection, analysis and synthesis of evidence for building arguments which demonstrate that the system satisfies its functional and non-functional requirements during operation". This is specially important for safety-critical systems because of its safety restrictions and strict guidelines.
+The inherent complexity permeating cyber-physical systems create the need of evidence to prove that the system is capable of meeting its requirements during its entire lifetime \cite{assurances2017}. This evidence, also known as assurances, can be defined as "the collection, analysis and synthesis of evidence for building arguments which demonstrate that the system satisfies its functional and non-functional requirements during operation". This is specially important for safety-critical systems because of its safety restrictions and strict guidelines.
 
 Formal methods are considered by the state-of-the-art approaches as the most promising way of providing such guarantees  \cite{assurances2017}. Nevertheless, some uncertainties might be faced only during the system's operation, which makes the off-line solutions insufficient. To address this matter, Weyns et al. \cite{2019PerpetualAssurancesWeyns} introduce the concept of perpetual assurances, which consists of a continuous process performed by both humans and the system to derive and incorporate new evidences. To this end, two types of assurance must be consistently updated  \cite{assurances2017}. First, the evidence that concerns the parts of the system that are little affected by uncertainties and, thus, can be acquired by traditional off-line methods. Second, the evidence regarding the modules taht are considerably impacted by uncertainties. This type of assurance should be synthesized during the handling of the uncertainty, at runtime, for each of the several adaptation functions.
 
@@ -217,7 +232,8 @@ TODO
 \section{Goal Oriented Requirements Engineering} \label{sec:bgGORE}
 
 % \cite{Horkoff2019133}
-The degree to which a software system satisfies its requirements has a significant impact on its quality \cite{Horkoff2019}. One of the lenses through which these requirements can be seen is the stakeholder goals. Goal-Oriented Requirements Engineering (GORE) approach that follow a goal-oriented perspective and alludes to the usage of goals for every activity of the Requirements Engineering area and aims to acquire and represent systems and software requirements at the intentional level \cite{van_lamsweerde_system_2003}. Weyns points out, as the fourth wave on engineering self-adaptive systems, that goal-driven adaptation "puts the focus on key elements for the concrete realization of self-adaptive systems” \cite{EngSAS2018}. 
+The degree to which a software system satisfies its requirements has a significant impact on its quality \cite{Horkoff2019}. One of the lenses through which these requirements can be seen is the stakeholder goals. Goal-Oriented Requirements Engineering (GORE) approach that follow a goal-oriented perspective and alludes to the usage of goals for every activity of the Requirements Engineering area and aims to acquire and represent systems and software requirements at the intentional level \cite{van_lamsweerde_system_2003}. 
+% Weyns points out, as the fourth wave on engineering self-adaptive systems, that goal-driven adaptation "puts the focus on key elements for the concrete realization of self-adaptive systems” \cite{EngSAS2018}. 
 Goal modeling, in particular, reflects what stakeholders hope to accomplish in terms of goals and potential alternate solutions. 
 
 Lamsweerde, in \cite{2001Lamsweerde}, sheds light on the reasons why the Requirement Engineering (RE) field can benefit from a goal-driven perspective. He says that goals offer a precise criterion for requirements completeness and pertinence, which are amongst the main RE concerns. Goals also helps stakeholders understand the reason behind the requirements, since they are easy to grasp by nontechnical decision-makers, they naturally offer the rationale behind them, and they allow for the traceability between the strategic goals and the technical details. Moreover, goals guide the derivation of the requirements that supports them.
@@ -230,14 +246,16 @@ According to the systematic literature review done by ElSayed et al. \cite{ElSay
 
 The formulation of the system's goals specify the properties that need to be assured. In this sense, goals can be crafted depending on the desired level of abstraction. They can reflect high level strategic concerns or low level technicalities \cite{2001Lamsweerde}. Goals also address many sorts of concerns, including both functional and nonfunctional. Functional goals describe goals that are associated with the services to be delivered, whereas nonfunctional goals are related to the system quality. 
 
-Another criterion used to characterize goals divides them based on whether they are quantifiable \cite{ElSayed2017430}. On the one hand, hard goals are the ones that can be formally verified. On the other hand, soft goals cannot have their fulfillment easily determined. The latter allows the comparison of different alternatives of refinement. This distinction is specially useful for the purpose of this work since we are dealing with the provision of assurances to Self-adaptive systems, which is provided through formal methods. Lamsweerde also mentions way of verifying the completeness of the elicited requirements. Let \(R\) be the set of requirements, \(As\) the environment assumptions, \(D\) the domain properties and \(G\) the set of goals. For each goal \(g\), such that \(g \in G\), it must be true that: 
+Another criterion used to characterize goals divides them based on whether they are quantifiable \cite{ElSayed2017430}. On the one hand, hard goals are the ones that can be formally verified. On the other hand, soft goals cannot have their fulfillment easily determined. The latter allows the comparison of different alternatives of refinement. 
+% This distinction is specially useful for the purpose of this work since we are dealing with the provision of assurances to Self-adaptive systems, which is provided through formal methods.
+Lamsweerde also mentions way of verifying the completeness of the elicited requirements. Let \(R\) be the set of requirements, \(As\) the environment assumptions, \(D\) the domain properties and \(G\) the set of goals. For each goal \(g\), such that \(g \in G\), it must be true that: 
 
 \[R, As, D \vDash g \text{ with } R, As, D \nvDash \text{False}\]
 
 \subsection{Contextual Goal Model (CGM)}
 
 Goal modeling is the technique responsible for representing systems in GORE. As mentioned previously, it provides a powerful way of understanding the needs of the stakeholders besides figuring out the motives behind the development of a piece of software. In the end, a goal model revolves around laying out user goals and ways to meet them \cite{ali_goal_based_2010}. 
-This methodology has a major impact in the development self-adaptive systems, which must adapt to different situations like environment changes, system capability changes and changes in the problem to be solved \cite{deloach_capabilities_based_2008}. 
+% This methodology has a major impact in the development self-adaptive systems, which must adapt to different situations like environment changes, system capability changes and changes in the problem to be solved \cite{deloach_capabilities_based_2008}. 
 
 TROPOS \cite{bresciani_tropos_2004} is a software development methodology used to model early requirements. In its heart, there is his modeling language, which is the base for constructing conceptual goal models. It rests in the concepts of actor, goal, plan, resource, dependency, capability and belief. An Actor is an entity that possess intentionality and represents agents, roles or positions. An actor can have none to multiple goals. A Goal is related to the interests of a particular actor, and is divided in soft goals and hard goals, meaning goals whose definition and satisfiability criteria are unclear, for the former, or trenchant, for the latter. A Plan can be defined as "a way of doing something", and as a declaration of which refinement paths should be taken in the directed tree in order to achieve the main goal. A Resource corresponds to an entity with physical or informational attributes. Dependencies are subordination relationships between two actors which point out that one depends on the other, the depender and the dependee, severally. The Capability express an actor's competency to define, choose and execute a plan in order to satisfy a goal. Finally, a Belief declares the world's knowledge of an actor.
 
