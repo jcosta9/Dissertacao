@@ -1,181 +1,70 @@
 %%%%%%%%%%%%%% REFRASEAR (CTRL C + CTRL V) %%%%%%%%%%%%%%%%
 
-% Causality in Configurable Software Systems
+%%%%%%%%%%%%%%
+% verification
+%%%%%%%%%%%%%%
+
+
+% Formal Verification of Cyber-Physical Systems: Coping with Continuous Elements
+% Given the extensive usage of CPS in safety-critical applications, there is a dire need of using formal methods for their analysis. However, the frequent involvement of ordinary differential equations (ODEs) in their analysis is a main limiting factor in this direction. For example, ODEs are essential for modeling the motion of mechanical parts, analog circuits and control systems, which are some of the most common elements of any CPS. Thus, automatic state-based formal methods, like model checking, and automatic theorem provers cannot be used to model and analyze the true CPS models due to their inability to model continuous systems. 
+
+% checkout the related work section from An Improved Negative Selection Algorithm-Based Fault Detection Method
+
+
+% Comparative Analysis of Statistical Model Checking Tools
+% To overcome the state-space explosion problem, the statistical model checking (SMC) approach does not analyse the entire state space, but instead generates a number of independent simulation traces and uses statistical (e.g., Monte Carlo) methods to generate an approximate measure of system correctness. This approach does not guarantee the absolute correctness of the system, but it allows much larger models be verified (within specified confidence limits) in a faster manner [12, 37, 49, 51]. 
 
 %%%%%%%%%%%%%%%%%%%%%%% FIM REFRASEAR %%%%%%%%%%%%%%%%%%%%%
 
 
-% In this chapter, the research areas related to our work will be described, while placing our contribuintions to the field.
-
-\section{Cyber-Physical Systems (CPS)}
+This chapter discusses relevant work related to the themes discussed in this document. The first one is related to verification methods in Cyber-Physical Systems. The second topic deals with the usage of the Negative Selection Algorithm in fault diagnosis of CPSs.
 
 %%%%%%%%%%%%%%%%%%%%%%%
-% CPS definition
-%%%%%%%%%%%%%%%%%%%%%%%
-% Intro
-As described in Section \ref{sec:bgCPS}, Cyber-Physical Systems (CPS) can be defined as systems that integrate physical processes and software components \cite{lee2008cyber}. This is done by embedded computers and networks which are capable of monitoring and controlling physical processes, tipically with feedback loops, which affects the physical environment while they are operating \cite{banerjee2011ensuring}.
-
-% safety and security risk assessmentin CPS
-% Cyber physical systems (CPS) are controllable, trusted, and extensible network physical systems, which are further integrated with computation, communication, and control capabilities that can interact with humans through many new modalities.  
-% CPS are the foundation and core of the ‘Industry 4.0’ and the ‘Industrial Internet’. CPS are essentially Internet of things (IoT) systems, but they emphasise the characteristics of real-time monitoring and control.
-
-% highlight the difference from embedded systems
-It's not new for physical and digital processes to be integrated into a system. The notion of engineered systems that integrate computer softwares with physical processes have been refered to as "embedded systems" for some time \cite{lee2008cyber}. Car electronics, games, weapons systems, household appliances, and toys can be named as a few successful examples. In order to delineate the distinction, Schatz \cite{schatz2014role} states that, even though CPSs encompasses embedded systems, the cyber-physical integration in CPSs happens both on a local and a global scale. Lee \cite{lee2008cyber} and Jadzi \cite{jazdi2014cyber} goes in a similar direction by distinguishing CPSs and embedded systems in terms of networking and outsourcing of computational power. Jadzi \cite{jazdi2014cyber} goes beyond by alluding the data exchange as its most important feature, while defining CPSs in terms of embedded systems that are "able to send and receive data over a network." In turn, Dowdeswell et. al \cite{dowdeswell2020finding} adds that, in this sense, CPSs can be seen as seamless entities that form entire systems.
-
-A CPS comprises three main modules \cite{jazdi2014cyber}: a control unit, which relates to the computational aspect; a set of sensors and actuators, which refer to the physical processes and are controled by the control unit; and a collection of microcontrollers, which interfaces the two. Besides that, a communication interface is also required for the data exchange with other CPSs, a central unit or a cloud. 
-
-% examples
-% 2008 Mars rovers
-Automotive systems, avionics systems, defense systems, manufacturing systems, process control systems, traffic control systems, robotics, smart medical devices, smart household applications, and marine systems are just a few of the application areas where CPSs have been utilized and developed \cite{bolbot2019vulnerabilities}. Banerjee et al. \cite{banerjee2011ensuring} review the literature and group a non-exaustive list of representatives: the usage of physiological sensors that allow for continuous health monitoring, the quick identification of medical situations, and the administration of treatments; Data centers (DCs) that count on renewable energy for cooling reasons; smart buildings that sense tenant absence and turn off the cooling unit to improve energy efficiency; and unmanned aerial vehicles (UAVs) that surveils an area based on a picture of the landscape.
-
-Another distinctive aspect of CPSs worth mentioning is their complexity. Schatz \cite{schatz2014role} divides it into three dimensions: (i) the "cross-dimension", which relates to process of computing and physical natures being related to different domains, technologies, organizations and so on; (ii) the "live-dimension", referring to the support of critical systems which cannot be turned off, and thus require updates at runtime; and (iii) the "self-dimension", which includes autonomous capabilities, like adaptation, healing monitoring and others. Bolbot et al \cite{bolbot2019vulnerabilities}, however, segments the CPSs complexity as structural, dynamic and organisational, according to the literature of system design and development. The first, called structural complexity, refers to systems with many components and unexpected interactions between them. Next, the dynamic complexity occurs when it is difficult to understand how a system behaves and changes through time. Finally, the organizational complexity relates to the configuration of the team in charge of the complex system's design and operation. 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-% CPS problems
+\section{Verification Methods in Cyber-Physical Systems}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-Nevertheless, all of this complexity can bring problems to the design of such systems. In large-scale environments, there are typically a variety of objectives to be met, a broad range of physical components to manage and coordinate, a number of different sensors, and actuators. Additionally, environmental factors are not predicted with absolute certainty, and each physical components is susceptible to failure \cite{jacoby2010testing}. Besides that, the complexities of representing both the cyber and physical aspects of any CPS challenges the task of modeling such systems. Oversimplified models may be invalidated for not anticipating failures dependant on the two layers \cite{2014PerceptionsSOTAV&VCPS}. 
+Formal Methods are widely applied the analysis of CPS because of their expanding application in many safety and financial-critical sectors. Model Checking, for example, is particularly popular since it addresses multiple aspects found in CPSs \cite{2014PerceptionsSOTAV&VCPS}.
 
-The amount of features of a CPS also plays a significant role in this subject  \cite{bolbot2019vulnerabilities}, since a poor design might increase the probability of software errors or the impact of  a malfunctioning of a physical component, leading to undesirable behaviors. Bolbot et al. \cite{bolbot2020novel} brings a list of some common sources of complexity in CPSs that may account for unpredictable behavior if the CPS is not properly designed. Beyond what was already mentioned, they also cite the software-intensive nature of the CPS, its capacity for dynamic reconfiguration and autonomous decision-making, interconnection, heterogeneity, human interactions, and accompanying management system. Moreover, another layer of complexity is added by the abundance of options a user may choose from when configuring a sytem \cite{dubslaff2022causality}, which may render the anticipation of defects in the design phase.
+% areas in which model checking is applied for verification
 
-Potential design failures in CPSs may jeopardize the safety and reliability of the system's operation \cite{bolbot2019vulnerabilities}. In comparison to previous systems, behaviors that were not foreseen during the early phases of development may result in more severe financial loss, human losses, and environmental harm. Some noticeable examples are the death of six cancer patients between 1985 and 1987 as a result of radiation overexposure due to a software error in the radiation treatment device Therac-25's control section \cite{2008PrinciplesModelChecking}, and the crash of a Boeing 737-8 (MAX) attributed to the design and certification of the flight-control system of the airplane \cite{2018knkCrashReport}. Additionally, the public's tolerance for mishaps is considerably lower than it was in the past, which puts additional pressure on government agencies as well as the creators and operators of CPSs, specially in relation to safety-critical systems \cite{lee2008cyber}.
+Nevertheless, the complexity found in CPSs can bring problems to the design of such systems. In large-scale environments, there are typically a variety of objectives to be met, a broad range of physical components to manage and coordinate, a number of different sensors, and actuators. Additionally, environmental factors are not predicted with absolute certainty, and each physical components is susceptible to failure \cite{jacoby2010testing}. Besides that, the complexities of representing both the cyber and physical aspects of any CPS challenges the task of modeling such systems. Oversimplified models may be invalidated for not anticipating failures dependant on the two layers \cite{2014PerceptionsSOTAV&VCPS}. 
 
+% (REPHRASE) CPS exhibits bugs that crop up only at run-time based on the physical state of the deployment world; such bugs cannot be captured by model checking alone -> THUS RUNTIME VERIFICATION
 
-%%%%%%%%%%%%%%%%%%%%%%%
-% Safety assessments
-%%%%%%%%%%%%%%%%%%%%%%%
-\section{Safety Assessments}
+% Another issue with model checking is that some of the safety properties of the CPSs may not be thoroughly verified and tested during the design and building phases. An alternative is performing the verification task after the system is deployed, in what is called Runtime Verification. This technique is considered to be a lightweight dynamic formal method in the sense that it is performed during the CPS's execution and relies on the verification of real data for the assurance of safety properties \cite{colombo2021runtime}. One of the ways in which it can be realized is by using Observers, which are a reification of the property in the form of state machines. They are responsible for reading the signals and messages that are shared among the modules of the system, checking the system's logs and so on, in order to perform statistics, identify faults and so on. They can be derived from the specified system properties through pattern catalogs \cite{2022PSP}.
 
-As mentioned in the previous section, the inherent complexity of Cyber-physical systems and in its design process can lead up to unpredictable behavior, and thus to severe consequences. Hence, CPSs must be resilient to unforeseen circumstances and flexible to subsystem faults due to the uncontrolled circumstances present during their execution \cite{lee2008cyber}. This scenario raises the need for safety assurance techniques throughout the CPSs design for their management, a correct knowledge of the drawbacks and benefits of each approach, as well as the development of research directions to improve the CPSs safety assurance methods, in particular with regard to safety-critical systems \cite{bolbot2019vulnerabilities}.
+% cite Anomaly Detection in Cyber-Physical Systems: A Formal Methods Approach
 
-Recent studies \cite{banerjee2011ensuring} have shown that the safety of CPSs can be improved if the information collected from the physical environment is considered in the decision making process of the system, since this would allow for the prevention of faults in the embedded system and in the physical environment. For instance, strategies can be created to change the sampling frequency of sensors based on the charge of their battery \cite{2021BSN}.
+\section{Fault Analysis and the Negative Selection}
 
-Banerjee et al. \cite{banerjee2011ensuring} extend ISO 60601's concept of safety to all mission critical CPSs. They describe it as avoiding physical environment hazards brought on by a CPS operating under normal or single fault situations. In their definition, these hazards can include software bugs, mechanical or electrical issues, thermal effects as well as radiation leakage. In turn, Bolbot et al.'s definition of safety \cite{bolbot2019vulnerabilities} follows the same path, defining it as the freedom from the unnacceptable risk of human bodily harm or health damage, as a direct or indirect result of environmental or property damage.
+Fault detection and diagnosis is yet another way to increase the reliability of CPSs. Zhang et al. \cite{zhang2013sensor} suggests a model-based detection, isolation, and system reconfiguration techinque for induction motor drives dependant on extended EKF, as well as strong current and DC-link voltage observers, which allows the systems to continue its operation even under sensor faults. Poon et al. \cite{poon2016model} also relies on models to present a fault detection and identification (FDI) technique for switching power converters utilizing a model-based state estimator methodology, which boosts fault tolerance and awareness in power electronics systems. Garcia et al. \cite{garcia2022solar} provides a real-time monitoring and preventive fault diagnosis method for solar panel strings in real-world installations, through the identification and parametric separation of fault symptoms using Voc-Isc curve analysis. In this strategy, identification and isolation occur with sufficient leeway to notify and stop the deterioration phenomena and its cumulative impact, which would potentialy result in the formation of irreversible failure via automated disconnection.
 
-These hazards can be identified and handled in the design phase of the system \cite{bolbot2019vulnerabilities} by the means of hazards identification and analysis, also called Safety Assurance Methods. These methods aim at identifying problematic assets, analysing the system's vulnerabilities and measuring the potential damages that may occur. Amongst the methods of hazard identification, the traditional ones are: HAZard and OPerability (HAZOP), Failure Modes and Effects Analysis (FMEA), Failure Modes and Effects Analysis (FMEA) and Fault Tree Analysis (FTA) \cite{bolbot2020novel}. Cameron el al. \cite{cameron2017process} exhaustively reviews the literature on this topic, showing how the main methods evolved over time and how they compare to each other.
+However, the success of traditional fault detection systems is determined by a number of elements, including prior knowledge of defective responses, an accurate system model, and a vast amount of data-history patterns. Furthermore, typical fault detection algorithms are often developed for a single system, thereby addressing a restricted number of defect types \cite{abid2020improved}.
 
-System verification is different approach for the provision of safety that can be used in cyber-physical system. Instead of relying on identification of hazards, it focuses on stablishing that the CPS satisfies certain properties \cite{2008PrinciplesModelChecking}. These properties are derived from the system's specification, which prescribes what the system should and should not do. In this case, faults are related to the nonfulfillment of properties, and the system is considered "correct" only when all properties are satisfied. A property specification catalog like the one from Autili et al. \cite{2015PropertySpecCatalog} can be used in this process. 
+These limitations motivated the adoption of new approaches, which make use of machine learning techniques. Chopdar and Koshti \cite{9848016}, for instance, address the problem of faults in the growing number of power grid transmission lines via an Artificial Neural Network method that efficiently detects and classifies faults to keep the performance of the power system. The model was trained with data taken from simulation software, which reduced the demand for historical data.
+% Get another example that addresses the problems listed
 
-One of the techniques used in the area is called Model Checking, in which a timed-automata model of the system goes through a reachability analysis in order to verify the satisfiability of the properties. Nevertheless, as stated before, modeling both the cyber and physical parts of any CPS, as well as their relationship, turns out to be a very difficult task, and oversimplified models may be rejected for failing to anticipate problems caused by the two levels, and even invalidade the model \cite{2014PerceptionsSOTAV&VCPS}. Another concern with model checking is that certain safety properties of the CPSs may not be adequately validated and tested throughout the design and construction phases.
+Nevertheless, there is still a critical necessity for the development of efficient fault detection systems that are less domain-specific. In this sense, Artificial immune systems (AIS) have recently captured the interest of the scientific community, specially for the purpose of anomaly detection. The Negative Selection Algorithm (NSA), which is inspired by the self/nonself discrimination process performed by the body during an immune response \cite{Kuby2019}, has emerged as a viable alternative \cite{abid2020improved}.
 
-Another issue with model checking is that some of the safety properties of the CPSs may not be thoroughly verified and tested during the design and building phases. An alternative is performing the verification task after the system is deployed, in what is called Runtime Verification. This technique is considered to be a lightweight dynamic formal method in the sense that it is performed during the CPS's execution and relies on the verification of real data for the assurance of safety properties \cite{colombo2021runtime}. One of the ways in which it can be realized is by using Observers, which are a reification of the property in the form of state machines. They are responsible for reading the signals and messages that are shared among the modules of the system, checking the system's logs and so on, in order to perform statistics, identify faults and so on. They can be derived from the specified system properties through pattern catalogs \cite{2022PSP}.
+Gupta and Dasgupta \cite{NSAResearch2021} provide a detailed assessment of the literature, demonstrating how the approach has evolved through time, highlighting the most notable variations and comparing with similar alternatives. They come to the conclusion that NSA outperforms most other approaches for nonlinear representation, and it can perform better than neural-based models in computing time.  
 
-Our work lies in the line that divides design time and runtime. Our work aims at enhancing the CPSs safety by improving the process of specification of system properties. In that sense, a model checking process is performed based on a timed-automata model of the system and a set of system properties derived from the specification. To account for the complexities found in the relation between computing and physical process \cite{2014PerceptionsSOTAV&VCPS}, a prototype of the system will be implemented in a tool designed to simulate Cyber-physical Systems, named Modelica. It provides both a cyber and a model interface, which allows for the simulation of physical equations integrated with algorithms \cite{fritzson2011introduction}. 
+Govender and Mensah \cite{govender2010fault} propose the usage of the NSA in modern manufacturing settings, in order to minimize the production lossess related to equipment malfuctioning. They simulate an automobile hub pressing machine using Matlab that has a programmable logic controller (PLC) connected to sensors, switches and safety curtains, and a module hosting the AIS. The self-set training data comes from the execution of the system under error free operations and are represented in the Hamming space as binary strings. Nonself detectors are randomly generated in the censoring phase of the algorithm by using the Hamming distance for the comparisons. Finally, the detectors are used in runtime to determine the anomalies in a hierachical fashion. They state that the representation of the data as binary strings allow for the reverse map of the resulting detectors back into the real nature of the equipment, even though the paper does not further explore this aspect.
 
-Additionally, observer automata will be derived from the properties and implemented in the prototype. This will enable the usage of runtime verification techniques while still in design time. A dataset will be extracted from simulation containing the execution logs, which will then be used in the Negative Selection Algorithm \cite{NSAResearch2021} for the discovery of patterns that are related to the violation of the specified properties. The patterns will be analyzed and used to enhance the properties, the system specification itself and make room for the development of fault-tolerant mechanisms and runtime monitors. We believe that these measures will account for the enhancing of the overall safety of the system.
+Our approach makes use of the NSA in a similar way. The Hamming space is leveraged as a means to reverse map the detectors into system states during the pattern analysis process. However, we consider this idea paramount for the increase of the reliability of CPSs, since the explainability it provides enables the identification of design failures, the creation of fault tolerant mechanisms and the refinement of the system properties.
 
-% Perceptions on the State of the Art in Verification and Validation in Cyber-Physical Systems
-% While there are existing well-grounded testing methodologies for other domains of software and formal methods have been used for verification of mission-critical systems in practice, verifying and validating CPS are complicated because of the physical aspects and external environment. For instance, there are insufficient methods for investigating the impact of the environment, or context, on a CPS [97]. External conditions, which are often hard to predict, can invalidate estimates (even worst-case ones) of the safety and reliability of a system. Modeling any CPS is further hampered by the complexity of modeling both the cyber (e.g., software, network, and computing hardware) and the physical (physical processes and their interactions) [71]. Simplified models that do not anticipate that the physical and logical components fail dependently are easily invalidated
+Two other works are worth mentioning in this section. The first, Alizadeh et al. \cite{alizadeh2016negative} suggested a wind turbine defect diagnostic system that relies on real-valued NSA to boost nonself-space coverage. V-detectors are used for representing the detectors, the Euclidean distance is utilized for matching, and data are represented as spheres. The detection phase proceeds as default, but the isolation phase relies on the training of new instances of the NSA for each pre-defined fault, which are employed in a hierarchical manner to better describe identified faults. The second was proposed by Ren et al. \cite{ren2020novel} a different algorithm for fault discovery and isolation. In this paper, V-detectors are created in such a way that the detector's coverage is increased while the overlap is reduced. The detection phase contains no surprises, but the isolation phase relies on an algorithm that attempts to match the defect at hand with a collection of pre-identified fault representatives.
 
+Despite the fact that our technique, on the one hand, displays detectors as binary strings, which have well-known shortcomings in the literature, on the other hand, the explainability given by them eliminates the need for prior knowledge of the system's probable faults.
 
-% A novel method for safety analysis of CPSs
-% A number of traditional methods are employed for the CPS hazard identification and analysis, namely Preliminary Hazard Analysis (PHA), HAZard and OPerability (HAZOP), Failure Modes and Effects Analysis (FMEA) and Fault Tree Analysis (FTA) [4]. Model-based approaches can be also exploited, such as presented in [10].
-
-% safety and security risk assessmentin CPS
-% Risk assessment and management focuses on the identification of assets, the analysis of vulnerabilities and the evaluation and measurement of possible damages. In general, we can roughly divide risk assessment into qualitative assessment and quantitative assessment. Qualitative assessment relies heavily on expert experience, while quantitative assessment can calculate the exact risk value of the system. Many methodologies of safety risk assessment have well developed for CPS so far, here are some typical technologies illustrating the current state of the art for CPS safety
-
-% Vulnerabilities and safety assurance methods in Cyber-Physical Systems: A comprehensive review
-% The third generation methods depend on simulation in a virtual environment and therefore consider more effectively the involved dynamic phenomena [78]
-
-% Ensuring Safety, Security, and Sustainability of Mission-Critical Cyber–Physical Systems
-
-% Traditionally, researchers have focused on bypassing this characterization and transforming the safety assurance problem into a well-understood problem in computer science such as formal model reachability analysis. The problem of safety assurance is consequently reduced to developing bug free software or a control system analysis problem. Such simplified notion of safety, however, may not entirely capture the hazards resulting from the dynamic cyber–physical interactions. 
-% Hence, in order to guarantee safety of CPS software, it is necessary to accurately characterize the spatio–temporal dynamics of the physical environment and its tight coupling with the computing units. In essence, more focus is needed on the interaction safety.
-
-
-
-% safety and security risk assessmentin CPS
-% With the expansion of CPS complexity and the enhancement of the system openness, most of CPS become not only safety-critical but also security-critical since deeply involving both physical objects and computer networks.
-% According to ISA 84/IEC61511 [2], functional safety is aimed at protecting and monitoring devices from accidental failures or failings in order to achieve or maintain a safe  state of the process. 
-% Safety risks are caused by interaction between the environment and CPS, within the CPS, and between the CPS and authorised users. Confidentiality, integrity, and availability, known as the CIA triad, represent the fundamental security objectives in CPS and IT systems [4, 5, 6]. Different from the traditional IT systems, availability is the most important objective in CPS.
-
-
-
-% Causality in Configurable Software Systems
-% Since features correspond to system functionalities specified by software engineers, they often have a dedicated meaning in the target application domain [4]. To this end, defects (and other behaviors of interest) detected at the level of features can provide important insights for the resolution of variability bugs [1, 41, 73] and configuration-dependent behavior [45, 64, 78, 79]. As such, they are certainly more informative and actionable than low-level program traces alone. Developers may choose to focus on those feature implementations identified as root causes of bugs or simply disallow or coordinate the activation of certain features when defects are related to them
-
-% Ensuring Safety, Security, and Sustainability of Mission-Critical Cyber–Physical Systems
-% The tight coupling between the cyber and the physical in CPSs, though advantageous, is subject to new forms of risks that have not been considered adequately in the traditional computing domain. These new types of risks include the cyber element adversely affecting the physical environment (e.g., untimely delivery of medication or therapies) or vice versa (e.g., malfunctioning of UAV control algorithm may lead to crash of UAVs on unwanted regions causing potential loss of civilian lives).
-
-
-
+\section{Final Considerations on Related Works}
 
 
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
-% Why they don't work
+% FINAL REMARKS
 %%%%%%%%%%%%%%%%%%%%%%%
-% A novel method for safety analysis of CPSs
-% In a number of studies [16–19], however, the use of PHA, HAZOP, FMEA and FTA for CPS safety analysis was criticised, as these methods cannot support the analyst in properly capturing the interactions between the system components, especially the interactions between the control components and the physical components, thus not identifying software-related hazardous scenarios. Similar criticism applies to the model-based study presented in [10] as the model is primarily based on the localized version of FMEA.
+% Our work lies in the line that divides design time and runtime. Our work aims at enhancing the CPSs safety by improving the process of specification of system properties. In that sense, a model checking process is performed based on a timed-automata model of the system and a set of system properties derived from the specification. To account for the complexities found in the relation between computing and physical process \cite{2014PerceptionsSOTAV&VCPS}, a prototype of the system will be implemented in a tool designed to simulate Cyber-physical Systems, named Modelica. It provides both a cyber and a model interface, which allows for the simulation of physical equations integrated with algorithms \cite{fritzson2011introduction}. 
 
-% safety and security risk assessmentin CPS
-% Look at the paper, in section 5.1
-
-%%%%%%%%%%%%%%%%%%%%%%%
-% Improvements
-%%%%%%%%%%%%%%%%%%%%%%%
-% A novel method for safety analysis of CPSs
-% The System-Theoretic Process Analysis (STPA) has been proved capable of identifying the potential hazardous control actions by capturing the context of the system as well as identifying additional software related hazardous scenarios not captured by FMEA [17–19]. Although the STPA sufficiently addresses the software-intensive character of CPSs, it overlooks the events’ sequences [20].
-
-
-% cite lars and others
-% safety and security risk assessmentin CPS
-% Grunske et al. [14] proposed ‘the probabilistic FMEA’, which is an extension to the original FMEA. It helps safety engineers to identify if a failure mode occurs with a probability higher than its tolerable hazard rate. FMEA is carried out in the early design phase of the system life circle. FMEA is well explained in [15]
-
-%%%%%%%%%%%%%%%%%%%%%%%
-% What the improvements still lack?
-%%%%%%%%%%%%%%%%%%%%%%%
-% A novel method for safety analysis of CPSs
-% The specific hazardous control actions are identified at different time snapshots of the system operation, but the STPA does not address how these hazardous control actions are propagated into an accident, incidents, or hazards [21]. Therefore, STPA alone cannot tackle properly CPS dynamic reconfigurations functions in safety analysis. This is of practical interest for the ICS, where the undesired event will happen due to a combination of failures occurring at different time periods and thus the system dynamic reconfiguration is highly important [4]. This method was proved weaker in supporting the single cause failures identification despite its capabilities and potential [18]. In addition, the STPA can be implemented only on a qualitative level, not allowing the criticality and sensitivity assessment, which are required for the system safety-efficient design [22]. Moreover, it is applied at a functional level, thus not considering the actual system design architecture [19]. The STPA is a manual method and, despite the specific rules that govern its implementation, it is still considered to be subjective [4]. Therefore, its enhancement, improvement or combination with other methods are required for addressing the above discussed limitations
-
-%%%%%%%%%%%%%%%%%%%%%%%
-% Seeking in related areas (biology)
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-% Brief history of Negative Selection
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-% Work related to fault diagnosis
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-% SEAMS 18
-%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%
-% how our approach might solve the issues combining the NSA for safety assessments
-%%%%%%%%%%%%%%%%%%%%%%%
-% show how it builds on existing knowledge to provide additional insight
-
-
-%%%%%%%%%%%
-% methods that formulated the problem
-%%%%%%%%%%%
-
-
-%%%%%%%%%%%
-% methods that addressed a central or related problem
-%%%%%%%%%%%
-
-
-%%%%%%%%%%%
-% methods that inspired our work
-%%%%%%%%%%%
-% \cite{seams2018}
-
-%%%%%%%%%%%
-% methods that used a similar methodology
-%%%%%%%%%%%
-% From Causality in configurable sw systems
-% Approaches such as delta-debugging [24, 96], causal testing [52], or causal trace analysis [11] require a white-box analysis that operates at the level of code and are not variability-aware. Hence, they usually would have to be applied on a multitude of system configurations for a variability-aware causal analysis, suffering from a combinatorial blowup.  
-
-
-% \section{Uncertainty definition}
-
-
-% \section{Final considerations about the related work}
+% Additionally, observer automata will be derived from the properties and implemented in the prototype. This will enable the usage of runtime verification techniques while still in design time. A dataset will be extracted from simulation containing the execution logs, which will then be used in the Negative Selection Algorithm \cite{NSAResearch2021} for the discovery of patterns that are related to the violation of the specified properties. The patterns will be analyzed and used to enhance the properties, the system specification itself and make room for the development of fault-tolerant mechanisms and runtime monitors. We believe that these measures will account for the enhancing of the overall safety of the system.
