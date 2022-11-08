@@ -138,7 +138,8 @@
 %%
 
 
-\RequirePackage[brazil,american]{babel}% Idiomas
+% \RequirePackage[brazil,american]{babel}% Idiomas
+\RequirePackage[british,UKenglish,USenglish,english,american,brazil]{babel}% Idiomas
 \RequirePackage[fixlanguage]{babelbib}%  Idioma das referências
 \RequirePackage[utf8]{inputenc}%         Arquivos na codificação UTF-8
 \RequirePackage[T1]{fontenc}%            Habilita busca com caracteres latinos
@@ -296,7 +297,8 @@
 \renewcommand{\bibliography}[1]{%
 	%renomeia a seção após influência maligna do Babel
 	\renewcommand*{\bibname}
-		{\@ifundefined{XeTeXversion}{Refer\^encias}{Referências}}
+		% {\@ifundefined{XeTeXversion}{Refer\^encias}{Referências}}
+		{\@ifundefined{XeTeXversion}{References}{References}}
 	\addtocchapter{\bibname}
 	\singlespacing\@bibliography{#1}\defaultspacing}
 
@@ -737,29 +739,29 @@
 	}
 
 	%traducoes para glossaries.sty
-	\@ifpackageloaded{glossaries}{%
-		\@ifundefined{XeTeXversion}{
-			\addto\captionsbrazil{%
-			\renewcommand*{\glossaryname}{Gloss\'ario}%
-			\renewcommand*{\acronymname}{Lista de Abreviaturas e Siglas}%
-			\renewcommand*{\entryname}{Entrada}%
-			\renewcommand*{\descriptionname}{Descri\c{c}\~ao}%
-			\renewcommand*{\symbolname}{S\'\imbolo}%
-			\renewcommand*{\pagelistname}{Lista de p\'aginas}%
-			\renewcommand*{\glssymbolsgroupname}{S\'imbolos}%
-			\renewcommand*{\glsnumbersgroupname}{N\'umeros}}
-		}{
-			\addto\captionsbrazil{%
-			\renewcommand*{\glossaryname}{Glossário}%
-			\renewcommand*{\acronymname}{Lista de Abreviaturas e Siglas}%
-			\renewcommand*{\entryname}{Entrada}%
-			\renewcommand*{\descriptionname}{Descrição}%
-			\renewcommand*{\symbolname}{Símbolo}%
-			\renewcommand*{\pagelistname}{Lista de páginas}%
-			\renewcommand*{\glssymbolsgroupname}{Símbolos}%
-			\renewcommand*{\glsnumbersgroupname}{Números}}
-		}
-	}{}
+	% \@ifpackageloaded{glossaries}{%
+	% 	\@ifundefined{XeTeXversion}{
+	% 		\addto\captionsbrazil{%
+	% 		\renewcommand*{\glossaryname}{Gloss\'ario}%
+	% 		\renewcommand*{\acronymname}{Lista de Abreviaturas e Siglas}%
+	% 		\renewcommand*{\entryname}{Entrada}%
+	% 		\renewcommand*{\descriptionname}{Descri\c{c}\~ao}%
+	% 		\renewcommand*{\symbolname}{S\'\imbolo}%
+	% 		\renewcommand*{\pagelistname}{Lista de p\'aginas}%
+	% 		\renewcommand*{\glssymbolsgroupname}{S\'imbolos}%
+	% 		\renewcommand*{\glsnumbersgroupname}{N\'umeros}}
+	% 	}{
+	% 		\addto\captionsbrazil{%
+	% 		\renewcommand*{\glossaryname}{Glossário}%
+	% 		\renewcommand*{\acronymname}{Lista de Abreviaturas e Siglas}%
+	% 		\renewcommand*{\entryname}{Entrada}%
+	% 		\renewcommand*{\descriptionname}{Descrição}%
+	% 		\renewcommand*{\symbolname}{Símbolo}%
+	% 		\renewcommand*{\pagelistname}{Lista de páginas}%
+	% 		\renewcommand*{\glssymbolsgroupname}{Símbolos}%
+	% 		\renewcommand*{\glsnumbersgroupname}{Números}}
+	% 	}
+	% }{}
 
 	\@ifundefined{XeTeXversion}%
 	{%suporte para fonte Adobe Minion Pro - pacote LaTeX
@@ -898,8 +900,10 @@
 	\@IncluirSecao{resumo}%
 	\selectlanguage{american}%
 	\@IncluirSecao{abstract}%
-	\selectlanguage{brazil}%
-    \selectbiblanguage{brazil}%
+	% \selectlanguage{brazil}%
+    % \selectbiblanguage{brazil}%
+	\selectlanguage{american}%
+    \selectbiblanguage{american}%
 	\@erroSeNaoExiste{bibliografia.bib}%
 
 	\tableofcontents%
