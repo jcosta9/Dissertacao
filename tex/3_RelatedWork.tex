@@ -27,13 +27,35 @@ Formal Methods are widely applied the analysis of CPS because of their expanding
 
 % areas in which model checking is applied for verification
 
-Nevertheless, the complexity found in CPSs can bring problems to the design of such systems. In large-scale environments, there are typically a variety of objectives to be met, a broad range of physical components to manage and coordinate, a number of different sensors, and actuators. Additionally, environmental factors are not predicted with absolute certainty, and each physical components is susceptible to failure \cite{jacoby2010testing}. Besides that, the complexities of representing both the cyber and physical aspects of any CPS challenges the task of modeling such systems. Oversimplified models may be invalidated for not anticipating failures dependant on the two layers \cite{2014PerceptionsSOTAV&VCPS}. 
+Nevertheless, the complexity found in CPSs can bring problems to the design of such systems. 
+Representing both the cyber and physical aspects of any CPS challenges the task of modeling such systems, since we are combining discrete and continuous models. Aside from the complexity of representing the real environment, a CPS has only a limited understanding of its surroundings. Sensing constraints induced by sensor blindspots and sensor interference complicate the modeling process \cite{luckcuck2019formal}. Hence, oversimplified models may be invalidated for not anticipating failures dependant on the two layers \cite{2014PerceptionsSOTAV&VCPS}. 
+
+Akella et al. \cite{akella2009model}, for instance, addresses this problem by trying to simplify the physical model. This was done by discretizing the events that cause flow change and to representint the CPS as a deterministic state model with discrete flow values inside its physical components. Model checking is then utilized to formally test insecure interactions between all conceivable behaviors of the specified CPS. Botaschanjan et al. \cite{botaschanjan2008correctness} provide a sucessfull attempt to close this gap in automotive systems by combining the model checking verification of the lower layers of the system with the simulation of the upper layers.
+
+Formal methods can also be used to perform anomaly detection. Jones et al. \cite{jones2014anomaly} uses formal methods to an anomaly detection framework to determine whether or not a particular CPS is under attack. They build STL properties based on the normal behavior of the system and flag the abnormal behavior. Then, a one-class SVM model is used to detect deviations. Our approach share some similarities with Jone's. Nonself data, i.e. anomalies, are flagged according to system properties and a one-class machine learning algorithm (NSA) is performed to understand the patterns based on the self data. Although in our work the properties are specified by the stakeholders and undergo a process of formalism. Besides that, we leverage the detectors generated to gain insight on the violations, which is used to enhance the specification. Webster \cite{webster2014generating} also integrates model checking and simulation in order to ensure safe operations for autonomous unmanned aircrafts. They argue that the high level of assurance provided by the formal method would increase the accuracy of the simulation model.
+
+% Clarke and Zuliani suggested a Statistical Model Checking \cite{clarke2011statistical}, which relies on statistical analysis to prune the verification. Nevertheless, it still suffers from the main problems of the Model Checking approach, such as 
+
+
 
 % (REPHRASE) CPS exhibits bugs that crop up only at run-time based on the physical state of the deployment world; such bugs cannot be captured by model checking alone -> THUS RUNTIME VERIFICATION
 
-% Another issue with model checking is that some of the safety properties of the CPSs may not be thoroughly verified and tested during the design and building phases. An alternative is performing the verification task after the system is deployed, in what is called Runtime Verification. This technique is considered to be a lightweight dynamic formal method in the sense that it is performed during the CPS's execution and relies on the verification of real data for the assurance of safety properties \cite{colombo2021runtime}. One of the ways in which it can be realized is by using Observers, which are a reification of the property in the form of state machines. They are responsible for reading the signals and messages that are shared among the modules of the system, checking the system's logs and so on, in order to perform statistics, identify faults and so on. They can be derived from the specified system properties through pattern catalogs \cite{2022PSP}.
+Another issue with model checking is that some of the system properties of the CPSs may not be thoroughly verified and tested during the design and building phases. An alternative is performing the verification task after the system is deployed, in what is called Runtime Verification. This technique is considered to be a lightweight dynamic formal method in the sense that it is performed during the CPS's execution and relies on the verification of real data for the assurance of safety properties \cite{colombo2021runtime}. One of the ways in which it can be realized is by using Observers, which are a reification of the property in the form of state machines. They are responsible for reading the signals and messages that are shared among the modules of the system, checking the system's logs and so on, in order to perform statistics, identify faults and so on. They can be derived from the specified system properties through pattern catalogs \cite{2022PSP}.
 
-% cite Anomaly Detection in Cyber-Physical Systems: A Formal Methods Approach
+In the proposed framework, the model checking process will be integrated with simulation. This will be done by implementing a prototype in Modelica \cite{Modelica}, which is a tool that allows for writing algorithms and physical equations, for the modeling of the cyber and physical aspects of the system. Observers will also be modeled as timed automata for the model checking phase, as well as implemented as components in the prototype. This will allow for a seamless transition from runtime and design time.
+
+% [2014]  Generating Certification Evidence for Autonomous Unmanned Aircraft Using Model Checking and Simulation
+
+% cite [2017] Combining Model Checking and Runtime Verification for safe robotics
+
+%  cite seams 18
+
+
+% Nevertheless, the complexity found in CPSs can bring problems to the design of such systems. 
+% In large-scale environments, there are typically a variety of objectives to be met, a broad range of physical components to manage and coordinate, a number of different sensors, and actuators. 
+% Additionally, environmental factors are not predicted with absolute certainty, and each physical components is susceptible to failure \cite{jacoby2010testing}. 
+% Besides that, the complexities of representing both the cyber and physical aspects of any CPS challenges the task of modeling such systems. Oversimplified models may be invalidated for not anticipating failures dependant on the two layers \cite{2014PerceptionsSOTAV&VCPS}. 
+
 
 \section{Fault Analysis and the Negative Selection}
 
@@ -58,13 +80,6 @@ Despite the fact that our technique, on the one hand, displays detectors as bina
 
 \section{Final Considerations on Related Works}
 
+Our work lies in the line that unites design time and runtime. we aim at enhancing the CPSs reliability by improving the process of specification of system properties. In that sense, a model checking process is performed based on a timed-automata model of the system and a set of system properties derived from the specification. To account for the complexities found in the relation between computing and physical process \cite{2014PerceptionsSOTAV&VCPS}, a prototype of the system will be implemented in a tool designed to simulate Cyber-physical Systems, named Modelica. It provides both a cyber and a model interface, which allows for the simulation of physical equations integrated with algorithms \cite{fritzson2011introduction}. 
 
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-% FINAL REMARKS
-%%%%%%%%%%%%%%%%%%%%%%%
-% Our work lies in the line that divides design time and runtime. Our work aims at enhancing the CPSs safety by improving the process of specification of system properties. In that sense, a model checking process is performed based on a timed-automata model of the system and a set of system properties derived from the specification. To account for the complexities found in the relation between computing and physical process \cite{2014PerceptionsSOTAV&VCPS}, a prototype of the system will be implemented in a tool designed to simulate Cyber-physical Systems, named Modelica. It provides both a cyber and a model interface, which allows for the simulation of physical equations integrated with algorithms \cite{fritzson2011introduction}. 
-
-% Additionally, observer automata will be derived from the properties and implemented in the prototype. This will enable the usage of runtime verification techniques while still in design time. A dataset will be extracted from simulation containing the execution logs, which will then be used in the Negative Selection Algorithm \cite{NSAResearch2021} for the discovery of patterns that are related to the violation of the specified properties. The patterns will be analyzed and used to enhance the properties, the system specification itself and make room for the development of fault-tolerant mechanisms and runtime monitors. We believe that these measures will account for the enhancing of the overall safety of the system.
+Additionally, observer automata will be derived from the properties and implemented in the prototype. This will enable the usage of runtime verification techniques while still in design time. A dataset will be extracted from simulation containing the execution logs, which will then be used in the Negative Selection Algorithm \cite{NSAResearch2021} for the discovery of patterns that are related to the violation of the specified properties. The patterns will be analyzed and used to enhance the properties, the system specification itself and make room for the development of fault-tolerant mechanisms and runtime monitors. We believe that these measures will account for the enhancing of the overall reliability of the system.
