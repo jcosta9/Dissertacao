@@ -179,11 +179,13 @@ Another distinctive aspect of CPSs worth mentioning is their complexity. Schatz 
     
 % \end{itemize}
 
-\subsection{Assurances}
+\section{System Verification}
 
 The inherent complexity permeating cyber-physical systems create the need of evidence to prove that the system is capable of meeting its requirements during its entire lifetime \cite{assurances2017}. This evidence, also known as assurances, can be defined as "the collection, analysis and synthesis of evidence for building arguments which demonstrate that the system satisfies its functional and non-functional requirements during operation". This is specially important for safety-critical systems because of its safety restrictions and strict guidelines.
 
-Formal methods are considered by the state-of-the-art approaches as the most promising way of providing such guarantees  \cite{assurances2017}. Nevertheless, some uncertainties might be faced only during the system's operation, which makes the off-line solutions insufficient. To address this matter, Weyns et al. \cite{2019PerpetualAssurancesWeyns} introduce the concept of perpetual assurances, which consists of a continuous process performed by both humans and the system to derive and incorporate new evidences. To this end, two types of assurance must be consistently updated  \cite{assurances2017}. First, the evidence that concerns the parts of the system that are little affected by uncertainties and, thus, can be acquired by traditional off-line methods. Second, the evidence regarding the modules taht are considerably impacted by uncertainties. This type of assurance should be synthesized during the handling of the uncertainty, at runtime, for each of the several adaptation functions.
+System verification is an approach for the provision of assurances that can be used in cyber-physical system. Instead of relying on identification of hazards, it focuses on stablishing that the CPS satisfies certain properties \cite{2008PrinciplesModelChecking}. These properties are derived from the system's specification, which prescribes what the system should and should not do. In this case, faults are related to the nonfulfillment of properties, and the system is considered "correct" only when all properties are satisfied. 
+
+Formal methods are considered by the state-of-the-art approaches as the most promising way of providing such guarantees  \cite{assurances2017}. Nevertheless, some uncertainties might be faced only during the system's operation, which makes the off-line solutions insufficient. To address this matter, Weyns et al. \cite{2019PerpetualAssurancesWeyns} introduce the concept of perpetual assurances, which consists of a continuous process performed by both humans and the system to derive and incorporate new evidences. To this end, two types of assurance must be consistently updated  \cite{assurances2017}. First, the evidence that concerns the parts of the system that are little affected by uncertainties and, thus, can be acquired by traditional off-line methods. Second, the evidence regarding the modules that are considerably impacted by uncertainties. This type of assurance should be synthesized during the handling of the uncertainty, at runtime.
 
 The methods that provide the perpetual assurances can be divided in three categories: the human-driven, the system-driven and the hybrid approaches. Next, one sample strategy from each group will be described.
 
@@ -197,37 +199,34 @@ The methods that provide the perpetual assurances can be divided in three catego
 \end{itemize}
 
 
-\section{Model Checking}
-TODO 
-% cite 2008 principles of model checking 1.1
+\subsection{Model Checking}
 
-% 3.1.1 Properties Verification. We specify the properties of the model to be verified in Timed Computational Tree Logic (TCTL) [15], since its the UPPAAL language to verify the real-time properties of the formalized model. TCTL is a real-time variant of CTL aimed to express properties of timed automata. Like CTL, the model verification relies on state or path expressions regarding properties such as reachability, safety, or liveness. TCTL extends CTL with atomic clock constraints over the clocks, typically the set of clocks in the timed automaton under consideration. The TCTL model-checking problem is to check for a given timed automaton TA and TCTL formula ϕ whether TA  ϕ [3]. In UPPAAL, the properties are specified with a subset of TCTL augmented with syntactical symbols such as → and logical operators like imply and >, ≥, <, ≤ to include v riables and time evaluations. Table 2 lists such basic expressions.
+One of the techniques used in the area is called Model Checking, in which a timed-automata model of the system goes through a reachability analysis in order to verify the satisfiability of the properties \cite{2008PrinciplesModelChecking}. It works by exploring the whole range of states that are possible to occur in the system in a brute-force manner to check that the specified properties are satisfied
+
+If a state is encountered that violates the property under consideration, the model checker provides a counterexample that indicates how the model could reach the undesired state. The counterexample describes an execution path that leads from the initial system state to a state that violates the property being verified
+
+The process of model checking comprises three phases: 
+
+\begin{itemize}
+    \item \textbf{Modeling phase:} the system is modeled according to its specification in terms of the description language of the tool that will run it. Such models must accurately and unambiguously reflect the system's intended behavior. They are typically modeled using finite-state automata, meaning that they myst have a finite collection of states and of transitions. States include information about variable values, previously run statements, and so on. Transitions illustrate how a system transitions between states. 
+    
+	\item \textbf{Running phase:} In this phase, the model checking tool is executed given the model and the properties to be verfied. The checker exhaustively checks all the reachable system states to determine the validity of the properties.
+	
+	\item \textbf{Analysis phase:} After running the checker, if no violations are found, the process is concluded. If that is not the case, the cause of the result must be identified. It might be a modeling error or a property specification error. In both cases, upon making the required fixes, a new verification is required.
+    
+\end{itemize}
+
+\subsection{Property Specification}
+
+In order to run the model checking process in a correct manner, the properties must be specified in a precise and unambiguous way \cite{2008PrinciplesModelChecking}. Differently from the system model, which describes the behavior of the system, properties determine what the system should and should not do.
+
+To allow for thorough verification, properties must be stated precisely and unambiguously. A property specification language is often used for this. In order to represent significant properties of Cyber-physical systems, temporal logic is often used. This language is essentially an extension of regular propositional logic with operators that relate to the behavior of the system across time. It enables the specification of a wide range of relevant system properties, including functional correctness, reachability, safety, liveness, fairness, and real-time properties.
+
+However, there are some intrinsic problems that permeate the probess of property specification. These problems are related to the difficulty in ensuring that a given specification corresponds to a software engineer's understanding about the system. To address that issue, Autili et al. \cite{2015PropertySpecCatalog} proposed a property specification  framework and a pattern catalog. Their work aims at the simplification of the process of system property specification. Initially, the property is written by using a Structured English Grammar, which consists of phrases in plain English limited to temporal logics denotable terms. Then, the property is mapped to instance patterns in the pattern catalog. Finally, the corresponding temporal logic formula is derived from the pattern.
+
+% \subsection{Observer Automata} \label{sec:bgobserver}
 
 
-% In our approach, we specify temporal logic formulae to verify the satisfiability of the goals modeled in the CGM (cf. Figure 1). The CGM root goal explicitly elicits the actor’s main goal that once satisfied assures the system’s correct behavior. Fulfilling hard goals requires its refinements by means of its AND- and OR-refinements into goals or tasks are satisfied. Taking into account the modeling strategy, the task’s behavior can be verified through reachability properties as the timed automata locations represent the progress and achievement of the task’s behavior. For example, T1.1 (Collect sensor data) with A♦sensornode.collected meaning “the sensor node will eventually collect sensor data”, also T2.2 (Detect patient health status) with A♦bodyhub.detected as “the bodyhub will eventually d tect the patient’s status”, and so on.
-
-
-% On the other hand, sequences of states comprising temporal relations need to be addressed in order to fulfill the CGM goals. These are achieved basically by combining task properties (reachable locations) in the UPPAAL models with invariants or path-like formulae. Table 3 describes the sufficient TCTL-like specifications to assure the correct system behavior of the BSN by means of the satisfiability of the goals modeled in the CGM (cf. F gure 1).
-
-
-% The safety property P1 is common to distributed systems and assures that the BSN model is deadlock free. The fairness property P2 assures that in a scheduling cycle all modules will be executed. 
-
-% Regarding P3, it is noticed that goal verification is not trivial when it does not have a direct relation to task decompositions, specially when non-functional goals contributes to it, which is the case of the root goal G1 that demands the emergency detection within 250 ms (cf. Figure 1). This is addressed in UPPAAL through an observer automaton that records the time taken when high risk is acknowledged at the sensor node to its proper detection on the BodyHub.
-
-
-% To fulfill G3, the properties P4, P5, and P6 shall be assured as they represent the controller behavior in task T3 operationalization with respect to the frequency at which sensors data will be collected. Finally, the goals G4 and G5 are satisfied by assuring their meansend task executions. In particular, G5 guarantees through property P9 that the sensor data range follows the BSN operationalization data accordingly, that is, low, moderate or high. This is important to assure that the model does not have any data sent outside the range recognized by the BSN system. G2 is the fulfillment of property P7, which merely synthesizes the  fulfillment of goals G4 and G5.
-
-
-% \section{Observer Automata} \label{sec:bgobserver}
-
-% \subsection{Property Specification Pattern Catalog}
-
-% manuscript
-% Property specification patterns are organized in
-% catalogues and provide general rules that help
-% practitioners to qualify order and occurrence, to
-% quantify time bounds, and to express probabilities
-% of events [7], [8].
 
 \section{Goal Oriented Requirements Engineering} \label{sec:bgGORE}
 
@@ -271,8 +270,8 @@ A goal model usually utilizes a directed graph tree to delineate the goals in a 
 
 Since variants were only allowed by regular Goal Models, but not clear-cut defined, an extension of TROPOS, named Contextual Goal Model (CGM), was created to meet the notions of context and goals. It specifies explicitly which changes in the environment can be adopted and when. This allows for systematic derivation of variants based on the  several different contexts that may appear \cite{ali_goal_based_2010}. Figure \ref{fig:andorref} describes \textit{C1} and \textit{C2} as contexts of a OR-refinement, as an example of how contexts are depicted in Contextual Goal Models.
 
-\subsection{Goal-Oriented Dependability Analysis (GODA)}
-TODO
+% \subsection{Goal-Oriented Dependability Analysis (GODA)}
+% TODO
 
 
 \section{Biological Immune Systems (BIS)} \label{sec:bgais}
