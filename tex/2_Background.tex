@@ -9,7 +9,16 @@ Cyber-Physical Systems (CPS) can be defined as systems that integrate physical p
 % highlight the difference from embedded systems
 It's not new for physical and digital processes to be integrated into a system. The notion of engineered systems that integrate computer softwares with physical processes have been refered to as "embedded systems" for some time \cite{lee2008cyber}. Car electronics, games, weapons systems, household appliances, and toys can be named as a few successful examples. In order to delineate the distinction, Schatz \cite{schatz2014role} states that, even though CPSs encompasses embedded systems, the cyber-physical integration in CPSs happens both on a local and a global scale. Lee \cite{lee2008cyber} and Jadzi \cite{jazdi2014cyber} goes in a similar direction by distinguishing CPSs and embedded systems in terms of networking and outsourcing of computational power. Jadzi \cite{jazdi2014cyber} goes beyond by alluding the data exchange as its most important feature, while defining CPSs in terms of embedded systems that are "able to send and receive data over a network." In turn, Dowdeswell et. al \cite{dowdeswell2020finding} adds that, in this sense, CPSs can be seen as seamless entities that form entire systems.
 
-A CPS comprises three main modules \cite{jazdi2014cyber}: a control unit, which relates to the computational aspect; a set of sensors and actuators, which refer to the physical processes and are controled by the control unit; and a collection of microcontrollers, which interfaces the two. Besides that, a communication interface is also required for the data exchange with other CPSs, a central unit or a cloud. 
+A CPS comprises three main modules \cite{jazdi2014cyber}: a control unit, which relates to the computational aspect; a set of sensors and actuators, which refer to the physical processes and are controled by the control unit; and a collection of microcontrollers, that interfaces the two. Besides that, a communication interface is also required for the data exchange with other CPSs, a central unit or a cloud. 
+
+Aleksandrowicz et al. \cite{aleksandrowicz2018designing} further divide the Cyber part of the CPS as a four-layered architecture, as depicted in Figure \ref{fig:cyber_cps}. First, the analog/mixed-signal (AMS) layer focuses on the design's aging behavior and simulates the low level components, particularly sensors and actuators. Second, the digital hardware layer abstracts the AMS layer's signals as binary values. Thirdly, the architectural layer sees the CPS as a collection of computing units with varying capacities, a communication network connecting those computational units, and a collection of high-level-of-abstraction activities that should be completed on the system. Finally, the behavioral layer addresses the CPS's functional behavior and tasks by representing the behavioral aspects of the system's functioning implemented in either software or hardware.
+
+\begin{figure*}[!htb]
+	\centering
+	\includegraphics[width=0.5\linewidth]{img/cyber_CPS.png}
+	\caption{The stack of layers of the Cyber nature of CPS \cite{aleksandrowicz2018designing}}
+   \label{fig:cyber_cps}
+\end{figure*}  
 
 % examples
 % 2008 Mars rovers
@@ -217,8 +226,9 @@ The process of model checking comprises three phases:
 \end{itemize}
 
 \subsection{Property Specification}
+\label{sec:property_spec}
 
-In order to run the model checking process in a correct manner, the properties must be specified in a precise and unambiguous way \cite{2008PrinciplesModelChecking}. Differently from the system model, which describes the behavior of the system, properties determine what the system should and should not do.
+In order to run the system verification process in a correct manner, the properties must be specified in a precise and unambiguous way \cite{2008PrinciplesModelChecking}. Differently from the system model, which describes the behavior of the system, properties determine what the system should and should not do.
 
 To allow for thorough verification, properties must be stated precisely and unambiguously. A property specification language is often used for this. In order to represent significant properties of Cyber-physical systems, temporal logic is often used. This language is essentially an extension of regular propositional logic with operators that relate to the behavior of the system across time. It enables the specification of a wide range of relevant system properties, including functional correctness, reachability, safety, liveness, fairness, and real-time properties.
 
