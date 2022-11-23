@@ -5,12 +5,12 @@ In this chapter, our framework will be evaluated using a variation of the Goal-Q
     \begin{tabular}{ccl}
     \hline
     \multicolumn{3}{|c|}{\textbf{Goal 1}: Property Violation Identification process}                                                                                                                            \\ \hline
-    \multicolumn{1}{|c|}{Question}                                                                                    & \multicolumn{1}{c|}{Metric}                     & \multicolumn{1}{l|}{Results} \\ \hline
+    \multicolumn{1}{|c|}{Question}                                                                                    & \multicolumn{1}{c|}{Metric}                     & \multicolumn{1}{c|}{Results} \\ \hline
     \multicolumn{1}{|c|}{\makecell{How well does our model \\ generalizes to unseen data?}}                                         & \multicolumn{1}{c|}{\makecell{Precision and \\Recall Rates}} & \multicolumn{1}{c|}{\makecell{Precision: 1.0 \\ Recall: 0.9958}}        \\ \hline
                                                                                                                       &                                                 &                              \\ \hline
     \multicolumn{3}{|c|}{\textbf{Goal 2}: Method's contribuition}                                                                                                                                               \\ \hline
-    \multicolumn{1}{|c|}{Question}                                                                                    & \multicolumn{1}{c|}{Metric}                     & \multicolumn{1}{l|}{Results} \\ \hline
-    \multicolumn{1}{|c|}{\makecell{How effective is our approach \\ in the discovery of patterns \\in property violation scenarios?}} & \multicolumn{1}{l|}{\makecell{Number of \\patterns found}}   & \multicolumn{1}{c|}{}        \\ \hline
+    \multicolumn{1}{|c|}{Question}                                                                                    & \multicolumn{1}{c|}{Metric}                     & \multicolumn{1}{c|}{Results} \\ \hline
+    \multicolumn{1}{|c|}{\makecell{How effective is our approach \\ in the discovery of patterns \\in property violation scenarios?}} & \multicolumn{1}{c|}{\makecell{Number of \\patterns found}}   & \multicolumn{1}{c|}{}        \\ \hline
     \end{tabular}
     \caption{GQM Plan}
     \label{tab:gqm_plan}
@@ -20,9 +20,9 @@ In this chapter, our framework will be evaluated using a variation of the Goal-Q
 
 The evaluation of our proposed solution will rely on a implementation of the Body Sensor Network from Section \ref{BSN}. Our version of this CPS includes a Central Node and five sensors: an oximeter, a thermometer, a heart rate monitor, and an APBD and APBS blood pressure sensors. The patient's readings are assessed within each sensor node, where the health risk percentage of the monitored vital sign is calculated. Subsequently, the risk percentage is relayed to the Central Node, which, in turn, is in charge of collecting and fusing the data from the sensors, assessing the patient's overall risk, and indicating an emergency if one is discovered.
 
-\subsection{Prototype Implementation}
+\subsection{Innate Immunity through Assurances}
 
-The first part of our technique requires the implementation of a CPS prototype. This is done to anticipate problems that may occur during runtime by modeling and simulating both the system's software components and physical processes. Despite the fact that there are several state-of-the-art approaches for designing such models \cite{baras2019formal} \cite{deng2019modeling} \cite{bouskela2022formal}, and since the focus of this work is to elaborate on the property violation patterns using the NSA, a simpler framewrok for the simulation was selected. The Modelica language \cite{Modelica}, hence, will be used as the main tool in this process. This language is powerfull enough to represent the acausal continuous-time physical processes of the CPS through equations. It also comprises several built-in libraries for the modeling of circuits, batteries, fluids, noise, equipment deterioration and so on. At the same time, software components can also be described by defining algorithms and functions that account for the behavior of such modules. The graphical aid is achieved by the OpenModelica \cite{OpenModelica} modeling tool, in which the components and their interactions can be visually modeled as blocks and connectors.
+\subsubsection{Prototype Implementation}
 
 \begin{figure}[!h]
 	\centering
@@ -30,6 +30,9 @@ The first part of our technique requires the implementation of a CPS prototype. 
 	\caption{BSN Prototype Implemented in OpenModelica}
 	\label{fig:BsnProt}
 \end{figure}
+
+The first part of our technique requires the implementation of a CPS prototype. This is done to anticipate problems that may occur during runtime by modeling and simulating both the system's software components and physical processes. Despite the fact that there are several state-of-the-art approaches for designing such models \cite{baras2019formal} \cite{deng2019modeling} \cite{bouskela2022formal}, and since the focus of this work is to elaborate on the property violation patterns using the NSA, a simpler framewrok for the simulation was selected. The Modelica language \cite{Modelica}, hence, will be used as the main tool in this process. This language is powerfull enough to represent the acausal continuous-time physical processes of the CPS through equations. It also comprises several built-in libraries for the modeling of circuits, batteries, fluids, noise, equipment deterioration and so on. At the same time, software components can also be described by defining algorithms and functions that account for the behavior of such modules. The graphical aid is achieved by the OpenModelica \cite{OpenModelica} modeling tool, in which the components and their interactions can be visually modeled as blocks and connectors.
+
 
 Figure \ref{fig:BsnProt} depicts the prototype that was implemented in OpenModelica, using the Modelica language. The green blocks account for the sensors, while the blue illustrates the Central Node. In the left lower side, a parameter defines a fixed frequency for data collection that is utilized by every sensor, and above it there is a reference for an external csv file that contains the measurements of the sensors at every second. Around the system, there are some blocks with question marks whose function is to generate random binary numbers to indicate whether the sensor was active. The goal of these blocks is to simulate cases when the sensor stopped responding, or was to far away to transmit reliable data, or had some malfunctioning of sorts that may account for faults in runtime. Next to the sensors there are some gray boxes that are used to indicate when the sensor is plugged into the outled. Besides that, there are also small rounded blocks that represent the observers, that are modeled to monitor the system properties.
 
@@ -42,6 +45,9 @@ Figure \ref{fig:BsnProt} depicts the prototype that was implemented in OpenModel
 
 By going one step deeper into the model, it is possible to describe how the inner workings of the sensors and the Central Node were implemented. One of the advantages of the Modelica language is its object-oriented character that allows for the reuse of modules throughout the simulation. The sensor described in Figure \ref{fig:sensorProt} is a good example of this aspect, since the same block is used to model all five sensors. The physical components represented here comprise: a mechanism for sampling a measurement based on a triggered signal, a set of bitwise operators that are often used in microcontroller programming, and a battery. This battery was modeled based on a built-in Modelica library that allows for the modeling of electric circuits, and is composed of a set of switches, a memory cell, and a signal current converter that receives signals from the sensor whenever some process occur to decrease the charge of the memory cell. The magnitude of the charge decrease is multiplied by a randomly generated real number in a way to simulate the decrease that would happen in a real environment. In the meanwhile, software components of the sensor are also modeled, like the Process block, which recieves a real valued sensor measurement as an input and relies on an algorithm for determining the health risk percentage of the patient.
 
+
+The Central Node, illustrated in Figure \ref{fig:centralNodeProt}, was implemented in a similar fashion. It also makes use of bitwise operations for handling the signals sent, and of an instance of the same battery model as the one found in the sensors. The software components encapsulate functions that fuse the data from the sensors and compute the overall health risk of the patient.
+
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.7\textwidth, keepaspectratio]{img/central_node_modelica.png}
@@ -49,18 +55,23 @@ By going one step deeper into the model, it is possible to describe how the inne
 	\label{fig:centralNodeProt}
 \end{figure}
 
-The Central Node, illustrated in Figure \ref{fig:centralNodeProt}, was implemented in a similar fashion. It also makes use of bitwise operations for handling the signals sent, and of an instance of the same battery model as the one found in the sensors. The software components encapsulate functions that fuse the data from the sensors and compute the overall health risk of the patient.
+Both the sensors and the Central Node are instrumented through a set of signals that are sent each time a process or a specfic behavior occur, like when the data is collected or transfered for instance. These signals are used by the observers to monitor the properties of interest, and will be used later for the characterization of a execution segment, during the pattern analysis phase. Observers can be easily modeled in Modelica via a built-in library developed for the desing of state graphs. Both the states of the automata and its transitions are described as blocks, with the difference being that the transitions receive signals as input to indicate the passing through the states. 
 
-Both the sensors and the Central Node are instrumented through a set of signals that are sent each time a process or a specfic behavior occur, like when the data is collected or transfered for instance. These signals are used by the observers to monitor the properties of interest, and will be used later for the characterization of a execution segment, during the pattern analysis phase. Observers can be easily modeled in Modelica via a built-in library developed for the desing of state graphs. Both the states of the automata and its transitions are described as blocks, with the difference being that the transitions receive signals as input to indicate the passing through the states. Figure \ref{fig:obsProt} illustrates the observer implementation in Modelica utilized in throughout the evaluation.
+Without loss of generality, to meet the proposed goals of the GQM plan, it will suffice to evaluate the accuracy and efficiency of our technique based on the analysis of a single property. Therefore, Property \textbf{P7}, from Table \ref{tab:BSN_TCTL_properties} was chosen to guide the next phase of the methodology, since it envolves the different modules of the CPS. The property states as follows: "Whenever a sensor node has collected data, in within at most 2 seconds, the Central Node will process it." It focuses on the reliability of the system, since its satisfaction guarantees that the collected data will be processed in a reasonable time. Besides that, the Oximeter was the sensor chosen to reify the analysis. 
+
+With that being said, the observer related to \textbf{P7}, implemented in the work of Carwehl et al. \cite{2022PSP}, will be deployed in this simulation. The states of the automata were modeled as blocks and the transitions as instances of the \textit{TransitionWithSignal} class of the StateGraph library of Modelica. The signals used in the transitions are provided by the sensor and the Central Node, while a timer is set every time the monitor enters the CollectedReached state  and if it does not transition back to the initial state, by the time when the timer runs out, the error state is reached. 
+
+With that being said, the observer associated to \textbf{P7}, as implemented in the work of Carwehl et al. \cite{2022PSP}, was used in this simulation. The automata's states were represented as blocks, and the transitions as instances of the \textit{TransitionWithSignal} class from Modelica's StateGraph package. The sensor and the Central Node provide the signals utilized in the state transitions, while a timer is started every time the monitor reaches the CollectedReached state, and if it does not transition back to the starting state when the timer runs out, the error state is reached.
+
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.5\textwidth, keepaspectratio]{img/obs_modelica.png}
+	\includegraphics[width=0.7\textwidth, keepaspectratio]{img/obs_modelica.png}
 	\caption{The model of the Observer implemented in OpenModelica}
 	\label{fig:obsProt}
 \end{figure}
 
-\subsection{Prototype Simulation}
+\subsubsection{Prototype Simulation}
 
 With the prototype of the BSN in place, several simulations were executed with varying configurations, patient profiles and environment variables so that the complexities of runtime could be assessed earlier. 
 
@@ -70,9 +81,85 @@ After the creation of the dataset, the simulation was run. Even though OpenModel
 
 To account for as much variability as possible, 1,000 patient profiles were randomly generated and, the same amount of simulations were performed. The operation dataset of each run was extracted and saved as csv files. The simulation was processed in an Intel(R) Core(TM) i5-10210U, 2.10 GHz, 16GB.
 
+\subsection{Adaptive Immunity Through Learning}
+
+After the simulations were run, the extraction of the operation dataset triggered the next phase of the methodology. Tightly related to the adaptive immune response of the BIS, the data was processed and inputed into the Negative Selection algorithm to allow for a more specific response in face of anomalous behavior.
+
+\subsubsection{Feature engineering}
+
+Initially, a data pipeline was built in the Python language for the processing of the operation dataset. The data was divided into execution segments based on the time constraints of the property \textbf{P7} using the procedure outlined in Section \ref{sec:feat_eng}. The segments were then summarized into single rows using domain knowledge, and features were extracted from the segment to better characterize it. For example, we created boolean features based on the signals sent between the modules of the system, which may indicate that the data was properly transfered to the Central Node, or that the sensor ceased operating during the computation of the health risk percentage. Other engineered features are related to the description of specific behaviors that might have happened, like the battery running out, or an emergency being detected. Finally, we have also developed real-valued features that reflect, for instance, how long it took to perform some task, or the measurement collected by the sensor.
+
+The labeling task was performed by the development of an algorithm that mimics the behavior of the observer. The observer itself could have been used for this task, by simply looking at its state in the end of the segment. Nevertheless, the error state is a dead end since there are no transitions outside from it. This means that, if this state is reached in the middle of a simulation, all subsequent segments will be also accounted as faulty, even if the system properly handles the situation and goes back to its regular execution. Thus, some adjustments would be required in order to use the observer to pinpoint the traces where property violations happened, which could risk the correctness of the process. This tension was handled by implementing an algorithm that reads the engineered features and replicating the verification that would be performed by the observer. For example, the \textbf{P7} observer from Figure \ref{fig:obsProt} checks if the sensor collected data and if the Central Node has processed it. Since the execution segments are split based on the time restriction, if the Central Node does not execute, i.e. the boolean feature related to this behavior is set to \textit{False}, then we have found a property violation segment. 
+
+\subsubsection{Negative Selection Algorithm}
+
+For the NSA to be run on the operation dataset, first an Exploratory Data Analysis was performed. For that matter, a sanity check was realized to assess the quality of the data that was generated. Each feature was carefully inspected to see if any faults in the design or in the feature engineering process could be spotted. Examples included columns with an unexpected amount of missing values, wrong data types, and strange behaviors, like data being transfered without the sensor having collected it. After that, the correlation between each pair of features was computed as a means to remove any multicolinearity in the dataset. The idea behind it was that, since highly correlated features bring similar information, one of them can be discarded.
+
+Next, a new correlation analysis took place, but this time only considering the relationship between the boolean features and the property violation label. As explained in Section \ref{sec:prop_NSA}, only the boolean variables were considered for they would compose the binary string in the Negative Selection Algorithm. The Matthews correlation coefficient (MCC) was utilized for this task \cite{chicco2020advantages} since it provides a truthfull and informative description of the relationship between two boolean features. The columns were sorted in a descending way based on the absolute value of the correlation rate, and a threshold of 0.1 was the basis for removing features that were not correlated with the label. The features based on the signals that the observer uses to identify violations, were also removed, since they were used in the making of the labe. Table \ref{tab:pos_features} shows the 13 features that resulted from this process and their respective position related to the absolute value of the MCC rate. It can be noted that the last 4 features are related to other sensors and have a correlation close to 0.1, which could be easily removed. We, however, have decided to keep them to assess the performance of our model in the presence of noise in the data.
+
+
+\begin{table}[!h]
+    \begin{tabular}{clc}
+    \hline
+    Position & Feature                                                    & \makecell{MCC \\ (Absolute)} \\ \hline
+    0        & Oximeter was available during the data transference        & 0.927324                          \\
+    1        & Oximeter transfered data                                   & 0.923101                          \\
+    2        & Oximeter was available during Central Node data processing & 0.849276                          \\
+    3        & Oximeter Battery became unavailable at some point          & 0.508921                          \\
+    4        & Oximeter became unavailable during trace                   & 0.462366                          \\
+    5        & Oximeter battery became unavailable during data collection & 0.300302                          \\
+    6        & Oximeter processed data                                    & 0.300302                          \\
+    7        & Oximeter battery became unavailable during data processing & 0.296026                          \\
+    8        & Oximeter became unavailable during data transference       & 0.269047                          \\
+    9        & The battery of the ABPD sensor became unavailable          & 0.136670                          \\
+    10       & The battery of the ABPS sensor became unavailable          & 0.133274                          \\
+    11       & The battery of the Heart Rate monitor became unavailable   & 0.129930                          \\
+    12       & The battery of the thermometer became unavailable          & 0.126224                          \\ \hline
+    \end{tabular}
+    \label{tab:pos_features}
+    \caption{Selected Features and their respective positions}
+\end{table}
+
+
+Finally, the Negative Selection Algorithm was run, based on the simulation generated dataset and on the selected features. The training phase aims at generating the nonself detectors that will hold the patterns of the anomalous segments. First, the nonself-data, i.e. the rows labeled as property violations, were removed from the set. Then, Afterwards, the execution segments were modeled as binary strings, following the features and positions from Table \ref{tab:pos_features}. Next, while the desired number of detectors was not reached, a binary string of length \(r = 5\) would be generated and tested against the execution segment strings for matching. In the case of a match, the detector candidate would be discarded. Otherwise, it was appended in a list of nonself detectors. The matching function works as follows: for each position \(p\), with \(0 \leq p \leq 8\), the algorithm would check if there was a substring of length \(l=r=5\) in the self-set, starting in position \(p\), that was equal to the candidate detector. If the algorithm unsuccessfully attempts to generate a viable detector for a predefined number of times, then the algorithm goes through an early stop.
+
 \section{Goal 1: Property Violation Identification process}
 
+\textbf{Question: How well does our model generalizes to unseen data?} As a means to answer this question propertly, the operation dataset extracted from the simulations was splitted into two: 75\% of the set was used for the detector's generation, and the other 25\% was set apart to account for the unseen data. The entire dataset had 19868 rows, with 16493 (83\%) related to regular operation and 3375 (17\%) of the execution segments violated the property \textbf{P7}. Hence, 14901 rows were utilized in the training phase, but only 12370 rows were used for the generation of the nonself detectors, since the process only makes use of the self-set, i.e. the majority class.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.5\textwidth, keepaspectratio]{img/NSA_confusion_matrix.png}
+	\caption{NSA's Confusion Matrix}
+	\label{fig:nsa_conf}
+\end{figure}
+
+We are using the metrics of precision and recall to assess the performance of the model, since they provide a good summary of the confusion matrix. The recall rate is computed as \textit{True Positives} / (\textit{True Positives + False Positives}), i.e. how many of the relevant property violations were found, while the precision rate is calculated as \textit{True Positives} / (\textit{True Positives + False Negatives}), and is the same as asking "how many property violations found were relevant." Our main interest was in having a high precision rate, since we wanted to have the lowest value of \textit{False positives} as possible. This happens because the goal was to study the generated detectors to understand the patterns found, and having \textit{False positives} could impact in this task. On the other hand, having \textit{False Negatives} would not have such impact, once they would be related to the patterns that were not discovered by the detectors, thus causing less harm to the overall approach. Figure \ref{fig:nsa_conf} depicts the confusion matrix of the results of the model. No self-data was considered as faulty, meaning that there were no \textit{False Positives}, as desired. Nevertheless, 2 violations were not assessed by the NSA, although this value is within an acceptable range.
+
+
+Table \ref{tab:ev_comparison} shows the precision and recall rates of our approach using the Negative Selection Algorithm over the simulation dataset in relation to the property \textbf{P7}
+for the Oximeter sensor. The accuracy and MCC rates were also computed as a way to have a complementary view on the performance. Besides that, the same labeled dataset was also used as input for some well known Machine Learning algorithms. The One-class SVM and the Isolation Forest were brought to this comparison since they are algorithms utilized in anomaly detection tasks, and the One-class SVM is usually compared with the NSA since they both use only one of the classes during the training phase \cite{NSAResearch2021}. The Random Forest and the Gradient Boosting algorithms were also compared for its broad usage in the comunity. 
+
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{ccccc}
+    \hline
+    Model              & Accuracy & Precision & Recall & MCC    \\ \hline
+    Negative Selection & 0.9995   & 1.0       & 0.9976 & 0.9985 \\
+    One-Class SVM      & 0.7634   & 0.4180    & 1.0    & 0.5467 \\
+    Isolation Forest   & 0.7173   & 0.2928    & 0.4691 & 0.2002 \\
+    Random Forest      & 0.9995   & 1.0       & 0.9976 & 0.9985 \\
+    Gradient Boosting  & 0.9995   & 1.0       & 0.9976 & 0.9985 \\ \hline
+    \end{tabular}
+    \caption{NSA Performance comparison}
+    \label{tab:ev_comparison}
+\end{table}
+
+From the table, it is clear that the NSA performed way better than its counteparts in the anomaly detection field. Athough it had a very similar performance compared to Random Forest ant Gradient Boosting, the interpretability provided by the algorithm through the observers is paramount to handle not only the detection of property violations, but also to provinding relevant information for the analyst to enhance the verification of the CPS.
+
 \section{Goal 2: Method's contribuition}
+\textbf{Question: How effective is our approach in the discovery of patterns in property violation scenarios?}
+
 
 \section{Discussion}
 

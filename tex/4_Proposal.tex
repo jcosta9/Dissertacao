@@ -97,6 +97,7 @@ This process can be further divided into two phases: the feature engineering pha
 % takes into account the structure of the Goal Model and the main concerns of the property to reshape the set and to label each row as a property violation or not.
 
 \subsection{Feature Engineering}
+\label{sec:feat_eng}
 
 This phase focuses on the shaping of the operation dataset in order to better adjust it to the learning algorithm. This is accomplished by first segmenting the data, then creating features to define individually a single segment, and lastly classifying the execution fragments as property violations (nonself) or not (self). 
 
@@ -127,6 +128,7 @@ Finally, the classification phase will make use of the recently derived dataset.
 Figure \ref{fig:FeatureEngResult} displays what would be the row associated with the time-restricted segment from Figure \ref{fig:Segmentation}. The observer starts in the initial state and moves forward if the data is collected. In the next state, it waits for the signal indicating that the Central Node processed the data to return back to the first state. In the example, since 2 seconds was not enough time for the central node to process the data, it was considered not done whithin the time window of the property. Hence, the column "Central Node processed" is zero, and "Time until Central Node processed" is \textit{null}, and therefore the row is labeled 1, meaning that this segment does violate the property.
 
 \subsection{Negative Selection Algorithm}
+\label{sec:prop_NSA}
 
 This step is the heart of the framework. It aims at using the Negative Selection Algorithm to try and find patterns in the nonself-set, in order to find patterns in the execution segments related to property violations that were not considered at first, and thus enhace the system's observers. This will be done in five steps. First, (i) the data obtained in the last step will be analyzed so that the least relevant features may be discarded. Then, (ii) the remaining features will compose a string that will be used in the NSA. Next, (iii) the NSA will be performed and the nonself detectors will be generated and matured. Following that, (iv) the detector set will be thoroughly examined for the discovery of new context variability. Finally, (v) the information obtained will be used to refine both the system's properties and observers.
 
