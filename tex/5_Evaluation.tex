@@ -10,7 +10,7 @@ In this chapter, our framework will be evaluated using a variation of the Goal-Q
                                                                                                                       &                                                 &                              \\ \hline
     \multicolumn{3}{|c|}{\textbf{Goal 2}: Method's contribuition}                                                                                                                                               \\ \hline
     \multicolumn{1}{|c|}{Question}                                                                                    & \multicolumn{1}{c|}{Metric}                     & \multicolumn{1}{c|}{Results} \\ \hline
-    \multicolumn{1}{|c|}{\makecell{How effective is our approach \\ in the discovery of patterns \\in property violation scenarios?}} & \multicolumn{1}{c|}{\makecell{Number of \\patterns found}}   & \multicolumn{1}{c|}{}        \\ \hline
+    \multicolumn{1}{|c|}{\makecell{How effective is our approach \\ in the discovery of patterns \\in property violation scenarios?}} & \multicolumn{1}{c|}{\makecell{Number of \\patterns found}}   & \multicolumn{1}{c|}{\makecell{49 patterns \\11 Groups}}        \\ \hline
     \end{tabular}
     \caption{GQM Plan}
     \label{tab:gqm_plan}
@@ -157,10 +157,71 @@ for the Oximeter sensor. The accuracy and MCC rates were also computed as a way 
 
 From the table, it is clear that the NSA performed way better than its counteparts in the anomaly detection field. Athough it had a very similar performance compared to Random Forest ant Gradient Boosting, the interpretability provided by the algorithm through the observers is paramount to handle not only the detection of property violations, but also to provinding relevant information for the analyst to enhance the verification of the CPS.
 
-\section{Goal 2: Method's contribuition}
-\textbf{Question: How effective is our approach in the discovery of patterns in property violation scenarios?}
+\section{Goal 2: Method's contribution}
+\textbf{Question: How effective is our approach in the discovery of patterns in property violation scenarios?} This question will be assessed by delving deeper on the Detector Analysis step of the proposed methodology. As illustrated in Figure \ref{fig:detectoAnalysis}, the detector's string are reverse mapped to the features by using the values from Table \ref{tab:pos_features} and the detector's position. 
+
+After running the Negative Selection Algorithm, 229 binary strings were created that did not match with any data from the self-set. Hence, these detectors were designed to cover the self-set complimentary space. However, this does not mean that a detector \textit{must} match with a faulty execution segment, which means that not all detectors generated are usefull. With that being said, the detectors that did not match nonself data were considered of less importance and, thus, discarded from the analysis. Therefore, from the 229 detectors, we were left with only 68 usefull binary strings. 
+
+\begin{figure}[]
+	\centering
+	\includegraphics[width=0.8\textwidth, keepaspectratio]{img/matches_by_detector_rdz.png}
+	\caption{Number of Nonself data that were matched by relevant detectors}
+	\label{fig:ev_det_match}
+\end{figure}
+
+The bar chart in Figure \ref{fig:ev_det_match} displays the amount of nonself data that were matched by the most relevant detectors. This chart provides the analyst a better understanding of which are the most common and relevant patterns that were found by the algorithm.
+
+By looking at the chart from Figure \ref{fig:ev_det_match}, one can easily see that the first two detectors match the same amount of nonself data. Besides that, their patterns seem to overlap, since if they were placed next to each other, considering their position, the difference between the two is the leftmost bit on the first one and the rightmost bit on the second one. This raised the possibility of two or more detectors having detected the same pattern but, because of the fixed size of the R-chunk, they were separated. In order to verify this situation, the MCC rate was computed for each pair of detectors. In the case of a pair being perfectly correlated, meaning that they had matched the exact same nonself data, then, they could be seen as the same pattern stored in different detectors. The idea was to agglutinate such pairs in order to have more robust patterns. For example, the first two detectors from Figure \ref{fig:ev_det_match} became a single 6-bit string detector, starting in position 0, with the bits \textit{000010}. After identifying and agglutinating all the identified cases, the total amount of detectors became 49.
+
+\begin{figure}[]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{img/det_coverage.png}
+	\caption{Coverage of Nonself data matched by detectors}
+	\label{fig:ev_det_cov}
+\end{figure}
+
+Another aspect that need to be considered is the fact that the sum of matches is still greater than the amount of property violation cases in the dataset. Figure \ref{fig:ev_det_cov} depicts the percentage of nonself data covered with the addition of the detectors one by one, sorted by relevance. From the chart, we see that only 9 detectors are capable of detecting all the anomalous behavior of the system. 
 
 
-\section{Discussion}
+This brings to the table the fact that some detectors are relevant in such a way that they are capable of matching the same nonself data as another detectors and more. Another way of looking at it is to think that there may be subpatterns detected by some less relevant detectors that are also detected by greater patterns from more relevant binary strings. Figure \ref{fig:ev_pattern_spec} attempts to illustrate this concept. By analyzing the detectors, we saw that all of the patterns matched by the detector \textit{(1,'00111000')} were also matched by \textit{(0,'00011')}. Moreover, the detector \textit{(0,'00011')} also matched all the nonself data matched by \textit{(1,'001101100')}. Therefore, it is possible to state that the pattern \textit{(0,'00011')} is specialized into the two other patterns, meaning that the bigger pattern can happen under two different circumstances, accounted by the two other patterns.
+
+\begin{figure}[]
+	\centering
+	\includegraphics[width=0.7\textwidth, keepaspectratio]{img/pattern_specialization.png}
+	\caption{Specialization of Patterns}
+	\label{fig:ev_pattern_spec}
+\end{figure}
+
+Figure \ref{fig:ev_pattern_spec_reverse_mapping} shows the reverse mapping of the highlighted patterns. The detectors were placed in their respective positions, side by side, and the relevat rows from Table \ref{tab:pos_features} were brought for a better understanding of the patterns found. The leftmost pattern is the one that is specialized in the other two. By the boolean values and the positions, we see that it is related to the violations that happen when the data transference from the sensor to the Central Node did not happen (signal 0 in position 1) and the battery ran out at some point during the trace (signal 1 in position 3). The observer in the middle share this same pattern, but specifies the cases when the battery ran out during the processing of the data (signal 1 in position 7). In the meanwhile, the righmost observer points to the scenarios when the battery ran out while the sensor was acquiring the patient's vital signs.
+
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.7\textwidth, keepaspectratio]{img/pattern_specialization_reverse_map.png}
+	\caption{Reverse Mapping  of the Specialized Patterns}
+	\label{fig:ev_pattern_spec_reverse_mapping}
+\end{figure}
+
+This analysis should provide the CPS analyst with substantial information to address the situation. By looking at this specific scenario, it is possible to understand that the battery is key for the satisfaction of the property \textbf{P7}. This happens since the cell may run out during the collection or the processing of the data, making it impossible for the Central Node to process it within the time restriction. Therefore, it could be the case for the analyst to update de observer related to the property \textbf{P7}, so that it would consider this newly unveiled variability. Figure \ref{fig:ev_observer_fxd} illustrates the changes that could be made to the observer of the property \textbf{P7}, based on the Observer catalog from \cite{2022PSP}. A new state related to the battery being off would be created so that, if this component runs out after the data was acquired, then the error state would not be reached.
+
+\begin{figure}[]
+	\centering
+	\includegraphics[width=0.7\textwidth, keepaspectratio]{img/observer_fxd.png}
+	\caption{P7's Observer updated}
+	\label{fig:ev_observer_fxd}
+\end{figure}
+
+Finally, the patterns and their specializations were all computed and are laid out in Figure \ref{fig:ev_sankey}. The Sankey chart helps understanding not only the relationship amongst the detectors, but also provides a visual aid for identifying the strength of the relation. In the figure, the most relevant detectors are placed on the left side of the pair, while, the larger the line connecting two points is, the more nonself data are detected by the pair. Some relations are simple as the exemple from Figure \ref{fig:ev_pattern_spec}, but others can bring more complex structures, like the group formed by the detector \textit{(5, '01011)}.
+
+In the end, our method was capable of identifying 49 violation-related patterns in the operation dataset extracted from the simulated BSN. Those patterns were further divided into 11 groups, or families, of detector that share a common pattern. These results account for the effectiveness of the approach in discovering patterns in data. Moreover, it was shown how one of them could be utilized for the update of the observer.
+
+\begin{figure}[]
+	\centering
+	\includegraphics[width=\textwidth, keepaspectratio]{img/sankey2.png}
+	\caption{Groups of Detectors identified based on the similarity of patterns}
+	\label{fig:ev_sankey}
+\end{figure}
+
+% \section{Discussion}
 
 \section{Threats to validity}
