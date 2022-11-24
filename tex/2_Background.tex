@@ -7,7 +7,7 @@ Cyber-Physical Systems (CPS) can be defined as systems that integrate physical p
 % CPS are the foundation and core of the ‘Industry 4.0’ and the ‘Industrial Internet’. CPS are essentially Internet of things (IoT) systems, but they emphasise the characteristics of real-time monitoring and control.
 
 % highlight the difference from embedded systems
-It's not new for physical and digital processes to be integrated into a system. The notion of engineered systems that integrate computer softwares with physical processes have been refered to as "embedded systems" for some time \cite{lee2008cyber}. Car electronics, games, weapons systems, household appliances, and toys can be named as a few successful examples. In order to delineate the distinction, Schatz \cite{schatz2014role} states that, even though CPSs encompasses embedded systems, the cyber-physical integration in CPSs happens both on a local and a global scale. Lee \cite{lee2008cyber} and Jadzi \cite{jazdi2014cyber} goes in a similar direction by distinguishing CPSs and embedded systems in terms of networking and outsourcing of computational power. Jadzi \cite{jazdi2014cyber} goes beyond by alluding the data exchange as its most important feature, while defining CPSs in terms of embedded systems that are "able to send and receive data over a network." In turn, Dowdeswell et. al \cite{dowdeswell2020finding} adds that, in this sense, CPSs can be seen as seamless entities that form entire systems.
+It's not new for physical and digital processes to be integrated into the same system. The notion of engineered systems that combine computer softwares with physical processes have been refered to as "embedded systems" for some time \cite{lee2008cyber}. Car electronics, games, weapons systems, household appliances, and toys can be mentioned as a few successful examples. In order to delineate the distinction, Schatz \cite{schatz2014role} states that, even though CPSs encompasses embedded systems, the cyber-physical integration in CPSs happens both on a local and a global scale. Lee \cite{lee2008cyber} and Jadzi \cite{jazdi2014cyber} goes in a similar direction by distinguishing CPSs and embedded systems in terms of networking and outsourcing of computational power. Jadzi \cite{jazdi2014cyber} goes beyond by alluding the data exchange as its most important feature, while defining CPSs in terms of embedded systems that are "able to send and receive data over a network." In turn, Dowdeswell et. al \cite{dowdeswell2020finding} adds that, in this sense, CPSs can be seen as seamless entities that form entire systems.
 
 A CPS comprises three main modules \cite{jazdi2014cyber}: a control unit, which relates to the computational aspect; a set of sensors and actuators, which refer to the physical processes and are controled by the control unit; and a collection of microcontrollers, that interfaces the two. Besides that, a communication interface is also required for the data exchange with other CPSs, a central unit or a cloud. 
 
@@ -22,7 +22,7 @@ Aleksandrowicz et al. \cite{aleksandrowicz2018designing} further divide the Cybe
 
 % examples
 % 2008 Mars rovers
-Automotive systems, avionics systems, defense systems, manufacturing systems, process control systems, traffic control systems, robotics, smart medical devices, smart household applications, and marine systems are just a few of the application areas where CPSs have been utilized and developed \cite{bolbot2019vulnerabilities}. Banerjee et al. \cite{banerjee2011ensuring} review the literature and group a non-exaustive list of representatives: the usage of physiological sensors that allow for continuous health monitoring, the quick identification of medical situations, and the administration of treatments; Data centers (DCs) that count on renewable energy for cooling reasons; smart buildings that sense tenant absence and turn off the cooling unit to improve energy efficiency; and unmanned aerial vehicles (UAVs) that surveils an area based on a picture of the landscape.
+Automotive systems, avionics systems, defense systems, manufacturing systems, process control systems, traffic control systems, robotics, smart medical devices, smart household applications, and marine systems are just a few of the application areas where CPSs have been utilized and developed \cite{bolbot2019vulnerabilities}. Banerjee et al. \cite{banerjee2011ensuring} review the literature and group a non-exaustive list of representatives: the usage of physiological sensors that allow for continuous health monitoring, the quick identification of medical situations, and the administration of treatments; Data centers (DCs) that count on renewable energy for cooling reasons; smart buildings that sense tenant absence and turn off the cooling unit to improve energy efficiency; and unmanned aerial vehicles (UAVs) that surveils an area based on a picture of the landscape.
 
 Another distinctive aspect of CPSs worth mentioning is their complexity. Schatz \cite{schatz2014role} divides it into three dimensions: (i) the "cross-dimension", which relates to process of computing and physical natures being related to different domains, technologies, organizations and so on; (ii) the "live-dimension", referring to the support of critical systems which cannot be turned off, and thus require updates at runtime; and (iii) the "self-dimension", which includes autonomous capabilities, like adaptation, healing monitoring and others. Bolbot et al \cite{bolbot2019vulnerabilities}, however, segments the CPSs complexity as structural, dynamic and organisational, according to the literature of system design and development. The first, called structural complexity, refers to systems with many components and unexpected interactions between them. Next, the dynamic complexity occurs when it is difficult to understand how a system behaves and changes through time. Finally, the organizational complexity relates to the configuration of the team in charge of the complex system's design and operation.
 % Testing Adaptive Probabilistic Software Components in Cyber Systems
@@ -238,47 +238,47 @@ However, there are some intrinsic problems that permeate the probess of property
 
 
 
-\section{Goal Oriented Requirements Engineering} \label{sec:bgGORE}
+% \section{Goal Oriented Requirements Engineering} \label{sec:bgGORE}
 
-% \cite{Horkoff2019133}
-The degree to which a software system satisfies its requirements has a significant impact on its quality \cite{Horkoff2019}. One of the lenses through which these requirements can be seen is the stakeholder goals. Goal-Oriented Requirements Engineering (GORE) approach that follow a goal-oriented perspective and alludes to the usage of goals for every activity of the Requirements Engineering area and aims to acquire and represent systems and software requirements at the intentional level \cite{van_lamsweerde_system_2003}. 
-% Weyns points out, as the fourth wave on engineering self-adaptive systems, that goal-driven adaptation "puts the focus on key elements for the concrete realization of self-adaptive systems” \cite{EngSAS2018}. 
-Goal modeling, in particular, reflects what stakeholders hope to accomplish in terms of goals and potential alternate solutions. 
+% % \cite{Horkoff2019133}
+% The degree to which a software system satisfies its requirements has a significant impact on its quality \cite{Horkoff2019}. One of the lenses through which these requirements can be seen is the stakeholder goals. Goal-Oriented Requirements Engineering (GORE) approach that follow a goal-oriented perspective and alludes to the usage of goals for every activity of the Requirements Engineering area and aims to acquire and represent systems and software requirements at the intentional level \cite{van_lamsweerde_system_2003}. 
+% % Weyns points out, as the fourth wave on engineering self-adaptive systems, that goal-driven adaptation "puts the focus on key elements for the concrete realization of self-adaptive systems” \cite{EngSAS2018}. 
+% Goal modeling, in particular, reflects what stakeholders hope to accomplish in terms of goals and potential alternate solutions. 
 
-Lamsweerde, in \cite{2001Lamsweerde}, sheds light on the reasons why the Requirement Engineering (RE) field can benefit from a goal-driven perspective. He says that goals offer a precise criterion for requirements completeness and pertinence, which are amongst the main RE concerns. Goals also helps stakeholders understand the reason behind the requirements, since they are easy to grasp by nontechnical decision-makers, they naturally offer the rationale behind them, and they allow for the traceability between the strategic goals and the technical details. Moreover, goals guide the derivation of the requirements that supports them.
+% Lamsweerde, in \cite{2001Lamsweerde}, sheds light on the reasons why the Requirement Engineering (RE) field can benefit from a goal-driven perspective. He says that goals offer a precise criterion for requirements completeness and pertinence, which are amongst the main RE concerns. Goals also helps stakeholders understand the reason behind the requirements, since they are easy to grasp by nontechnical decision-makers, they naturally offer the rationale behind them, and they allow for the traceability between the strategic goals and the technical details. Moreover, goals guide the derivation of the requirements that supports them.
 
-The next sections will focus on explaining what is meant by goals, and on detailing a well known framework for goal-oriented contextual modeling and analysis.
+% The next sections will focus on explaining what is meant by goals, and on detailing a well known framework for goal-oriented contextual modeling and analysis.
 
-\subsection{Goals}
+% \subsection{Goals}
 
-According to the systematic literature review done by ElSayed et al. \cite{ElSayed2017430}, two major definitions of the term \textit{goal} can be found. The first one, introduced by Lamsweerde, says that "goals are objectives achieved by the system through cooperation of agents in the software-to-be and in the environment". While the second one, made by Anton, states that goals are high-level aims that aid in understanding why the system is necessary, and thus, allowing for decisions to be made in accordance to them. 
+% According to the systematic literature review done by ElSayed et al. \cite{ElSayed2017430}, two major definitions of the term \textit{goal} can be found. The first one, introduced by Lamsweerde, says that "goals are objectives achieved by the system through cooperation of agents in the software-to-be and in the environment". While the second one, made by Anton, states that goals are high-level aims that aid in understanding why the system is necessary, and thus, allowing for decisions to be made in accordance to them. 
 
-The formulation of the system's goals specify the properties that need to be assured. In this sense, goals can be crafted depending on the desired level of abstraction. They can reflect high level strategic concerns or low level technicalities \cite{2001Lamsweerde}. Goals also address many sorts of concerns, including both functional and nonfunctional. Functional goals describe goals that are associated with the services to be delivered, whereas nonfunctional goals are related to the system quality. 
+% The formulation of the system's goals specify the properties that need to be assured. In this sense, goals can be crafted depending on the desired level of abstraction. They can reflect high level strategic concerns or low level technicalities \cite{2001Lamsweerde}. Goals also address many sorts of concerns, including both functional and nonfunctional. Functional goals describe goals that are associated with the services to be delivered, whereas nonfunctional goals are related to the system quality. 
 
-Another criterion used to characterize goals divides them based on whether they are quantifiable \cite{ElSayed2017430}. On the one hand, hard goals are the ones that can be formally verified. On the other hand, soft goals cannot have their fulfillment easily determined. The latter allows the comparison of different alternatives of refinement. 
-% This distinction is specially useful for the purpose of this work since we are dealing with the provision of assurances to Self-adaptive systems, which is provided through formal methods.
-Lamsweerde also mentions way of verifying the completeness of the elicited requirements. Let \(R\) be the set of requirements, \(As\) the environment assumptions, \(D\) the domain properties and \(G\) the set of goals. For each goal \(g\), such that \(g \in G\), it must be true that: 
+% Another criterion used to characterize goals divides them based on whether they are quantifiable \cite{ElSayed2017430}. On the one hand, hard goals are the ones that can be formally verified. On the other hand, soft goals cannot have their fulfillment easily determined. The latter allows the comparison of different alternatives of refinement. 
+% % This distinction is specially useful for the purpose of this work since we are dealing with the provision of assurances to Self-adaptive systems, which is provided through formal methods.
+% Lamsweerde also mentions way of verifying the completeness of the elicited requirements. Let \(R\) be the set of requirements, \(As\) the environment assumptions, \(D\) the domain properties and \(G\) the set of goals. For each goal \(g\), such that \(g \in G\), it must be true that: 
 
-\[R, As, D \vDash g \text{ with } R, As, D \nvDash \text{False}\]
+% \[R, As, D \vDash g \text{ with } R, As, D \nvDash \text{False}\]
 
-\subsection{Contextual Goal Model (CGM)}
+% \subsection{Contextual Goal Model (CGM)}
 
-Goal modeling is the technique responsible for representing systems in GORE. As mentioned previously, it provides a powerful way of understanding the needs of the stakeholders besides figuring out the motives behind the development of a piece of software. In the end, a goal model revolves around laying out user goals and ways to meet them \cite{ali_goal_based_2010}. 
-% This methodology has a major impact in the development self-adaptive systems, which must adapt to different situations like environment changes, system capability changes and changes in the problem to be solved \cite{deloach_capabilities_based_2008}. 
+% Goal modeling is the technique responsible for representing systems in GORE. As mentioned previously, it provides a powerful way of understanding the needs of the stakeholders besides figuring out the motives behind the development of a piece of software. In the end, a goal model revolves around laying out user goals and ways to meet them \cite{ali_goal_based_2010}. 
+% % This methodology has a major impact in the development self-adaptive systems, which must adapt to different situations like environment changes, system capability changes and changes in the problem to be solved \cite{deloach_capabilities_based_2008}. 
 
-TROPOS \cite{bresciani_tropos_2004} is a software development methodology used to model early requirements. In its heart, there is his modeling language, which is the base for constructing conceptual goal models. It rests in the concepts of actor, goal, plan, resource, dependency, capability and belief. An Actor is an entity that possess intentionality and represents agents, roles or positions. An actor can have none to multiple goals. A Goal is related to the interests of a particular actor, and is divided in soft goals and hard goals, meaning goals whose definition and satisfiability criteria are unclear, for the former, or trenchant, for the latter. A Plan can be defined as "a way of doing something", and as a declaration of which refinement paths should be taken in the directed tree in order to achieve the main goal. A Resource corresponds to an entity with physical or informational attributes. Dependencies are subordination relationships between two actors which point out that one depends on the other, the depender and the dependee, severally. The Capability express an actor's competency to define, choose and execute a plan in order to satisfy a goal. Finally, a Belief declares the world's knowledge of an actor.
+% TROPOS \cite{bresciani_tropos_2004} is a software development methodology used to model early requirements. In its heart, there is his modeling language, which is the base for constructing conceptual goal models. It rests in the concepts of actor, goal, plan, resource, dependency, capability and belief. An Actor is an entity that possess intentionality and represents agents, roles or positions. An actor can have none to multiple goals. A Goal is related to the interests of a particular actor, and is divided in soft goals and hard goals, meaning goals whose definition and satisfiability criteria are unclear, for the former, or trenchant, for the latter. A Plan can be defined as "a way of doing something", and as a declaration of which refinement paths should be taken in the directed tree in order to achieve the main goal. A Resource corresponds to an entity with physical or informational attributes. Dependencies are subordination relationships between two actors which point out that one depends on the other, the depender and the dependee, severally. The Capability express an actor's competency to define, choose and execute a plan in order to satisfy a goal. Finally, a Belief declares the world's knowledge of an actor.
 
-A goal model usually utilizes a directed graph tree to delineate the goals in a top-down manner so that goals can be successively refined via AND/OR decomposition and ultimately satisfied by the leaf nodes, which represent tasks that must be performed by actors. On the one hand, AND-refinements tie in a goal with a group of subgoals, and the fulfillment all the subgoals is the only sufficient condition for its fulfillment. On the other hand, the OR-refinement relates a goal to a set of alternative subgoals, meaning that meeting one of the subgoals is enough for satisfying it. The refinement comes to an end when each subgoal is utterly achievable by some particular agent capable of monitoring and controlling it \cite{van_lamsweerde_system_2003}. Figure \ref{fig:andorref} depicts both AND- and OR-Refinements.
+% A goal model usually utilizes a directed graph tree to delineate the goals in a top-down manner so that goals can be successively refined via AND/OR decomposition and ultimately satisfied by the leaf nodes, which represent tasks that must be performed by actors. On the one hand, AND-refinements tie in a goal with a group of subgoals, and the fulfillment all the subgoals is the only sufficient condition for its fulfillment. On the other hand, the OR-refinement relates a goal to a set of alternative subgoals, meaning that meeting one of the subgoals is enough for satisfying it. The refinement comes to an end when each subgoal is utterly achievable by some particular agent capable of monitoring and controlling it \cite{van_lamsweerde_system_2003}. Figure \ref{fig:andorref} depicts both AND- and OR-Refinements.
 
-\begin{figure*}[!htb]
- \centering
- \includegraphics[width=\linewidth]{img/and-or-fill.png}
- \caption{AND/OR-Refinements}
-\label{fig:andorref}
-\end{figure*}  
+% \begin{figure*}[!htb]
+%  \centering
+%  \includegraphics[width=\linewidth]{img/and-or-fill.png}
+%  \caption{AND/OR-Refinements}
+% \label{fig:andorref}
+% \end{figure*}  
 
 
-Since variants were only allowed by regular Goal Models, but not clear-cut defined, an extension of TROPOS, named Contextual Goal Model (CGM), was created to meet the notions of context and goals. It specifies explicitly which changes in the environment can be adopted and when. This allows for systematic derivation of variants based on the  several different contexts that may appear \cite{ali_goal_based_2010}. Figure \ref{fig:andorref} describes \textit{C1} and \textit{C2} as contexts of a OR-refinement, as an example of how contexts are depicted in Contextual Goal Models.
+% Since variants were only allowed by regular Goal Models, but not clear-cut defined, an extension of TROPOS, named Contextual Goal Model (CGM), was created to meet the notions of context and goals. It specifies explicitly which changes in the environment can be adopted and when. This allows for systematic derivation of variants based on the  several different contexts that may appear \cite{ali_goal_based_2010}. Figure \ref{fig:andorref} describes \textit{C1} and \textit{C2} as contexts of a OR-refinement, as an example of how contexts are depicted in Contextual Goal Models.
 
 % \subsection{Goal-Oriented Dependability Analysis (GODA)}
 % TODO
@@ -286,21 +286,13 @@ Since variants were only allowed by regular Goal Models, but not clear-cut defin
 
 \section{Biological Immune Systems (BIS)} \label{sec:bgais}
 
-The primary goal of the Biological Immune System (BIS) is to protect the body from potentially harmful material \cite{AISSOA2015}. It is composed by a multilevel defense mechanism that is capable of distinguishing between molecules from the body itself and foreign ones, selecting a specific response to a threat, and enacting an inflammatory reaction in order to maintain the health and safety of the body. All of these activities are capable of evolving through time since they rely on aspects of learning and memory, which are present in the BIS.
-
-In 1986, Farmer et al. \cite{ImmuneSysAdapML1986} sought inspiration in the properties and theories of this biological system to propose a computational model, named Artificial Immune System (AIS). It was built in such a way that the immunological concepts and processes are distilled into algorithms that can be simulated by a computer in order to solve all sorts of problems from the real world. The idea behind it is that, since this system is able to protect us, it might be computationally useful \cite{EvaluateAIS2005}. Nevertheless, by that time, the resources available were not powerful enough to allow its usage in real systems \cite{AdaptiveImmunitySAS2021}.
-
-Recently, the advances in technology enabled complex tasks to be performed in a fast and efficient way. This provided the researchers the tools needed to implement and further improve the application of the immunological concepts into a wide range of problems. For example, AIS techniques have been used in problems like anomaly detection, optimization, classification and clustering \cite{AISSOA2015}. The Negative Selection, along with the Clonal Selection, Immune Network Theory and the Danger Theory are amongst the most researched approaches in the literature \cite{NSAResearch2021}.
-
-This section is structured as follows: initially, the main concepts of the Biological Immune System will be laid out. Then, the Negative Selection algorithm will be explained in depth, for it will be exercised throughout this work.
-
-\subsection{Overview of the Biological Immune System} \label{sec:bgBISOverview}
-
 As mentioned previously, the Artificial Immune System is a model inspired by its biological counterpart in order to solve computational problems. Therefore, there is a need to introduce the main concepts and processes found in the Biological Immune System so that the analogies and metaphors implemented by the AIS might be better understood. This subsection focuses on providing the reader with the foundational knowledge on the BIS. 
 
-\subsubsection{Main Concepts}
+\subsection{Main Concepts} \label{sec:bgBISOverview}
 
 Immunity can be defined as the ability to respond to unknown substances \cite{ICBook2009}. In this sense, the Biological Immune System (BIS) comprises a set of structures and mechanisms which are capable of distinguishing the body's cells from foreign substances and responding adequately. It includes specific organs, cells and molecules. It is a complex, fault-tolerant and distributed multilevel defense mechanism composed of two main layers, namely the innate immunity and the adaptive immunity \cite{Kuby2019}. 
+
+The primary goal of the BIS is to protect the body from potentially harmful material \cite{AISSOA2015}. It is composed by a multilevel defense mechanism that is capable of distinguishing between molecules from the body itself and foreign ones, selecting a specific response to a threat, and enacting an inflammatory reaction in order to maintain the health and safety of the body. All of these activities are capable of evolving through time since they rely on aspects of learning and memory, which are present in the BIS.
 
 The innate immunity is the body's first line of defense. Inherited from the host's progenitors, it is responsible for a quick or immediate response against infections. It is achieved through physical and chemical barriers or through cellular responses. The barriers are considered nonspecific mechanisms that work as shields against pathogens by blocking them from entering the body. They comprise the skin, mucous membranes on the body's openings and the secretions of both. The low pH of the skin, for instance, inhibits the proliferation and growth of bacteria, while the antimicrobial substances present in saliva and tears keep the antigens from invading through the membranes \cite{ICBook2009}. The cellular response, on the other hand, focus on perceiving the pathogens that were able to surpass the barriers and activating a variety of cellular responses, which include: the ingestion of the substance (phagocytosis), the induction of an inflammatory response and the triggering of the adaptive immunity for a tailor made response. 
 
@@ -310,7 +302,7 @@ The first kind of response, called humoral immunity, relies on the interaction b
 
 The second kind of adaptive response is called cellular immunity and is mediated by lymphocytes called T cells. These cells are also produced in the bone marrow, but are matured in an organ named Thymus. They are responsible for killing tumor cells and cells from the body that were infected by the pathogen (altered self-cells).
 
-\subsubsection{Overview of the Immune Response}
+\subsection{Overview of the Immune Response}
 
 \begin{figure}[!h]
 	\centering
@@ -325,7 +317,11 @@ In the meanwhile, both B and T lymphocytes are derived in the Bone marrow via a 
 
 The adaptive immune response starts at a secondary lymphoid organ, with the arrival of the phagocytic cell carrying the antigen. In this step, a mechanism called Clonal Selection is performed (5). The B and T lymphocytes with a high level of engagement with the pathogen proliferate and mutate (somatic hypermutation) as a means to grow in number and to improve the affinity with the foreign substance. Afterwards, these differentiated cells leave the lymphoid organ and are pumped throughout the circulatory system by the heart (6) until reaching the local of the inflammatory response (7). Finally, the specialized lymphocytes act on the antigens in order to destroy the residual of the invasion (8). These cells are kept as memory cells so that, in the case of a future similar threat, allow for a faster response. 
 
-\section{Negative Selection Algorithm} \label{sec:bgNSA}
+\section{Artificial Immune Systems and the Negative Selection Algorithm} \label{sec:bgNSA}
+
+In 1986, Farmer et al. \cite{ImmuneSysAdapML1986} sought inspiration in the properties and theories of this biological system to propose a computational model, named Artificial Immune System (AIS). It was built in such a way that the immunological concepts and processes are distilled into algorithms that can be simulated by a computer in order to solve all sorts of problems from the real world. The idea behind it is that, since this system is able to protect us, it might also be computationally useful \cite{EvaluateAIS2005}. Nevertheless, by that time, the resources available were not powerful enough to allow its usage in real systems \cite{AdaptiveImmunitySAS2021}.
+
+Recently, the advances in technology enabled complex tasks to be performed in a fast and efficient way. This provided the researchers the tools needed to implement and further improve the application of the immunological concepts into a wide range of problems. For example, AIS techniques have been used in problems like anomaly detection, optimization, classification and clustering \cite{AISSOA2015}. The Negative Selection, along with the Clonal Selection, Immune Network Theory and the Danger Theory are amongst the most researched approaches in the literature \cite{NSAResearch2021}.
 
 One of the fundamental skills of the BIS is the ability to differentiate between the body's own cells and the foreign material. It is called self/nonself discrimination \cite{NSAResearch2021} and helps to protect the body from attacking itself whilst building a strong defense against foreigners. 
 
@@ -336,7 +332,7 @@ In 1994, Forrest et al. introduced an algorithm inspired by this process that is
 Since then, even though the main idea of the algorithm was kept, several implementations and adaptations were made to improve its performance and allow for the application it in different scenarios. Dasgupta \cite{NSAResearch2021}, in a recent work, reviewed the literature on this matter and classified the algorithms found based on the following characteristics: data type, data representation, distance function, detector size and initialization.
 
 \begin{itemize}
-    \item \textbf{Data Type:} Refers to the type of the data that is used by the algorithm. It can be binary or real value.
+    \item \textbf{Data Type:} Refers to the type of the data that is used by the algorithm. It can be binary or real-valued.
     
     \item \textbf{Data Representation:} Related to how the data is structured or formatted. If the data type is binary, it can be shaped as a string or a grid. If it is a real value, the formats are grid and vector. 
     
@@ -348,14 +344,17 @@ Since then, even though the main idea of the algorithm was kept, several impleme
     
 \end{itemize}
 
-Some discussion has been made over the Data Type and Representation characteristics since they limit all the others \cite{RevisitingNSA2007} \cite{NSAResearch2021} \cite{ICBook2009}. The advantages of using bit strings are that (1) any data can be presented as a binary string, (2) it facilitates the analysis of the result and (3) categorical data are well represented in this form. Nevertheless, they have a scalability issue that comes with the increased string size. All in all, to achieve the goals of this work, the binary data type and the string representation will suffice.
 
 Even though different implementations may fall in different buckets, Ji and Dasgupta \cite{RevisitingNSA2007} have distilled the three aspects that must be present in an algorithm so that it may be considered a Negative Selection Algorithm. They are:
 \begin{enumerate}
     \item The goal is to identify the self-set counterpart.
     \item Change/anomaly detection is performed by using some form of detector. 
     \item The algorithm makes use of only the self-samples during the detector generation.
-  \end{enumerate}
+\end{enumerate}
+
+Some discussion has been made over the Data Type and Representation characteristics since they limit all the others \cite{RevisitingNSA2007} \cite{NSAResearch2021} \cite{ICBook2009}. The advantages of using bit strings are that (1) any data can be presented as a binary string, (2) it facilitates the analysis of the result and (3) categorical data are well represented in this form, even though they have a scalability issue that comes with the increased string size. 
+
+All in all, to achieve the goals of this work, the binary data type will be used as the string representation. Even though the Binary Negative Selection (BNSA) is well-known for its performance and completeness issues \cite{NSADetGen1996}, modeling the behavior of the CPS as boolean features allows for simplicity and this format provide a great level of interpretability, since the binary detectors can be reverse mapped to the original features, thus, unveiling the discovered patterns.
 
 The next subsections provide a more in depth view of the algorithm for the binary data type, by showing its overall structure, detailing how the comparisons with the monitored data are made and how the detectors are generated. 
 
@@ -371,9 +370,9 @@ The Negative Selection Algorithm (NSA) can be divided in two steps: the generati
 	\label{fig:NSAOverview}
 \end{figure}
 
-Figure \ref{fig:NSAOverview} helps to shed some light on both phases. On the left-hand side, the generation of the detectors is illustrated. In this "training" step, a set of random candiDateTypes is generated by some predefined process and undergo a censoring process based on the self samples. The candiDateTypes that match the self samples, measured by the distance function, are discarded, while the ones that do not match are added to the nonself detector set. On the right-hand side of the figure, the detection, or "test", phase is shown. The nonself detector set obtained in the first step is tested against the data that is being monitored. The same distance function is utilized here to check whether the new data matches with some of the detectors in the set. In the case of a match, the data is considered abnormal.
+Figure \ref{fig:NSAOverview} helps to shed some light on both phases. On the left-hand side, the generation of the detectors is illustrated. In this "training" step, a set of random candidates is generated by some predefined process and undergo a censoring process based on the self samples. The candidates that match the self samples, measured by the distance function, are discarded, while the ones that do not match are added to the nonself detector set. On the right-hand side of the figure, the detection, or "test", phase is shown. The nonself detector set obtained in the first step is tested against the data that is being monitored. The same distance function is utilized here to check whether the new data matches with some of the detectors in the set. In the case of a match, the data is considered abnormal.
 
-For a complete understanding of the inner workings of the algorithm, two important pieces are missing: a description of how the random detector candiDateTypes are generated and the definition of the matching function that will account for the affinity measurement.
+For a complete understanding of the inner workings of the algorithm, two important pieces are missing: a description of how the random detector candidates are generated and the definition of the matching function that will account for the affinity measurement.
 
 \subsection{Distance Function} \label{sec:bgNSADistance}
 
@@ -384,7 +383,7 @@ First, the Distance function, or matching rule, is an operation that relies on t
 % a matching rule M can be formally defined as dMx ↔ distance measure between d and x is within a threshold, where d is a detector and x is a data instance.
 
 \begin{itemize}
-    \item \textbf{Hamming Distance:} This function measures the number of characters that differ between two strings \cite{ICBook2009}.  Let \(X\) be a string of lenght \(n\) such that \(X = x_1 x_2 x_3...x_n\) and let \(D\) be a dectector with the same lenght, so that \(D = d_1 d_2 d_3...d_n\). The Hamming Distance can be formally defined as:
+    \item \textbf{Hamming Distance (\(HD\)):} This function measures the number of characters that differ between two strings \cite{ICBook2009}.  Let \(X\) be a string of lenght \(n\) such that \(X = x_1 x_2 x_3...x_n\) and let \(D\) be a dectector with the same lenght, so that \(D = d_1 d_2 d_3...d_n\). The Hamming Distance can be formally defined as:
     \[HD = \sum_i(\overline{x_i \oplus d_i})\]
 	 
 	where \( \oplus \) is the XOR operation. In this case, a match between \(X\) and \(D\) is said to have happened when the \(HD\) score is below a predefined threshold. Figure \ref{fig:hamm} shows how the comparison is made. The characters at each position are compared and, if they are different, a unit is added to the final score. Therefore, two strigs must have a low score to be considered similar.
@@ -396,7 +395,7 @@ First, the Distance function, or matching rule, is an operation that relies on t
 		\label{fig:hamm}
 	\end{figure}
     
-    \item \textbf{R-Contiguous:} Let again \(X\) be a string of lenght \(n\) such that \(X = x_1 x_2 x_3...x_n\) and let \(D\) be a dectector with the same lenght, so that \(D = d_1 d_2 d_3...d_n\). Let also \(r\) be an IntegerType, such that \(0 > r >= n\). This rule defines a match between \(X\) and \(D\) whenever the two strings have at least \(r\) consecutive identical characters starting at any position. This rule was mainly used in the first implementations of the NSA, in which the detectors were created in a generate-and-test fashion \cite{EffectBinaryRule2003}.
+    \item \textbf{R-Contiguous:} Let again \(X\) be a string of lenght \(n\) such that \(X = x_1 x_2 x_3...x_n\) and let \(D\) be a dectector with the same lenght, so that \(D = d_1 d_2 d_3...d_n\). Let also \(r\) be an integer, such that \(0 > r >= n\). This rule defines a match between \(X\) and \(D\) whenever the two strings have at least \(r\) consecutive identical characters starting at any position. This rule was mainly used in the first implementations of the NSA, in which the detectors were created in a generate-and-test fashion \cite{EffectBinaryRule2003}.
     
 	\begin{figure}[!h]
 		\centering
@@ -419,7 +418,7 @@ First, the Distance function, or matching rule, is an operation that relies on t
 	Figure \ref{fig:rchunk} shows an example of this rule. The detector \(t_{6, 01011}\) has size 5 and was a match in the sixth position of the string. The "*" represents irrelevant positions meaning that any character can be matched. 
 \end{itemize}
 
-The R-chunk is said to enhance the accuracy and performance of the NSA \cite{EffectBinaryRule2003} because the same generated string can be used as a detector in several positions. Therefore, one can say that lower sized detectors comprise an optimal detector set, since more abnormal data can be detected. Nevertheless, as cited by Wierzchon and Chmielewski \cite{HybridNSA2012}, a study performed by Stibor showed that strings generated with low values of \(r\) are less likely to become detectors. This probability highly increases in the middle range, and is close to 1 for large string sizes. Hence, there is a sweet spot when trying to find the size of the string, which is usually for middle values of \(r\), that aligns accuracy and coverability with efficiency.
+The R-chunk is said to enhance the accuracy and performance of the NSA \cite{EffectBinaryRule2003} because the same generated string can be used as a detector in several positions. Therefore, one can say that lower sized detectors comprise an optimal detector set, since more abnormal data can be detected. Nevertheless, as cited by Wierzchon and Chmielewski \cite{HybridNSA2012}, a study performed by Stibor showed that strings generated with low values of \(r\) are less likely to become detectors. This probability highly increases in the middle range, and is close to 1 for large string sizes. Hence, there is a sweet spot when trying to find the size of the string, which is usually for middle values of \(r\), that aligns accuracy and coverability with efficiency. In our work, the R-chunk will be used as the distance function in the NSA due to its advantages and since the matched region is isolated, allowing for a better interpretability of the pattern found.
 
 \subsection{Detector Generation} \label{sec:bgNSADetectors}
 
@@ -437,11 +436,13 @@ Both Ayara et al. \cite{NSADetectorGen2002} and Dasgupta and Niño \cite{ICBook2
 
 This generate-and-test method can be further explained with Figure \ref{fig:ExhDet} in which random binary strings are generated and compose the \(R_o\) set. Then, each candidate is tested for a match with the self-set \(S\) by using one of the functions described earlier. In the figure, if the compared strings have at least 2 matching contiguous bits, the candidate is rejected, otherwise it is accepted as a valid detector and joins set \(R\).
 
-The problem with the exhaustive detector generation is that a great number of candidates are rejected during the censoring, making it be inneficient \cite{NSADetGen1996}, besides being costly in terms of computational use of resources \cite{NSADetectorGen2002}. To tackle that, two other approaches arose: the linear and the greedy algorithms, both based on the r-countinuous distance method. 
+The problem with the exhaustive detector generation is that a great number of candidates are rejected during the censoring, making it inneficient \cite{NSADetGen1996}, and costly in terms of the computational use of resources \cite{NSADetectorGen2002}. To tackle that, two other approaches arose: the linear and the greedy algorithms, both based on the r-countinuous distance method. 
 
 The linear time algorithm is a two-phase process named after its complexity introduced by D'haeseleer et al. \cite{NSADetGen1996}. Initially, all the strings that are unmatched by the self-set have their recurrence counted. Then, this counting recurrence is used to naturally number the unmatched strings and allow for the picking of random detectors, according to the desired size of the detector's set. Even though this algorithm runs in linear time according to the detector's set and self-set sizes, the recurrence counting requires the storage of all the possible matches two strings can have by using the r-contiguous distance. This means that, although its complexity is linear in terms of time, it is exponential with regard to space. 
 
-The Greedy algorithm is another algorithm introduced by D'haeseleer et al. \cite{NSADetGen1996}, which tries to provide a better coverage of the string space without increasing the amount of detectors. It does so by slightly modificating the construction of the array of possible matches. It also relies on two arrays, one that stores the candiDateTypes picked by the algorithm and other keeps track of the strings that still were not matched with any picked detector. New detectors are generated based on the unmatched strings that have the highest recurrence value \cite{ICBook2009}. This algorithm provides an optimal set of detectors but has a higher time complexity when compared with the Linear algorithm. This happens because of the upDateType of the two arrays that happens whenever a new detector is generated. Time complexity is kept, though.
+The Greedy algorithm is yet another algorithm introduced by D'haeseleer et al. \cite{NSADetGen1996}, which tries to provide a better coverage of the string space without increasing the amount of detectors. It does so by slightly modificating the construction of the array of possible matches. It also relies on two arrays, one that stores the candidates picked by the algorithm and other keeps track of the strings that still were not matched with any picked detector. New detectors are generated based on the unmatched strings that have the highest recurrence value \cite{ICBook2009}. This algorithm provides an optimal set of detectors but has a higher time complexity when compared with the Linear algorithm. This happens because of the upDateType of the two arrays that happens whenever a new detector is generated. Time complexity is kept, though.
+
+Even though these two algorithms are proven to provide a better detector generation, they were designed specifically for the R-contiguous distance function. For this reason, the Generate-and-test method will be used in our work as the main algorithm for the generation of such strings.
 
 % \cite{NSADetGen1996}
 % Linear
