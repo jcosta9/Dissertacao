@@ -553,7 +553,7 @@
 \newenvironment{agradecimentos}
 	{\begin{paginatitulo}%
 	\pdfbookmark{Agradecimentos}{acknowledgements}%
-		\chapter*{Agradecimentos}}%
+		\chapter*{Acknowledgements}}%
 	{\end{paginatitulo}}
 
 \renewenvironment{abstract}
@@ -572,11 +572,11 @@
 		{\vskip 15pt\noindent\textbf{Palavras-chave:}\ \@@palavraschave%
     \end{paginatitulo}}
 
-\newenvironment{dedicatoria}
-	{\begin{paginatitulo}%
-	\pdfbookmark{Dedicat\'oria}{dedication}%
-		\chapter*{Dedicat\'oria}}%
-	{\end{paginatitulo}}
+% \newenvironment{dedicatoria}
+% 	{\begin{paginatitulo}%
+% 	\pdfbookmark{Dedicat\'oria}{dedication}%
+% 		\chapter*{Dedicat\'oria}}%
+% 	{\end{paginatitulo}}
 
 \def\@printfulltitle{%
 	\@ifundefined{@subtitle}{%
@@ -891,7 +891,7 @@
 \newcommand{\@conteudoPreTextual}{%
 	\maketitle%
 	\if@qualificacao\else%
-		\@IncluirSecao{dedicatoria}%
+		% \@IncluirSecao{dedicatoria}%
 		\@IncluirSecao{agradecimentos}%
 
 		% *NÃO RETIRAR*, é importante registrar este apoio da CAPES.

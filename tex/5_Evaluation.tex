@@ -6,7 +6,7 @@ In this chapter, our framework will be evaluated using a variation of the Goal-Q
     \hline
     \multicolumn{3}{|c|}{\textbf{Goal 1}: Property Violation Identification process}                                                                                                                            \\ \hline
     \multicolumn{1}{|c|}{Question}                                                                                    & \multicolumn{1}{c|}{Metric}                     & \multicolumn{1}{c|}{Results} \\ \hline
-    \multicolumn{1}{|c|}{\makecell{How well does our model \\ generalizes to unseen data?}}                                         & \multicolumn{1}{c|}{\makecell{Precision and \\Recall Rates}} & \multicolumn{1}{c|}{\makecell{Precision: 1.0 \\ Recall: 0.9958}}        \\ \hline
+    \multicolumn{1}{|c|}{\makecell{How well does our model \\ generalize to unseen data?}}                                         & \multicolumn{1}{c|}{\makecell{Precision and \\Recall Rates}} & \multicolumn{1}{c|}{\makecell{Precision: 1.0 \\ Recall: 0.9958}}        \\ \hline
                                                                                                                       &                                                 &                              \\ \hline
     \multicolumn{3}{|c|}{\textbf{Goal 2}: Method's contribuition}                                                                                                                                               \\ \hline
     \multicolumn{1}{|c|}{Question}                                                                                    & \multicolumn{1}{c|}{Metric}                     & \multicolumn{1}{c|}{Results} \\ \hline
@@ -34,7 +34,7 @@ The evaluation of our proposed solution will rely on a implementation of the Bod
 The first part of our technique requires the implementation of a CPS prototype. This is done to anticipate problems that may occur during runtime by modeling and simulating both the system's software components and physical processes. Despite the fact that there are several state-of-the-art approaches for designing such models \cite{baras2019formal} \cite{deng2019modeling} \cite{bouskela2022formal}, and since the focus of this work is to elaborate on the property violation patterns using the NSA, a simpler framewrok for the simulation was selected. The Modelica language \cite{Modelica}, hence, will be used as the main tool in this process. This language is powerfull enough to represent the acausal continuous-time physical processes of the CPS through equations. It also comprises several built-in libraries for the modeling of circuits, batteries, fluids, noise, equipment deterioration and so on. At the same time, software components can also be described by defining algorithms and functions that account for the behavior of such modules. The graphical aid is achieved by the OpenModelica \cite{OpenModelica} modeling tool, in which the components and their interactions can be visually modeled as blocks and connectors.
 
 
-Figure \ref{fig:BsnProt} depicts the prototype that was implemented in OpenModelica, using the Modelica language. The green blocks account for the sensors, while the blue illustrates the Central Node. In the left lower side, a parameter defines a fixed frequency for data collection that is utilized by every sensor, and above it there is a reference for an external csv file that contains the measurements of the sensors at every second. Around the system, there are some blocks with question marks whose function is to generate random binary numbers to indicate whether the sensor was active. The goal of these blocks is to simulate cases when the sensor stopped responding, or was to far away to transmit reliable data, or had some malfunctioning of sorts that may account for faults in runtime. Next to the sensors there are some gray boxes that are used to indicate when the sensor is plugged into the outlet. Besides that, there are also small rounded blocks that represent the observers, that are modeled to monitor the system property \textbf{P7} in each sensor.
+Figure \ref{fig:BsnProt} depicts the prototype that was implemented in OpenModelica, using the Modelica language. The green blocks account for the sensors, while the blue illustrates the Central Node. In the left lower side, a parameter defines a fixed frequency for data collection that is utilized by every sensor, and above it there is a reference for an external csv file that contains the measurements of the sensors at every second. Around the system, there are some blocks with question marks whose function is to generate random binary numbers to indicate whether the sensor was active. The goal of these blocks is to simulate cases when the sensor stopped responding, or was to far away to transmit reliable data, or had some malfunctioning of sorts that may account for faults in runtime. Next to the sensors there are some gray boxes that are used to indicate when the sensor is plugged into the outlet. Besides that, there are also small rounded blocks that represent the observers, that are modeled to monitor properties of the system associated with each sensor.
 
 \begin{figure}[!h]
 	\centering
@@ -43,7 +43,7 @@ Figure \ref{fig:BsnProt} depicts the prototype that was implemented in OpenModel
 	\label{fig:sensorProt}
 \end{figure}
 
-By going one step deeper into the model, it is possible to describe how the inner workings of the sensors and the Central Node were implemented. One of the advantages of the Modelica language is its object-oriented character that allows for the reuse of modules throughout the simulation. The sensor described in Figure \ref{fig:sensorProt} is a good example of this aspect, since the same block is used to model all five sensors. The physical components represented here comprise: a mechanism for sampling a measurement based on a triggered signal, a set of bitwise operators that are often used in microcontroller programming, and a battery. This battery was modeled based on a built-in Modelica library that allows for the modeling of electric circuits, and is composed of a set of switches, a memory cell, and a signal current converter that receives signals from the sensor whenever some process occur to decrease the charge of the memory cell. The magnitude of the charge decrease is multiplied by a randomly generated real number in a way that simulates the decrease that would happen in a real environment. In the meanwhile, software components of the sensor are also modeled, like the Process block, which recieves a real valued sensor measurement as an input and relies on an algorithm for determining the health risk percentage of the patient.
+By going one step deeper into the model, it is possible to describe how the inner workings of the sensors and the Central Node were implemented. One of the advantages of the Modelica language is its object-oriented character that allows for the reuse of modules throughout the simulation. The sensor described in Figure \ref{fig:sensorProt} is a good example of this aspect, since the same block is used to model all five sensors. The physical components represented here comprise: a mechanism for sampling a measurement based on a triggered signal, a set of bitwise operators that are often used in microcontroller programming, and a battery. This battery was modeled based on a built-in Modelica library that allows for the modeling of electric circuits, and is composed of a set of switches, a memory cell, and a signal current converter that receives signals from the sensor whenever some process occur to decrease the charge of the memory cell. The magnitude of the charge decrease is multiplied by a randomly generated real number in a way that simulates the decrease that would happen in a real environment. Meanwhile, software components of the sensor are also modeled, like the Process block, which recieves a real valued sensor measurement as an input and relies on an algorithm for determining the health risk percentage of the patient.
 
 
 The Central Node, illustrated in Figure \ref{fig:centralNodeProt}, was implemented in a similar fashion. It also makes use of bitwise operations for handling the signals sent, and of an instance of the same battery model as the one found in the sensors. The software components encapsulate functions that fuse the data from the sensors and compute the overall health risk of the patient.
@@ -57,7 +57,7 @@ The Central Node, illustrated in Figure \ref{fig:centralNodeProt}, was implement
 
 Both the sensors and the Central Node are instrumented through a set of signals that are sent each time a process or a specfic behavior occur, like when the data is collected or transfered for instance. These signals are used by the observers to monitor the properties of interest, and will be used later for the characterization of a execution segment, during the pattern analysis phase. Observers can be easily modeled in Modelica via a built-in library developed for the desing of state graphs. Both the states of the automata and its transitions are described as blocks, with the difference being that the transitions receive signals as input to indicate the passing through the states. 
 
-Without loss of generality, to meet the proposed goals of the GQM plan, it will suffice to evaluate the accuracy and efficiency of our technique based on the analysis of a single property. Therefore, Property \textbf{P7}, from Table \ref{tab:BSN_TCTL_properties} was chosen to guide the next phase of the methodology, since it is related to all the different modules of the CPS. The property states as follows: "Whenever a sensor node has collected data, in within at most 2 seconds, the Central Node will process it." It focuses on the reliability of the system, since its satisfaction guarantees that the collected data will be processed in a reasonable time. Besides that, the Oximeter was the sensor chosen to reify the analysis. 
+Without loss of generality, to meet the proposed goals of the GQM plan, it will suffice to evaluate the accuracy and efficiency of our technique based on the analysis of a single property. Therefore, Property \textbf{P7}, from Section \ref{sec:BSN} was chosen to guide the next phase of the methodology, since it is related to all the different modules of the CPS. The property states as follows: "Whenever a sensor node has collected data, in within at most 2 seconds, the Central Node will process it." It focuses on the reliability of the system, since its satisfaction guarantees that the collected data will be processed in a reasonable time. Besides that, the Oximeter was the sensor chosen to reify the analysis. 
 
 With that being said, the observer related to \textbf{P7}, implemented in the work of Carwehl et al. \cite{2022PSP}, will be deployed in this simulation. The states of the automata were modeled as blocks and the transitions as instances of the \textit{TransitionWithSignal} class of the StateGraph library of Modelica. The signals used in the transitions are provided by the sensor and the Central Node, while a timer is set every time the monitor enters the CollectedReached state  and if it does not transition back to the initial state, by the time when the timer runs out, the error state is reached. 
 
@@ -125,7 +125,7 @@ Finally, the Negative Selection Algorithm was run, based on the simulation gener
 
 \section{Goal 1: Property Violation Identification process}
 
-\textbf{Question: How well does our model generalizes to unseen data?} To answer this question propertly, the operation dataset extracted from the simulations was splitted into two: 75\% of the set was used for the detector's generation, and the other 25\% was set apart to account for the unseen data. The entire dataset had 19868 rows, with 16493 (83\%) related to regular operation and 3375 (17\%) of the execution segments violated the property \textbf{P7}. Hence, the split resulted in 14901 rows being utilized in the training phase, but only 12370 rows were used for the generation of the nonself detectors, since the process only makes use of the self-set, i.e. the majority class.
+\textbf{Question: How well does our model generalizes to unseen data?} To answer this question propertly, the operation dataset extracted from the simulations was splitted into two: 75\% of the set was used for the detector's generation, and the other 25\% was set apart to account for the unseen data. The entire dataset had 19868 rows, with 16493 (83\%) related to regular operation and 3375 (17\%) of the execution segments violated property \textbf{P7}. Hence, the split resulted in 14901 rows being utilized in the training phase, but only 12370 rows were used for the generation of the nonself detectors, since the process only makes use of the self-set, i.e. the majority class.
 
 \begin{figure}[!h]
 	\centering
@@ -144,7 +144,7 @@ Table \ref{tab:ev_comparison} shows the precision and recall rates of our approa
     \begin{tabular}{ccccc}
     \hline
     Model              & Accuracy & Precision & Recall & MCC    \\ \hline
-    Negative Selection & 0.9995   & 1.0       & 0.9976 & 0.9985 \\
+    \textbf{Negative Selection} & \textbf{0.9995}   & \textbf{1.0}       & \textbf{0.9976} & \textbf{0.9985} \\
     One-Class SVM      & 0.7634   & 0.4180    & 1.0    & 0.5467 \\
     Isolation Forest   & 0.7173   & 0.2928    & 0.4691 & 0.2002 \\
     Random Forest      & 0.9995   & 1.0       & 0.9976 & 0.9985 \\
@@ -153,6 +153,20 @@ Table \ref{tab:ev_comparison} shows the precision and recall rates of our approa
     \caption{NSA Performance comparison}
     \label{tab:ev_comparison}
 \end{table}
+
+% \begin{table}[]
+%     \begin{tabular}{ccccc}
+%     \hline
+%     Model                             & Accuracy              & Precision          & Recall                & MCC                   \\ \hline
+%     \rowcolor[HTML]{C0C0C0} 
+%     {\ul \textbf{Negative Selection}} & {\ul \textbf{0.9995}} & {\ul \textbf{1.0}} & {\ul \textbf{0.9976}} & {\ul \textbf{0.9985}} \\
+%     One-Class SVM                     & 0.7634                & 0.4180             & 1.0                   & 0.5467                \\
+%     Isolation Forest                  & 0.7173                & 0.2928             & 0.4691                & 0.2002                \\
+%     Random Forest                     & 0.9995                & 1.0                & 0.9976                & 0.9985                \\
+%     Gradient Boosting                 & 0.9995                & 1.0                & 0.9976                & 0.9985                \\ \hline
+%     \end{tabular}
+%     \caption{NSA Performance comparison}
+%     \end{table}
 
 From the table, it is clear that the NSA performed way better than its counteparts in the anomaly detection field. Athough it had a very similar performance compared to Random Forest ant Gradient Boosting, the interpretability provided by the algorithm through the observers is paramount to handle not only the detection of property violations, but also to provinding relevant information for the analyst to enhance the verification of the CPS.
 
@@ -164,11 +178,11 @@ After running the Negative Selection Algorithm, 229 binary strings were created 
 \begin{figure}[]
 	\centering
 	\includegraphics[width=0.8\textwidth, keepaspectratio]{img/matches_by_detector_rdz.png}
-	\caption{Number of Nonself data that were matched by relevant detectors}
+	\caption{Top 20 Detectors with most matches}
 	\label{fig:ev_det_match}
 \end{figure}
 
-The bar chart in Figure \ref{fig:ev_det_match} displays the amount of nonself data that were matched by the most relevant detectors. This chart provides the analyst a better understanding of which are the most common and relevant patterns that were found by the algorithm.
+The bar chart in Figure \ref{fig:ev_det_match} displays the amount of nonself data that were matched by the top 20 detectors. This chart provides the analyst a better understanding of which are the most common and relevant patterns that were found by the algorithm.
 
 By looking at the chart from Figure \ref{fig:ev_det_match}, one can easily see that the first two detectors match the same amount of nonself data. Besides that, their patterns seem to overlap, since if they were placed next to each other, considering their position, the difference between the two is the leftmost bit on the first one and the rightmost bit on the second one. This raised the possibility of two or more detectors having detected the same pattern but, because of the fixed size of the R-chunk, they were separated. In order to verify this situation, the MCC rate was computed for each pair of detectors. In the case of a pair being perfectly correlated, we could infer that they had matched the exact same nonself data, thus, they could be seen as the same pattern stored in different detectors. The idea was to agglutinate such pairs in order to have more robust patterns. For example, the first two detectors from Figure \ref{fig:ev_det_match} became a single 6-bit string detector, starting in position 0, with the bits \textit{000010}. After identifying and agglutinating all the identified cases, the total amount of detectors became 49.
 
@@ -181,7 +195,7 @@ By looking at the chart from Figure \ref{fig:ev_det_match}, one can easily see t
 
 Another aspect that need to be considered is the fact that the sum of matches is still greater than the amount of property violation cases in the dataset. Figure \ref{fig:ev_det_cov} depicts the percentage of nonself data covered with the addition of the detectors one by one, sorted by relevance. From the chart, we see that only 9 detectors are capable of detecting all the anomalous behavior of the system. 
 
-This information raises a relevant fact. The set of nonself data matched by some detectors, may comprise the entire set of other less relevant detectors.Another way of looking at it is to think that the patterns found by some detectors are part, or even specializations, of greater patterns of nonself data. Figure \ref{fig:ev_pattern_spec} attempts to illustrate this concept. By analyzing the detectors, we saw that all of the patterns matched by the detector \textit{(1,'00111000')} were also matched by \textit{(0,'00011')}. Moreover, the detector \textit{(0,'00011')} also matched all the nonself data matched by \textit{(1,'001101100')}. Therefore, it is possible to state that the pattern \textit{(0,'00011')} is specialized into the two other patterns, meaning that the bigger pattern can happen under two different circumstances, accounted by the two other patterns.
+This information raises a relevant fact. The set of nonself data matched by some detectors may comprise the entire set of other detectors with less matches. Another way of looking at it is to think that the patterns found by some detectors are part, or even specializations, of greater patterns of nonself data. Figure \ref{fig:ev_pattern_spec} attempts to illustrate this concept. By analyzing the detectors, we saw that all of the patterns matched by the detector \textit{(1,'00111000')} were also matched by \textit{(0,'00011')}. Moreover, the detector \textit{(0,'00011')} also matched all the nonself data matched by \textit{(1,'001101100')}. Therefore, it is possible to state that the pattern \textit{(0,'00011')} is specialized into the two other patterns, meaning that the bigger pattern can happen under two different circumstances, accounted by the two other patterns.
 
 \begin{figure}[]
 	\centering
@@ -195,8 +209,8 @@ Figure \ref{fig:ev_pattern_spec_reverse_mapping} shows the reverse mapping of th
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.7\textwidth, keepaspectratio]{img/pattern_specialization_reverse_map.png}
-	\caption{Reverse Mapping  of the Specialized Patterns}
+	\includegraphics[width=\textwidth, keepaspectratio]{img/pattern_specialization_reverse_map.png}
+	\caption{Reverse Mapping of the Specialized Patterns}
 	\label{fig:ev_pattern_spec_reverse_mapping}
 \end{figure}
 
@@ -209,22 +223,71 @@ This analysis should provide the CPS analyst with substantial information to add
 	\label{fig:ev_observer_fxd}
 \end{figure}
 
-Finally, the patterns and their specializations were all computed and are laid out in Figure \ref{fig:ev_sankey}. The Sankey chart helps us not only to understand the relationship amongst the detectors, but it also provides a visual aid for identifying the strength of the relation. In the figure, the most relevant detectors are placed on the left side of the pair, and their specialization are displayed in the right side. The strength of the relation can be seen in the line that connects them. The larger the line connecting two points is, the more nonself data are detected by the pair. Some relations are simple as the exemple from Figure \ref{fig:ev_pattern_spec}, but others can bring more complex structures, like the group formed by the relevant detector \textit{(5, '01011)}.
-
-In the end, our method was capable of identifying 49 violation-related patterns in the operation dataset extracted from the simulated BSN. Those patterns were further divided into 11 groups, or families, of detector that share a common pattern. These results account for the effectiveness of the approach in discovering patterns in data. Moreover, it was shown how one of them could be utilized for the update of the observer.
+Finally, the patterns and their specializations were all computed and are laid out in Figure \ref{fig:ev_sankey}. The Sankey chart helps us not only to understand the relationship amongst the detectors, but it also provides a visual aid for identifying the strength of the relation. In the figure, the most relevant detectors are placed on the left side of the pair, and their specialization are displayed in the right side. The strength of the relation can be seen in the line that connects them. The larger the line connecting two points is, the more nonself data are detected by the pair. Some relations are simple as the exemple from Figure \ref{fig:ev_pattern_spec}, but others can bring more complex structures, like the group formed by detector \textit{(5, '01011)}.
 
 \begin{figure}[]
 	\centering
-	\includegraphics[width=\textwidth, keepaspectratio]{img/sankey2.png}
+	\includegraphics[width=\textwidth, keepaspectratio]{img/sankey3.png}
 	\caption{Groups of Detectors identified based on the similarity of patterns}
 	\label{fig:ev_sankey}
 \end{figure}
+
+Figure \ref{fig:pyramid} illustrates the overall process of finding relevant patterns. From the 229 detectors generated by the Negative Selection Algorithm, only 68 have matched with nonself data. From those, we concluded that some of them were actually the same pattern, splitted into two or more detectors due to the size limitation of the R-chunk, and thus, could be agglutinated. After merging them, the resultant 49 detectors were grouped into 11 clusters of patters with common behavior. These violation-related patterns found in the operation dataset account for the effectiveness of the approach in discovering patterns in data since the were shown to be relevant for the refinement of the runtime monitor of property \textbf{P7}.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.5\textwidth, keepaspectratio]{img/detector_piramid.png}
+	\caption{Number of Detectors at each step}
+	\label{fig:pyramid}
+\end{figure}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \begin{table}[]
+%     \begin{tabular}{cccccc}
+%     \hline
+%     \makecell{Pattern \\Group}                           & Detector 1    & Detector 2       & Detector 3                       & Pattern Description                                                                      & \makecell{Percentage of \\Nonself matched} \\ \hline
+%     \multicolumn{1}{c|}{\multirow{3}{*}{A}} & (0, '00010')  & (1,'00101000')   & \multicolumn{1}{c|}{}            & \multicolumn{1}{c|}{\makecell{Lack of battery \\during data collection}}                            & 7,61\%                        \\ \cline{2-6} 
+%     \multicolumn{1}{c|}{}                   & (0, '00010')  & (1,'00100110')   & \multicolumn{1}{c|}{(2,'01001')} & \multicolumn{1}{c|}{\makecell{Lack of battery \\during data processing}}                              & 7,70\%                        \\ \cline{2-6} 
+%     \multicolumn{1}{c|}{}                   & (2,'01001')   & (0,'110100101')  & \multicolumn{1}{c|}{}            & \multicolumn{1}{c|}{\makecell{Lack of battery \\during data transfering}}                             & 7,26\%                        \\ \hline
+%     \multicolumn{1}{c|}{\multirow{2}{*}{B}} & (5,'100000')  & (6,'00000')      & \multicolumn{1}{c|}{}            & \multicolumn{1}{c|}{\multirow{2}{*}{\makecell{Lack of battery \\during data collection}}}             & 4,41\%                        \\ \cline{2-4} \cline{6-6} 
+%     \multicolumn{1}{c|}{}                   & (5,'100000')  & (6,'00001')      & \multicolumn{1}{c|}{}            & \multicolumn{1}{c|}{}                                                                    & 1,78\%                        \\ \hline
+%     \multicolumn{1}{c|}{\multirow{3}{*}{C}} & (0,'00011')   & (1,'00111000')   & \multicolumn{1}{c|}{}            & \multicolumn{1}{c|}{\makecell{Lack of battery \\during data collection}}                              & 3,05\%                        \\ \cline{2-6} 
+%     \multicolumn{1}{c|}{}                   & (0,'00011')   & (1,00110110')    & \multicolumn{1}{c|}{(2,'01101')} & \multicolumn{1}{c|}{\makecell{Lack of battery \\during data processing}}                              & 2,67\%                        \\ \cline{2-6} 
+%     \multicolumn{1}{c|}{}                   & (2,'01101')   & (0,'110110101')  & \multicolumn{1}{c|}{}            & \multicolumn{1}{c|}{\makecell{Sensor was off \\during transfer}}                                      & 1,33\%                        \\ \hline
+%     \multicolumn{1}{c|}{\multirow{2}{*}{D}} & (2,'00001')   & (0,'110000')     & \multicolumn{1}{c|}{}            & \multicolumn{1}{c|}{\multirow{2}{*}{Sensor was off \\ Central Node \\data processing}}} & 2,90\%                        \\ \cline{2-4} \cline{6-6} 
+%     \multicolumn{1}{c|}{}                   & (2,'00001')   & (0,'000000')     & \multicolumn{1}{c|}{}            & \multicolumn{1}{c|}{}                                                                    & 2,79\%                        \\ \hline
+%     \multicolumn{1}{c|}{E}                  & \multicolumn{2}{c}{(0,'000010')} & \multicolumn{1}{c|}{}            & \multicolumn{1}{c|}{\makecell{Sensor was off \\at some point}}                                        & 63,59\%                       \\ \hline
+%     \multicolumn{1}{c|}{F}                  & (0,'01001')   &                  & \multicolumn{1}{c|}{}            & \multicolumn{1}{c|}{\makecell{Sensor was off \\during Central Node \\data processing}}                  & 0,68\%                        \\ \hline
+%     \multicolumn{1}{c|}{\multirow{2}{*}{G}} & (5,'10001')   & (6,'00011')      & \multicolumn{1}{c|}{}            & \multicolumn{1}{c|}{\multirow{2}{*}{\makecell{Lack of battery during \\data collection}}}             & 2,84\%                        \\ \cline{2-4} \cline{6-6} 
+%     \multicolumn{1}{c|}{}                   & (5,'10001')   & (6,'00010')      & \multicolumn{1}{c|}{}            & \multicolumn{1}{c|}{}                                                                    & 1,63\%                        \\ \hline
+%     \multicolumn{1}{c|}{\multirow{4}{*}{H}} & (5,'01100')   & (6,'11000')      & \multicolumn{1}{c|}{(7,'10000')} & \multicolumn{1}{c|}{\multirow{4}{*}{\makecell{Lack of battery during \\data processing}}}             & 2,58\%                        \\ \cline{2-4} \cline{6-6} 
+%     \multicolumn{1}{c|}{}                   & (5,'01100')   & (6,'11000')      & \multicolumn{1}{c|}{(7,'10001')} & \multicolumn{1}{c|}{}                                                                    & 0,95\%                        \\ \cline{2-4} \cline{6-6} 
+%     \multicolumn{1}{c|}{}                   & (5,'01100')   & (6,'11001')      & \multicolumn{1}{c|}{(7,'10010')} & \multicolumn{1}{c|}{}                                                                    & 0,92\%                        \\ \cline{2-4} \cline{6-6} 
+%     \multicolumn{1}{c|}{}                   & (5,'01100')   & (6,'11001')      & \multicolumn{1}{c|}{(7,'10011')} & \multicolumn{1}{c|}{}                                                                    & 0,83\%                        \\ \hline
+%     \multicolumn{1}{c|}{\multirow{4}{*}{I}} & (5,'01101')   & (6,'11011')      & \multicolumn{1}{c|}{(7,'10111')} & \multicolumn{1}{c|}{\multirow{4}{*}{\makecell{Lack of battery during data processing}}}             & 2,16\%                        \\ \cline{2-4} \cline{6-6} 
+%     \multicolumn{1}{c|}{}                   & (5,'01101')   & (6,'11011')      & \multicolumn{1}{c|}{(7,'10110')} & \multicolumn{1}{c|}{}                                                                    & 0,89\%                        \\ \cline{2-4} \cline{6-6} 
+%     \multicolumn{1}{c|}{}                   & (5,'01101')   & (6,'11010')      & \multicolumn{1}{c|}{(7,'10101')} & \multicolumn{1}{c|}{}                                                                    & 1,10\%                        \\ \cline{2-4} \cline{6-6} 
+%     \multicolumn{1}{c|}{}                   & (5,'01101')   & (6,'11010')      & \multicolumn{1}{c|}{(7,'10100')} & \multicolumn{1}{c|}{}                                                                    & 0,95\%                        \\ \hline
+%     \multicolumn{1}{c|}{\multirow{4}{*}{J}} & (5,'01011')   & (6,'10111')      & \multicolumn{1}{c|}{(7,'01111')} & \multicolumn{1}{c|}{\multirow{4}{*}{\makecell{Lack of battery during \\data transfering}}}            & 2,28\%                        \\ \cline{2-4} \cline{6-6} 
+%     \multicolumn{1}{c|}{}                   & (5,'01011')   & (6,'10111')      & \multicolumn{1}{c|}{(7,'01110')} & \multicolumn{1}{c|}{}                                                                    & 0,50\%                        \\ \cline{2-4} \cline{6-6} 
+%     \multicolumn{1}{c|}{}                   & (5,'01011')   & (6,'10110')      & \multicolumn{1}{c|}{(7,'01101')} & \multicolumn{1}{c|}{}                                                                    & 0,77\%                        \\ \cline{2-4} \cline{6-6} 
+%     \multicolumn{1}{c|}{}                   & (5,'01011')   & (6,'10110')      & \multicolumn{1}{c|}{(7,'01100')} & \multicolumn{1}{c|}{}                                                                    & 0,71\%                        \\ \hline
+%     \multicolumn{1}{c|}{\multirow{4}{*}{K}} & (5,'01010')   & (6,'10100')      & \multicolumn{1}{c|}{(7,'01000')} & \multicolumn{1}{c|}{\multirow{4}{*}{\makecell{Lack of battery during \\data transfering}}}            & 1,99\%                        \\ \cline{2-4} \cline{6-6} 
+%     \multicolumn{1}{c|}{}                   & (5,'01010')   & (6,'10100')      & \multicolumn{1}{c|}{(7,'01001')} & \multicolumn{1}{c|}{}                                                                    & 1,01\%                        \\ \cline{2-4} \cline{6-6} 
+%     \multicolumn{1}{c|}{}                   & (5,'01010')   & (6,'10101')      & \multicolumn{1}{c|}{(7,'01011')} & \multicolumn{1}{c|}{}                                                                    & 0,80\%                        \\ \cline{2-4} \cline{6-6} 
+%     \multicolumn{1}{c|}{}                   & (5,'01010')   & (6,'10101')      & \multicolumn{1}{c|}{(7,'01010')} & \multicolumn{1}{c|}{}                                                                    & 0,53\%                        \\ \hline
+%     \end{tabular}
+%     \caption{Description of the patterns found in each Detector Group}
+% 	\label{fig:patterns_detector_group}
+% \end{table}
 
 \section{Discussion}
 
 Even though there are several methods for verifying a system for assurance purposes, such as Model Checking or runtime verification, the structural, dynamic, and organizational complexities of Cyber-Physical systems may become an impediment in this process, both in modeling and in defining the set of properties that will be assessed. The technique proposed in this paper seeks to fill this gap by utilizing well-studied frameworks for modeling the complex link between the discrete-time behavior of software components and the continuous-time acausal equations that govern the physical processes of such systems. Furthermore, the simulated data analysis enables the detection of patterns in data that could not have been accounted for when the system properties were initially elicited. Thus, our technique provides a better understanding of the context in which the CPS will be introduced, allowing the verification process to be enhanced.
 
 Our technique's quantitative evaluation yielded satisfactory results. The use of the Negative Selection Algorithm resulted in performance that was quite close to that of other proeminent Machine Learning algorithms, including those specialized in anomaly detection. The NSA gave a low \textit{False Positive} rate in the presence of unseen data, meaning that no mistakes that could harm the proposed technique occurred. Aside from that, the examination of the patterns discovered by the detectors was also quite good. We were able to select 49 detectors from the 229 produced detectors that were truly important for characterizing property violations that may occur at runtime. Those detectors were also distributed into 11 clusters based on the similarity of the discovered patterns, further assisting the software analyst by displaying the components that are closely connected to the source of the anomalous behavior.
+
 
 \section{Threats to validity}
 

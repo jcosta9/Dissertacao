@@ -234,9 +234,55 @@ To allow for thorough verification, properties must be stated precisely and unam
 
 However, there are some intrinsic problems that permeate the probess of property specification. These problems are related to the difficulty in ensuring that a given specification corresponds to a software engineer's understanding about the system. To address that issue, Autili et al. \cite{2015PropertySpecCatalog} proposed a property specification  framework and a pattern catalog. Their work aims at the simplification of the process of system property specification. Initially, the property is written by using a Structured English Grammar, which consists of phrases in plain English limited to temporal logics denotable terms. Then, the property is mapped to instance patterns in the pattern catalog. Finally, the corresponding temporal logic formula is derived from the pattern.
 
-% \subsection{Observer Automata} \label{sec:bgobserver}
+\subsection{Runtime Verification (RV)}
+
+Verification is task performed in a CPS that relates to the assessment performed to check the compliance of the system with the specification \cite{2014PerceptionsSOTAV&VCPS}. It can be performed while the system is being run (runtime) or after its execution through the reading of the system's logs \cite{colombo2021runtime}. Leucker defines RV as a discipline in Computer Science that "that deals with the study, development, and application of those verification techniques that allow checking whether a run of a system under scrutiny (SUS) satisfies or violates a given correctness property"  \cite{leucker2011teaching}.
+
+Colombo et al. \cite{colombo2021runtime} describe divide this activity into 7 steps: 
+\begin{itemize}
+    \item \textbf{1.} Selecting a language for the specification of the property;
+    
+    \item \textbf{2.} Defining the behavior of the system
+    
+    \item \textbf{3.} Development of a monitor capable of listening the events of the system related to the desired property;
+    
+    \item \textbf{4.} Deriving an algorithm from the monitor;
+    
+    \item \textbf{5.} Implementing the algorithm into the system;
+    
+	\item \textbf{6.} Analysing the results of the monitoring;
+
+	\item \textbf{7.} Performing a response.
+    
+\end{itemize}
+
+One of the ways that this monitors can be implemented is through Observers. This components are capable of collecting information from the CPS, by reading the system's logs or the signals that are sent by the modules of the system. They help the system analyst to identify faults, security issues, measure statistics and so on. This technique consists of the translation of the TCTL formulas to finite-state automata that are added the model to be verified. These state machines are engineered to reach error states only when the observed property in the system model is violated \cite{1999Observers}. 
 
 
+Observers can be derived from the properties of the system with the help of a specification pattern catalog, as the one proposed by Vogel et al. \cite{2022PSP}. In their work, patterns in the properties are used to automatically map them to timed-automata. They have designed templates that account for all the specification patterns described by Autili et al. \cite{2015PropertySpecCatalog}, which can be translated into UPPAAL \cite{UPPAAL} autotama for the execution of the Model Checking process, allowing for an end-to-end verification. This approach is utilized in the checker to allow the verification of properties that go beyond simple reachability \cite{1998ReachabilityObs}. 
+
+\subsubsection{End-to-end Verification}
+
+An end-to-end verification process, that goes from the CGM specification to runtime monitoring, can really benefit the provision of assurances for Cyber-physical systems, since the guarantees provided would help increase the reliability of such systems. This can be achieved by initially modeling the core architectural elements, along with their behavior, then by specifying a set of properties of interest, and then, by conducting a model checking process in a verification tool like UPPAAL \cite{UPPAAL}, and finally by implementing the observers into the deployed to assert the system's correctness and the satisfiability of the properties in runtime. Figure \ref{fig:ver_model_checking} illustrates the modeling of the system and the derivation of properties and observers until the Model Checking process.
+
+\begin{figure*}[!htb]
+ \centering
+ \includegraphics[width=\linewidth]{img/verification_process.png}
+ \caption{Verification Process until Model Checking}
+\label{fig:ver_model_checking}
+\end{figure*} 
+
+First, the model is derived directly from the CGM, the input for this process. The intended behavior of the leaf-tasks are modeled as timed automata, according to the system architecture. The automata denote module templates, meaning that they might be reused if two instances share the same behavior. One of the possible modeling strategies is to use guard conditions and different locations in the model to portray the progression of the module's behavior, and thus, its life cycle. Hence, the progress and fulfillment of the CGM task's behavior may be depicted in the UPPAAL model as reachable states or locations, enabling the usage of reachability properties when verifying the correctness of the system.
+
+Second, with the formalized model in hand, the next activity is to specify the set of properties that will be verified. In this sense, the Autili et al. \cite{2015PropertySpecCatalog} property specification pattern catalog and framework (PSPFramework) can be used to define the CGM properties. Property specification patterns have been effectively utilized to bypass the pragmatic hurdles of specification formalism, while still maintaining syntactic correctness and a true reflection of the system's intuition. As described earlier, this catalog comprises a list of property patterns, or categories, each relying on a set of structured English phrases, composed of terms that are denotable in temporal logics.
+
+Each system property is specified in the PSPFramework in a top-down manner. A property category is first chosen from the catalog patterns list by the software developer, who then refines it with the specific scope and complementary attributes, like time or probability constraints. As a consequence, a sentence in structured English is created, which will then be mapped to an appropriate logic formalism. The mapping rule takes into account the property category and scope defined earlier to match a logic formula template from the catalog, which is written in a target language, like CSL or TCTL. Finally, the given time and probability constraints are inserted into the formula using an attribute assessment mechanism. The result is a formally expressed property, ready to be verified. The resultant property set may be written in Timed Computational Tree Logic (TCTL) \cite{1996TCTL}, since that is the language used by UPPAAL when verifying the formalized model's real-time features. 
+
+The Observer Technique can also be leverage as an additional step towards providing evidence that the system behaves as expected. The translation is performed by using an Observer Template catalog \cite{2022PSP}, as describe earlier, designed for model checking real-time systems in UPPAAL. Analogously to the property specification process, the property pattern and its corresponding scope are mapped to Observer UPPAAL template models in the catalog. As a result, each monitorable property will have a corresponding observer automata in the system model.
+
+Afterwards, the generated formulas are be verified for reachability, safety or liveness in the modeled system, by a Model Checking process. The TCTL model-checking problem is to determine for a particular timed automaton TA and TCTL formula \(\phi\) whether TA  \(\vDash \phi\) \cite{2008PrinciplesModelChecking}. A tool named UPPAAL \cite{UPPAAL} can be used to solve this problem by algorithmically assessing if the specified set of properties hold true for each possible state of the system model. If that is not the case, the model, the system specification and the system properties must be revised for a reverification.
+
+Finally, after the assurances are provided in design time, the observers are implemented as algorithms as a means to monitor the CPS during its execution. The algorithm is deployed with in the system and reads the signals sent by the modules in order to verify the satisfaction of the designed properties in runtime. Whenever a violation occurs, an error state is reached, triggering a suitable response.
 
 % \section{Goal Oriented Requirements Engineering} \label{sec:bgGORE}
 
@@ -442,7 +488,7 @@ The linear time algorithm is a two-phase process named after its complexity intr
 
 The Greedy algorithm is yet another algorithm introduced by D'haeseleer et al. \cite{NSADetGen1996}, which tries to provide a better coverage of the string space without increasing the amount of detectors. It does so by slightly modificating the construction of the array of possible matches. It also relies on two arrays, one that stores the candidates picked by the algorithm and other keeps track of the strings that still were not matched with any picked detector. New detectors are generated based on the unmatched strings that have the highest recurrence value \cite{ICBook2009}. This algorithm provides an optimal set of detectors but has a higher time complexity when compared with the Linear algorithm. This happens because of the upDateType of the two arrays that happens whenever a new detector is generated. Time complexity is kept, though.
 
-Even though these two algorithms are proven to provide a better detector generation, they were designed specifically for the R-contiguous distance function. For this reason, the Generate-and-test method will be used in our work as the main algorithm for the generation of such strings.
+Even though these two algorithms are proven to provide a better detector generation, they were designed specifically for the R-contiguous distance function. For this reason, the Generate-and-test method will be used in our work as the main algorithm for the generation of such detectors.
 
 % \cite{NSADetGen1996}
 % Linear

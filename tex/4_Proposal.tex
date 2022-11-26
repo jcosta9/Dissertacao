@@ -1,4 +1,4 @@
-In this work, we provide a paradigm to aid in the creation of Cyber-physical systems that uses the Negative Selection Algorithm to reveal operational circumstances of the CPS that may effect the fulfillment of non-functional requirements and real-time properties. Our proposed technique has two primary objectives. The first is to aid the analyst in the verification process during the early phases of system development by discovering patterns in simulated execution data linked to property violations. The secondary goal, a byproduct of the first, focuses on increasing the ability to confidently and systematically monitor and analyze CPSs. The methodology combines learning techniques with different assurance provision methods in order to account for the variability in the system behavior that could impair the dependability of the CPS.
+In this work, we provide a paradigm to aid in the creation of Cyber-physical systems that uses the Negative Selection Algorithm to reveal operational circumstances of the CPS that may effect the fulfillment of non-functional requirements and real-time properties. Our proposed technique has two primary objectives. The first is to aid the analyst in the verification process during the early phases of system development by discovering patterns in simulated execution data linked to property violations. The secondary goal, a byproduct of the first, focuses on increasing the ability to confidently and systematically monitor and analyze CPSs. The methodology combines simulation frameworks with learning techniques to help address the complexity associated with CPS verification.
 
 % To bypass both time and space limitations, we aim at merging the context discovery potential by means of artificial intelligence over monitored data, typical of runtime approaches, with the perks of having a robust modeling process at design time
 
@@ -12,21 +12,20 @@ This chapter is structured as follows: First, we provide an overview of the fram
 
 
 The framework comprises two main steps, as depicted in Figure \ref{fig:FrameworkOverview}.
-The fist step uses as input the Contextual Goal Model (CGM) specification of the CPS to be developed, the system properties that were specified based on the CGM and the observers derived from them. With that in hand, we implement a prototype of the system, based on the expected behavior and environment conditions. The prototype will be composed of the modules of the system, the physical processes that may impact the operationalization, and some "naive" observers, for the purpose of monitoring the system properties during the execution. Next, the prototype is run, and the operation dataset is extracted, containing the traces of execution, the consumption of resources and the context conditions at each moment of the execution.
+The fist step uses as input the Contextual Goal Model (CGM) specification of the CPS to be developed, the system properties that were specified based on the CGM and the observers derived from them. With that in hand, we implement a prototype of the system, based on the expected behavior and environment conditions. The prototype will be composed of the modules of the system, the physical processes that may impact the operationalization, and some "naive" observers, for the purpose of monitoring the system properties during the execution. Next, the prototype is executed, and the operation dataset is extracted, containing the traces of execution, the consumption of resources and the context conditions at each moment of the execution.
 
 % The fist step uses as input the Contextual Goal Model (CGM) specification of the CPS to be developed, the system properties that were specified based on the CGM and the observers derived from. Then, a model-checking process takes place to provide formal evidences that the requirements of the system are satisfied. This is done by first modeling the main components of the SAS in a verification tool, like UPPAAL \cite{UPPAAL}. Then, a set of real-time properties are derived from the specification, so that the correctness and completeness of system may be assured. 
 
 % After the assurances have been provided through model-checking, we implement a prototype of the system, based on the expected behavior and on the context conditions. Besides that, naive observers are also implemented, derived from a property specification pattern catalog, and serve the purpose of monitoring the system properties during the execution. The prototype is run, and a dataset is extracted, containing the traces of execution, the consumption of resources and the context conditions at each moment of the execution.
 
-FIXME
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.999\textwidth, keepaspectratio]{img/overview_framework2.png}
+	\includegraphics[width=0.999\textwidth, keepaspectratio]{img/overview_framework4.png}
 	\caption{Overview of the proposed Methodology}
 	\label{fig:FrameworkOverview}
 \end{figure}
 
-The second step happens right after the first one, and is performed individually for each property in the real-time property set. Initially, the operation data goes through a feature engineering process aiming at the labeling and characterization of the data traces in relation to the particular property being examined. Then, the labeled data is analyzed, and the Negative Selection Algorithm is used with the dataset. A collection of R-chunk detectors are produced as a result of this operation. These detectors, specialized in matching the property violation data, are carefully examined so that the patterns discovered can be comprehended. 
+The second step is performed individually for each property in the real-time property set. Initially, the operation data goes through a feature engineering process aiming at the labeling and characterization of the data traces in relation to the particular property being examined. Then, the labeled data is analyzed, and the Negative Selection Algorithm is used with the dataset. A collection of R-chunk detectors are produced as a result of this operation. These detectors, specialized in matching the property violation data, are carefully examined so that the patterns discovered can be comprehended. 
 
 The outcome of this process is the identification of relevant environment conditions and system behavior that were not initially considered when designing the property. This information is, then, used to refine the property, and thus, enhance or create new observers.
 
@@ -57,7 +56,7 @@ The outcome of this process is the identification of relevant environment condit
 % \subsection{Prototype Implementation}
 
 % After assuring the correctness of the system through model checking, the second activity of this step is the implementation of a prototype for the system being developed. 
-FIXME
+
 The initial step of our approach addresses the complex relation between the cybernetic and physical natures of the CPS through the implementation of a prototype of the system.  % Explain further how this will be done by looking at the background
 The major purpose is to replicate the system's behavior in order to generate reliable data for the analysis phase. Multiple runs of the simulation with varying configurations will be performed as a means to generate an operation dataset that accounts for the variability that will be faced in runtime. This dataset will be passed on to the next stage of our framework to convey the patterns in the anomalous executions by means of artificial intelligence.
 
@@ -69,7 +68,7 @@ Fei \cite{deng2019modeling}, in turn, proposes a less tool-dense modeling guide 
 
 % talk about the embedded_systems module in Modelica.
 
-To achieve the purpose of this work, a simpler framework for the implementation of the prototype will sufice. Since Modelica is one of the most often used tools in the MBSE field \cite{mohamed2021model}, the prototype is written in this language and runs in the OpenModelica simulation environment. Each module is designed to mirror the expected behavior of the system to be, based on the designed software architecture. The naive observers are also implemented so that the execution of the simulation may be monitored for the provision of assurances.
+To achieve the purpose of this work, a simpler framework for the implementation of the prototype will suffice. Since Modelica is one of the most often used tools in the MBSE field \cite{mohamed2021model}, the prototype is written in this language and runs in the OpenModelica simulation environment. Each module is designed to mirror the expected behavior of the system to be, based on the designed software architecture. The naive observers are also implemented so that the execution of the simulation may be monitored for the provision of assurances.
 
 With the prototype in place, many simulations with varying inputs, settings, and setups may be conducted to account for as much context variability as feasible. Each experiment will yield a dataset comprising the execution traces, resource usage, and context conditions at each stage of the execution. In the end, the generated datasets will be stored for the execution of the next step.
 
@@ -99,7 +98,7 @@ This process can be further divided into two phases: the feature engineering pha
 \subsection{Feature Engineering}
 \label{sec:feat_eng}
 
-This phase focuses on the shaping of the operation dataset in order to better adjust it to the learning algorithm. This is accomplished by first segmenting the data, then creating features to define individually a single segment, and lastly classifying the execution fragments as property violations (nonself) or not (self). 
+This phase focuses on the shaping of the operation dataset in order to better adjust itself to the learning algorithm. This is accomplished by first segmenting the data, then creating features to define individually a single segment, and lastly classifying the execution fragments as property violations (nonself) or not (self). 
 
 Depending on the simulation environment, the operation dataset is retrieved from the simulation as a collection of files, each of which is associated with a single simulation run in the previous step. A simulation file presents the data in a tabular manner, with the columns representing the values of the model's components, resources, signals and so on at every timestamp. The activities of segmentation, feature generation, and labeling are carried out for each individual file, and then concatenated in a resultant dataset.
 
@@ -125,7 +124,7 @@ Finally, the classification phase will make use of the recently derived dataset.
 	\label{fig:FeatureEngResult}
 \end{figure}
 
-Figure \ref{fig:FeatureEngResult} displays what would be the row associated with the time-restricted segment from Figure \ref{fig:Segmentation}. The observer starts in the initial state and moves forward if the data is collected. In the next state, it waits for the signal indicating that the Central Node processed the data to return back to the first state. In the example, since 2 seconds was not enough time for the central node to process the data, it was considered not done whithin the time window of the property. Hence, the column "Central Node processed" is zero, and "Time until Central Node processed" is \textit{null}, and therefore the row is labeled 1, meaning that this segment does violate the property.
+Figure \ref{fig:FeatureEngResult} displays what would be the row associated with the time-restricted segment from Figure \ref{fig:Segmentation}. The observer starts in the initial state and moves forward if the data is collected. In the next state, it waits for the signal indicating that the Central Node processed the data to return back to the first state. In the example, since 2 seconds were not enough time for the central node to process the data, it was considered not done whithin the time window of the property. Hence, the column "Central Node processed" is zero, and "Time until Central Node processed" is \textit{null}, and therefore the row is labeled 1, meaning that this segment does violate the property.
 
 \subsection{Negative Selection Algorithm}
 \label{sec:prop_NSA}
